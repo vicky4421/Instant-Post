@@ -10,6 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.vismijatech.instantpost.navigation.InstantPostNavigation
 import com.vismijatech.instantpost.ui.theme.InstantPostTheme
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.HiltAndroidApp
@@ -32,7 +33,7 @@ fun InstantPostApp() {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-
+            InstantPostNavigation()
         }
     }
 }
