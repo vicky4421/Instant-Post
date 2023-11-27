@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "397570466533",
+    "firebase_url": "https://instant-post-59179-default-rtdb.firebaseio.com",
+    "project_id": "instant-post-59179",
+    "storage_bucket": "instant-post-59179.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:397570466533:android:3bdbed3fc69f910533aa0c",
+        "android_client_info": {
+          "package_name": "com.vismijatech.instantpost"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "397570466533-cuhhbc9rs6addjm6pejee3qle9lld9i9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vismijatech.instantpost",
+            "certificate_hash": "1fe56a377066371730e8da5749c6838c22c67e6c"
+          }
+        },
+        {
+          "client_id": "397570466533-inepk5a2d2sfl7kko5btofrfdeea7nno.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8eVaLEUYwboCKBuCgr0irBa3UB3CM0n4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "397570466533-inepk5a2d2sfl7kko5btofrfdeea7nno.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      },
+      "admob_app_id": "ca-app-pub-8077527269407193~3285002914"
+    }
+  ],
+  "configuration_version": "1"
+}

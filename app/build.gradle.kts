@@ -5,6 +5,10 @@ plugins {
     // Hilt and Kapt
     kotlin("kapt")
     id("com.google.dagger.hilt.android")
+
+    // Firebase
+    id("com.google.gms.google-services")
+    id("com.google.firebase.crashlytics")
 }
 
 android {
@@ -68,6 +72,12 @@ dependencies {
     // Hilt
     implementation("com.google.dagger:hilt-android:2.48.1")
     kapt("com.google.dagger:hilt-android-compiler:2.48.1")
+
+    // Firebase
+    implementation("com.google.firebase:firebase-database:20.3.0")
+    implementation("com.google.firebase:firebase-auth:22.3.0")
+    implementation("com.google.firebase:firebase-crashlytics:18.6.0")
+    implementation("com.google.firebase:firebase-analytics:21.5.0")
 
     // View Model
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
