@@ -110,18 +110,12 @@ fun SplashScreen(navController: NavHostController) {
     }
     LaunchedEffect(key1 = Unit){
         delay(timeMillis = 5000)
-        navController.navigate(InstantPostScreen.DashboardScreen.name)
+        navController.navigate(InstantPostScreen.LoginScreen.name)
     }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun SplashScreenPreview() {
-    SplashScreen(navController = rememberNavController())
-}
-
-@Preview(uiMode = UI_MODE_NIGHT_YES)
-@Composable
-fun SplashScreenNightPreview() {
     SplashScreen(navController = rememberNavController())
 }
