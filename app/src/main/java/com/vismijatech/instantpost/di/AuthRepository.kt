@@ -1,5 +1,6 @@
 package com.vismijatech.instantpost.di
 
+import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.AuthResult
 import com.vismijatech.instantpost.utils.firebaseresource.Resource
 import kotlinx.coroutines.flow.Flow
@@ -10,4 +11,5 @@ import kotlinx.coroutines.flow.Flow
 interface AuthRepository {
     fun loginUser(email: String, password: String): Flow<Resource<AuthResult>>
     fun registerUser(email: String, password: String): Flow<Resource<AuthResult>>
+    fun googleSignIn(credential: AuthCredential): Flow<Resource<AuthResult>>
 }
