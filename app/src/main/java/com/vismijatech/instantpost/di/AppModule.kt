@@ -1,8 +1,6 @@
 package com.vismijatech.instantpost.di
 
 import com.google.firebase.auth.FirebaseAuth
-import com.vismijatech.instantpost.repository.firebaseAuthRepository.AuthRepository
-import com.vismijatech.instantpost.repository.firebaseAuthRepository.AuthRepositoryImplementation
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -22,7 +20,7 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun providesAuthRepositoryImplementation(auth: FirebaseAuth): AuthRepository{
+    fun providesAuthRepositoryImplementation(auth: FirebaseAuth): AuthRepository {
         return AuthRepositoryImplementation(auth = auth)
     }
 }

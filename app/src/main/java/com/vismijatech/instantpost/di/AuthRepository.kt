@@ -1,4 +1,4 @@
-package com.vismijatech.instantpost.repository.firebaseAuthRepository
+package com.vismijatech.instantpost.di
 
 import com.google.firebase.auth.AuthResult
 import com.vismijatech.instantpost.utils.firebaseresource.Resource

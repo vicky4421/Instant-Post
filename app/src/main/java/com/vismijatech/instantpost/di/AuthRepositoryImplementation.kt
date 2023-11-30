@@ -1,4 +1,4 @@
-package com.vismijatech.instantpost.repository.firebaseAuthRepository
+package com.vismijatech.instantpost.di
 
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
@@ -12,7 +12,8 @@ import javax.inject.Inject
 /**
  * Created by Vivek Sawant on 30-11-2023.
  */
-class AuthRepositoryImplementation @Inject constructor(private val auth: FirebaseAuth) : AuthRepository {
+class AuthRepositoryImplementation @Inject constructor(private val auth: FirebaseAuth) :
+    AuthRepository {
     override fun loginUser(email: String, password: String): Flow<Resource<AuthResult>> {
         return flow {
             emit(value = Resource.Loading())
