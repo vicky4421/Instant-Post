@@ -17,6 +17,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
@@ -29,7 +30,10 @@ import com.vismijatech.instantpost.navigation.InstantPostScreen
  */
 
 @Composable
-fun SignupScreen(navController: NavHostController) {
+fun SignupScreen(
+    navController: NavHostController,
+    viewModel: SignupViewModel = hiltViewModel()
+) {
     val name = rememberSaveable {
         mutableStateOf("")
     }
