@@ -110,6 +110,7 @@ fun SplashScreen(navController: NavHostController) {
     }
     LaunchedEffect(key1 = Unit){
         delay(timeMillis = 5000)
+        navController.popBackStack()
         navController.navigate(InstantPostScreen.LoginScreen.name)
     }
 }
