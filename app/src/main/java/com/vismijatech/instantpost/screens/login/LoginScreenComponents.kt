@@ -176,16 +176,16 @@ fun CreateNewAccountButton(label: String, onClick: () -> Unit) {
 }
 
 @Composable
-fun LoginWithGoogle(expanded: Boolean, onClick: () -> Unit) {
+fun LoginWithGoogle(expanded: Boolean, onGoogleClick: () -> Unit, onClick: () -> Unit) {
     Column(
-        modifier = Modifier.fillMaxWidth(),
+//        modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
         Row(
             modifier = Modifier
-                .fillMaxWidth()
-                .clickable { onClick() },
+//                .fillMaxWidth()
+                .clickable { onGoogleClick() },
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -197,7 +197,7 @@ fun LoginWithGoogle(expanded: Boolean, onClick: () -> Unit) {
             AnnotatedGoogleText()
         }
         AnimatedVisibility(visible = expanded) {
-            Button(onClick = { /*TODO*/ }, modifier = Modifier.padding(top = 10.dp)) {
+            OutlinedButton(onClick = { onClick() }, modifier = Modifier.padding(top = 20.dp)) {
                 Text(text = "Google sign in")
             }
         }
