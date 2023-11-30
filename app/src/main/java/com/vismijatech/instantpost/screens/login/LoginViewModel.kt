@@ -1,8 +1,11 @@
 package com.vismijatech.instantpost.screens.login
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.vismijatech.instantpost.repository.firebaseAuthRepository.AuthRepository
+import com.vismijatech.instantpost.di.AuthRepository
 import com.vismijatech.instantpost.utils.firebaseresource.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
@@ -15,6 +18,7 @@ import javax.inject.Inject
  */
 @HiltViewModel
 class LoginViewModel @Inject constructor(private val authRepository: AuthRepository) : ViewModel() {
+
     private val _signInState = Channel<LoginState>()
     val signInState = _signInState.receiveAsFlow()
 
