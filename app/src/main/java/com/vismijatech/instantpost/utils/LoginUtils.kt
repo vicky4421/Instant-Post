@@ -1,5 +1,10 @@
 package com.vismijatech.instantpost.utils
 
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.vismijatech.instantpost.R
+
 /**
  * Created by Vivek Sawant on 27-11-2023.
  */
@@ -48,3 +53,4 @@ fun hasOneNumber(password: String): Boolean {
     }
     return false
 }
+
