@@ -1,20 +1,27 @@
 package com.vismijatech.instantpost.screens.signup
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -24,6 +31,11 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.vismijatech.instantpost.R
 import com.vismijatech.instantpost.navigation.InstantPostScreen
+import com.vismijatech.instantpost.ui.theme.PoppinsFontFamily
+import com.vismijatech.instantpost.utils.isValidEmail
+import com.vismijatech.instantpost.utils.isValidName
+import com.vismijatech.instantpost.utils.isValidPassword
+import kotlinx.coroutines.launch
 
 /**
  * Created by Vivek Sawant on 26-11-2023.
@@ -43,6 +55,14 @@ fun SignupScreen(
     val password = rememberSaveable {
         mutableStateOf("")
     }
+    val buttonEnabled = rememberSaveable {
+        mutableStateOf(false)
+    }
+    val state = viewModel.signUpState.collectAsState(initial = null)
+    val scope = rememberCoroutineScope()
+    val validName = isValidName(name.value)
+    val validEmail = isValidEmail(email.value)
+    val validPassword = isValidPassword(password.value)
     Surface(
         modifier = Modifier
             .padding(16.dp)
@@ -66,11 +86,29 @@ fun SignupScreen(
             SignupNameInput(name = name)
             SignupEmailInput(email = email)
             SignupPasswordInput(password = password)
-            SignupSubmitButton { }
+            SignupSubmitButton(
+                enabled = name.value.isNotEmpty() && password.value.isNotEmpty() && email.value.isNotEmpty() && validName && validEmail && validPassword
+            ) {
+                scope.launch {
+                viewModel.signUpUser(email = email.value, password = password.value)
+                }
+            }
+            Box (
+//                modifier = Modifier.fillMaxSize(),
+                contentAlignment = Alignment.Center
+            ){
+                if (state.value?.isLoading == true) LinearProgressIndicator()
+                else if (state.value?.isSuccess?.isNotEmpty() == true) navController.navigate(InstantPostScreen.DashboardScreen.name)
+                else if (state.value?.isError?.isNotEmpty() == true) Text(
+                    text = state.value?.isError!!,
+                    style = TextStyle(fontFamily = PoppinsFontFamily, textAlign = TextAlign.Center)
+                )
+            }
             Spacer(modifier = Modifier.weight(weight = 1f))
             SignupAlreadyHaveAccount {
                 navController.navigate(InstantPostScreen.LoginScreen.name)
             }
+
         }
     }
 }
