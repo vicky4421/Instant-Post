@@ -1,9 +1,6 @@
 package com.vismijatech.instantpost.screens.login
 
-import android.annotation.SuppressLint
-import android.media.MediaCodecInfo.VideoCapabilities.PerformancePoint
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -12,11 +9,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowForward
-import androidx.compose.material.icons.filled.Done
 import androidx.compose.material3.Button
-import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedButton
@@ -24,21 +17,24 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.vismijatech.instantpost.R
 import com.vismijatech.instantpost.components.InputText
 import com.vismijatech.instantpost.ui.theme.PoppinsFontFamily
 import com.vismijatech.instantpost.utils.hasOneLowerCaseLetter
@@ -58,14 +54,7 @@ fun LoginTextInput(email: MutableState<String>) {
     InputText(
         valueState = email,
         label = "email",
-        trailingIcon = {
-//            IconButton(onClick = { if (validEmail) onTrailingIconClick() }) {
-//                Icon(
-//                    imageVector = Icons.Default.Done,
-//                    contentDescription = "Done"
-//                )
-//            }
-        },
+        trailingIcon = { },
         imeAction = ImeAction.Done,
         keyboardType = KeyboardType.Email,
         isError = if (email.value.isEmpty()) false else !validEmail,
@@ -89,13 +78,19 @@ fun PasswordTextInput(password: MutableState<String>) {
     val atLeastOneUpperCase = hasOneUpperCaseLetter(password.value)
     val atLeastOneLowerCase = hasOneLowerCaseLetter(password.value)
     val atLeastOneNumber = hasOneNumber(password.value)
+    val showPassword = rememberSaveable {
+        mutableStateOf(false)
+    }
     InputText(
         valueState = password,
         label = "password",
         trailingIcon = {
-//            IconButton(onClick = { if (validPassword) onTrailingIconClick() }) {
-//                Icon(imageVector = Icons.Default.ArrowForward, contentDescription = "Next")
-//            }
+            IconButton(onClick = { showPassword.value = !showPassword.value }) {
+                Icon(
+                    painter = painterResource(id = if (showPassword.value) R.drawable.ic_visibility_on else R.drawable.ic_visibility_off),
+                    contentDescription = "Show/Hide password"
+                )
+            }
         },
         imeAction = ImeAction.Done,
         isError = if (password.value.isEmpty()) false else !validPassword,
@@ -125,15 +120,15 @@ fun PasswordTextInput(password: MutableState<String>) {
                 text = "Must have on special character!",
                 style = TextStyle(fontFamily = PoppinsFontFamily)
             )
-
-        }
+        },
+        visualTransformation = if (showPassword.value) VisualTransformation.None else PasswordVisualTransformation()
     ) {
         // onImeAction / onTrailingIconClick
     }
 }
 
 @Composable
-fun LoginButton(onClick: () -> Unit) {
+fun LoginButton(label: String, onClick: () -> Unit) {
     Button(
         onClick = { onClick() },
         modifier = Modifier
@@ -145,7 +140,7 @@ fun LoginButton(onClick: () -> Unit) {
             .fillMaxWidth()
             .height(height = 50.dp)
     ) {
-        Text(text = "Login", style = TextStyle(fontFamily = PoppinsFontFamily))
+        Text(text = label, style = TextStyle(fontFamily = PoppinsFontFamily))
     }
 }
 
@@ -161,7 +156,7 @@ fun ForgotPasswordText(onClick: () -> Unit) {
 }
 
 @Composable
-fun CreateNewAccountButton(onClick: () -> Unit) {
+fun CreateNewAccountButton(label: String, onClick: () -> Unit) {
     OutlinedButton(
         onClick = { onClick() },
         modifier = Modifier
@@ -170,7 +165,7 @@ fun CreateNewAccountButton(onClick: () -> Unit) {
             .padding(paddingValues = PaddingValues(10.dp))
     ) {
         Text(
-            text = "Create new account",
+            text = label,
             style = TextStyle(fontFamily = PoppinsFontFamily)
         )
     }
@@ -184,7 +179,8 @@ fun LoginWithGoogle(expanded: Boolean, onClick: () -> Unit) {
         verticalArrangement = Arrangement.Center
     ) {
         Row(
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
                 .clickable { onClick() },
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically
@@ -219,7 +215,7 @@ fun AnnotatedGoogleText() {
                 color = Color(color = 0xFF4285F4),
                 fontSize = textsize
             )
-        ){
+        ) {
             append(text = "G")
         }
         withStyle(
@@ -227,7 +223,7 @@ fun AnnotatedGoogleText() {
                 color = Color(color = 0xFFDB4437),
                 fontSize = textsize
             )
-        ){
+        ) {
             append(text = "o")
         }
         withStyle(
@@ -235,7 +231,7 @@ fun AnnotatedGoogleText() {
                 color = Color(color = 0xFFF4B400),
                 fontSize = textsize
             )
-        ){
+        ) {
             append(text = "o")
         }
         withStyle(
@@ -243,7 +239,7 @@ fun AnnotatedGoogleText() {
                 color = Color(color = 0xFF4285F4),
                 fontSize = textsize
             )
-        ){
+        ) {
             append(text = "g")
         }
         withStyle(
@@ -251,7 +247,7 @@ fun AnnotatedGoogleText() {
                 color = Color(color = 0xFF0F9D58),
                 fontSize = textsize
             )
-        ){
+        ) {
             append(text = "l")
         }
         withStyle(
@@ -259,7 +255,7 @@ fun AnnotatedGoogleText() {
                 color = Color(color = 0xFFDB4437),
                 fontSize = textsize
             )
-        ){
+        ) {
             append(text = "e")
         }
     })
