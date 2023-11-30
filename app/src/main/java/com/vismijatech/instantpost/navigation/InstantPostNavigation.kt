@@ -35,6 +35,7 @@ fun InstantPostNavigation(){
         // define composable here
         composable(route = InstantPostScreen.SplashScreen.name){
             SplashScreen(navController = navController)
+            navController.popBackStack()
         }
 
         composable(route = InstantPostScreen.LoginScreen.name){
