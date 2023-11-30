@@ -2,7 +2,7 @@ package com.vismijatech.instantpost.screens.signup
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.vismijatech.instantpost.repository.firebaseAuthRepository.AuthRepository
+import com.vismijatech.instantpost.di.AuthRepository
 import com.vismijatech.instantpost.utils.firebaseresource.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
@@ -22,7 +22,7 @@ class SignupViewModel @Inject constructor(private val authRepository: AuthReposi
         authRepository.registerUser(email = email, password = password).collect{result ->
             when(result){
                 is Resource.Success -> {
-                    _signUpState.send(SignUpState(isSuccess = "Signup successful"))
+                    _signUpState.send(SignUpState(isSuccess = "success"))
                 }
                 is Resource.Loading -> {
                     _signUpState.send(SignUpState(isLoading = true))
