@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
@@ -40,6 +41,7 @@ fun LoginScreen(navController: NavHostController) {
     }
     Surface(
         modifier = Modifier.fillMaxSize()
+            .padding(16.dp)
     ) {
         Column(
             verticalArrangement = Arrangement.Center,
@@ -59,7 +61,7 @@ fun LoginScreen(navController: NavHostController) {
             Spacer(modifier = Modifier.height(10.dp))
             LoginTextInput(email = email)
             PasswordTextInput(password = password)
-            LoginButton {
+            LoginButton(label = "Login") {
 
             }
             ForgotPasswordText { }
@@ -67,7 +69,7 @@ fun LoginScreen(navController: NavHostController) {
                 expanded.value = !expanded.value
             }
             Spacer(modifier = Modifier.weight(weight = 1f))
-            CreateNewAccountButton { }
+            CreateNewAccountButton(label = "Create new account") { }
         }
     }
 }
