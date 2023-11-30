@@ -35,7 +35,6 @@ fun SignupNameInput(name: MutableState<String>) {
         supportingText = {
             if (name.value.isEmpty()) Text(text = "")
             else if (!nameInRange) Text(text = "Full name should be between 2 and 50 characters!")
-            else if (containsNumberOrSpace) Text(text = "Full name should not contain space or number!")
         }
     ) {
         // Ime Action
@@ -53,8 +52,8 @@ fun SignupPasswordInput(password: MutableState<String>) {
 }
 
 @Composable
-fun SignupSubmitButton(onClick: () -> Unit) {
-    LoginButton(label = "Sign Up") {
+fun SignupSubmitButton(enabled: Boolean, onClick: () -> Unit) {
+    LoginButton(label = "Sign Up", enabled = enabled) {
         onClick()
     }
 }
