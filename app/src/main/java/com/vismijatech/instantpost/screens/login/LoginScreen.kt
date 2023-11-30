@@ -24,6 +24,8 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.vismijatech.instantpost.R
 import com.vismijatech.instantpost.navigation.InstantPostScreen
+import com.vismijatech.instantpost.utils.isValidEmail
+import com.vismijatech.instantpost.utils.isValidPassword
 
 /**
  * Created by Vivek Sawant on 26-11-2023.
@@ -44,6 +46,8 @@ fun LoginScreen(
     val expanded = rememberSaveable {
         mutableStateOf(false)
     }
+    val validEmail = isValidEmail(email.value)
+    val validPassword = isValidPassword(password.value)
     Surface(
         modifier = Modifier
             .fillMaxSize()
@@ -67,7 +71,9 @@ fun LoginScreen(
             Spacer(modifier = Modifier.height(10.dp))
             LoginTextInput(email = email)
             PasswordTextInput(password = password)
-            LoginButton(label = "Login") {
+            LoginButton(label = "Login",
+                enabled = email.value.isNotEmpty() && password.value.isNotEmpty() && validEmail && validPassword
+            ) {
 
             }
             ForgotPasswordText { }
