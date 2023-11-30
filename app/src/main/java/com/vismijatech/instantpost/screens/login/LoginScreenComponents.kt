@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -20,6 +21,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
@@ -85,7 +87,7 @@ fun PasswordTextInput(password: MutableState<String>) {
         valueState = password,
         label = "password",
         trailingIcon = {
-            IconButton(onClick = { showPassword.value = !showPassword.value }) {
+            IconButton(onClick = { showPassword.value = !showPassword.value }, modifier = Modifier.scale(2f)) {
                 Icon(
                     painter = painterResource(id = if (showPassword.value) R.drawable.ic_visibility_on else R.drawable.ic_visibility_off),
                     contentDescription = "Show/Hide password"

@@ -71,6 +71,7 @@ fun InputText(
         trailingIcon = trailingIcon,
         isError = isError,
         supportingText = supportingText,
+        visualTransformation = visualTransformation,
         shape = RoundedCornerShape(size = 10.dp)
     )
 }

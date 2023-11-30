@@ -22,6 +22,7 @@ import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.vismijatech.instantpost.R
+import com.vismijatech.instantpost.navigation.InstantPostScreen
 
 /**
  * Created by Vivek Sawant on 26-11-2023.
@@ -69,7 +70,9 @@ fun LoginScreen(navController: NavHostController) {
                 expanded.value = !expanded.value
             }
             Spacer(modifier = Modifier.weight(weight = 1f))
-            CreateNewAccountButton(label = "Create new account") { }
+            CreateNewAccountButton(label = "Create new account") {
+                navController.navigate(InstantPostScreen.SignupScreen.name)
+            }
         }
     }
 }
