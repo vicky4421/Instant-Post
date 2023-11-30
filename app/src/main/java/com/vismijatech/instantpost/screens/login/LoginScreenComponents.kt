@@ -36,6 +36,8 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.vismijatech.instantpost.R
 import com.vismijatech.instantpost.components.InputText
 import com.vismijatech.instantpost.ui.theme.PoppinsFontFamily
@@ -49,7 +51,6 @@ import com.vismijatech.instantpost.utils.isValidPassword
 /**
  * Created by Vivek Sawant on 27-11-2023.
  */
-
 @Composable
 fun LoginTextInput(email: MutableState<String>) {
     val validEmail = isValidEmail(email = email.value)
@@ -130,7 +131,7 @@ fun PasswordTextInput(password: MutableState<String>) {
 }
 
 @Composable
-fun LoginButton(label: String, onClick: () -> Unit) {
+fun LoginButton(label: String,enabled: Boolean, onClick: () -> Unit) {
     Button(
         onClick = { onClick() },
         modifier = Modifier
@@ -140,7 +141,8 @@ fun LoginButton(label: String, onClick: () -> Unit) {
                 bottom = 10.dp
             )
             .fillMaxWidth()
-            .height(height = 50.dp)
+            .height(height = 50.dp),
+        enabled = enabled
     ) {
         Text(text = label, style = TextStyle(fontFamily = PoppinsFontFamily))
     }
