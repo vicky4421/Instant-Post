@@ -1,13 +1,19 @@
 package com.vismijatech.instantpost.screens.login
 
+import android.util.Log
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -15,6 +21,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -22,8 +30,13 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
+import com.google.firebase.auth.GoogleAuthProvider
 import com.vismijatech.instantpost.R
 import com.vismijatech.instantpost.navigation.InstantPostScreen
+import com.vismijatech.instantpost.ui.theme.PoppinsFontFamily
 import com.vismijatech.instantpost.utils.isValidEmail
 import com.vismijatech.instantpost.utils.isValidPassword
 
@@ -36,7 +49,27 @@ fun LoginScreen(
     navController: NavHostController,
     viewModel: LoginViewModel = hiltViewModel()
 ) {
+    val context = LocalContext.current
+    val googleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+        .requestEmail()
+        .requestIdToken(context.getString(R.string.web_client_id))
+        .requestProfile()
+        .requestId()
+        .build()
 
+    val googleSignInClient = GoogleSignIn.getClient(context, googleSignInOptions)
+
+    val launcher = rememberLauncherForActivityResult(contract = ActivityResultContracts.StartActivityForResult()){
+        val account = GoogleSignIn.getSignedInAccountFromIntent(it.data)
+        try {
+            val result = account.getResult(ApiException::class.java)
+            val credentials = GoogleAuthProvider.getCredential(result.idToken, null)
+            viewModel.googleLogIn(credentials)
+        } catch (it: ApiException){
+            it.printStackTrace()
+        }
+    }
+    val googleSignInState = viewModel.googleState.value
     val email = rememberSaveable {
         mutableStateOf("")
     }
@@ -77,8 +110,22 @@ fun LoginScreen(
 
             }
             ForgotPasswordText { }
-            LoginWithGoogle(expanded = expanded.value) {
-                expanded.value = !expanded.value
+            LoginWithGoogle(
+                expanded = expanded.value,
+                onGoogleClick = {expanded.value = !expanded.value}
+            ) {
+                launcher.launch(googleSignInClient.signInIntent)
+            }
+            Box(
+                modifier = Modifier.padding(top = 20.dp),
+                contentAlignment = Alignment.Center
+            ) {
+                if (googleSignInState.loading) LinearProgressIndicator()
+                else if (googleSignInState.success?.toString()?.isNotEmpty() == true) navController.navigate(InstantPostScreen.DashboardScreen.name)
+                else if (googleSignInState.error.isNotEmpty()) Text(
+                    text = googleSignInState.error,
+                    style = TextStyle(fontFamily = PoppinsFontFamily, textAlign = TextAlign.Center)
+                )
             }
             Spacer(modifier = Modifier.weight(weight = 1f))
             CreateNewAccountButton(label = "Create new account") {
