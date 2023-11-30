@@ -1,5 +1,6 @@
 package com.vismijatech.instantpost.di
 
+import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.vismijatech.instantpost.utils.firebaseresource.Resource
@@ -30,7 +31,17 @@ class AuthRepositoryImplementation @Inject constructor(private val auth: Firebas
             val result = auth.createUserWithEmailAndPassword(email, password).await()
             emit(value = Resource.Success(data = result))
         }.catch {
-            emit(Resource.Error(it.message.toString()))
+            emit(value = Resource.Error(it.message.toString()))
+        }
+    }
+
+    override fun googleSignIn(credential: AuthCredential): Flow<Resource<AuthResult>> {
+        return flow {
+            emit(value = Resource.Loading())
+            val result = auth.signInWithCredential(credential).await()
+            emit(value = Resource.Success(data = result))
+        }.catch {
+            emit(value = Resource.Error(it.message.toString()))
         }
     }
 
