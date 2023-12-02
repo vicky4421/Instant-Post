@@ -8,4 +8,5 @@ data class IPUser(
     private val username: String?,
     private val credits: Int?,
     private val imageUrl: String?,
+    private val email: String
 )
