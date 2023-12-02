@@ -31,7 +31,7 @@ fun SignupNameInput(name: MutableState<String>) {
         trailingIcon = { /**/ },
         imeAction = ImeAction.Done,
         keyboardType = KeyboardType.Text,
-        isError = if (!validName) true else !validName,
+        isError = !validName,
         supportingText = {
             if (name.value.isEmpty()) Text(text = "")
             else if (!nameInRange) Text(text = "Full name should be between 2 and 50 characters!")
