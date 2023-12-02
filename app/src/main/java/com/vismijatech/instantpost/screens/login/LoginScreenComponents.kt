@@ -38,6 +38,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.google.firebase.auth.FirebaseAuth
 import com.vismijatech.instantpost.R
 import com.vismijatech.instantpost.components.InputText
 import com.vismijatech.instantpost.ui.theme.PoppinsFontFamily
@@ -71,6 +72,7 @@ fun LoginTextInput(email: MutableState<String>) {
         }
     ) {
         // on imeAction
+
     }
 }
 
@@ -88,7 +90,7 @@ fun PasswordTextInput(password: MutableState<String>) {
         valueState = password,
         label = "password",
         trailingIcon = {
-            IconButton(onClick = { showPassword.value = !showPassword.value }, modifier = Modifier.scale(2f)) {
+            IconButton(onClick = { showPassword.value = !showPassword.value }) {
                 Icon(
                     painter = painterResource(id = if (showPassword.value) R.drawable.ic_visibility_on else R.drawable.ic_visibility_off),
                     contentDescription = "Show/Hide password"
@@ -153,6 +155,17 @@ fun ForgotPasswordText(onClick: () -> Unit) {
     Text(
         text = "Forgot password?",
         style = TextStyle(fontFamily = PoppinsFontFamily, fontWeight = FontWeight.Bold),
+        modifier = Modifier
+            .clickable { onClick() }
+            .padding(start = 10.dp, end = 10.dp, bottom = 5.dp)
+    )
+}
+
+@Composable
+fun SendVerificationEmail(onClick: () -> Unit) {
+    Text(
+        text = "Resend email verification link",
+        style = TextStyle(fontFamily = PoppinsFontFamily, fontWeight = FontWeight.Light),
         modifier = Modifier
             .clickable { onClick() }
             .padding(start = 10.dp, end = 10.dp, bottom = 5.dp)
