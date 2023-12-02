@@ -98,7 +98,7 @@ fun SignupScreen(
                 contentAlignment = Alignment.Center
             ){
                 if (state.value?.isLoading == true) LinearProgressIndicator()
-                else if (state.value?.isSuccess?.isNotEmpty() == true) navController.navigate(InstantPostScreen.DashboardScreen.name)
+                else if (state.value?.isSuccess?.isNotEmpty() == true) navController.navigate(InstantPostScreen.LoginScreen.name)
                 else if (state.value?.isError?.isNotEmpty() == true) Text(
                     text = state.value?.isError!!,
                     style = TextStyle(fontFamily = PoppinsFontFamily, textAlign = TextAlign.Center)
