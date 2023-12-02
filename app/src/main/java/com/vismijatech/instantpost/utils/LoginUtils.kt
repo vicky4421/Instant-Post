@@ -1,8 +1,16 @@
 package com.vismijatech.instantpost.utils
 
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
+import android.content.Context
+import android.content.Intent
+import androidx.activity.compose.ManagedActivityResultLauncher
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
+import com.google.firebase.auth.GoogleAuthProvider
 import com.vismijatech.instantpost.R
 
 /**
@@ -54,3 +62,17 @@ fun hasOneNumber(password: String): Boolean {
     return false
 }
 
+// sign in with google
+fun getGoogleSignInOptions(context: Context): GoogleSignInOptions{
+    return GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+        .requestEmail()
+        .requestIdToken(context.getString(R.string.web_client_id))
+        .requestProfile()
+        .requestId()
+        .build()
+}
+
+fun getGoogleSignInClient(context: Context): GoogleSignInClient{
+    val googleSignInOptions = getGoogleSignInOptions(context)
+    return GoogleSignIn.getClient(context, googleSignInOptions)
+}
