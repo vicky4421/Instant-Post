@@ -1,6 +1,6 @@
 package com.vismijatech.instantpost.screens.login
 
-import android.util.Log
+import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Arrangement
@@ -31,12 +31,13 @@ import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.vismijatech.instantpost.R
 import com.vismijatech.instantpost.navigation.InstantPostScreen
 import com.vismijatech.instantpost.ui.theme.PoppinsFontFamily
+import com.vismijatech.instantpost.utils.getGoogleSignInClient
 import com.vismijatech.instantpost.utils.isValidEmail
 import com.vismijatech.instantpost.utils.isValidPassword
 
@@ -49,15 +50,8 @@ fun LoginScreen(
     navController: NavHostController,
     viewModel: LoginViewModel = hiltViewModel()
 ) {
+    val auth = FirebaseAuth.getInstance()
     val context = LocalContext.current
-    val googleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-        .requestEmail()
-        .requestIdToken(context.getString(R.string.web_client_id))
-        .requestProfile()
-        .requestId()
-        .build()
-
-    val googleSignInClient = GoogleSignIn.getClient(context, googleSignInOptions)
 
     val launcher = rememberLauncherForActivityResult(contract = ActivityResultContracts.StartActivityForResult()){
         val account = GoogleSignIn.getSignedInAccountFromIntent(it.data)
@@ -107,13 +101,31 @@ fun LoginScreen(
             LoginButton(label = "Login",
                 enabled = email.value.isNotEmpty() && password.value.isNotEmpty() && validEmail && validPassword
             ) {
-
+                // check if the email is verified.
+                if (auth.currentUser?.isEmailVerified == true){
+                    navController.navigate(InstantPostScreen.DashboardScreen.name)
+                } else {
+                    Toast.makeText(context, "Please verify your email", Toast.LENGTH_LONG).show()
+                }
             }
             ForgotPasswordText { }
+            SendVerificationEmail {
+                if (auth.currentUser != null){
+                    auth.currentUser?.sendEmailVerification()
+                    Toast.makeText(context, "Email verification link sent", Toast.LENGTH_LONG).show()
+                } else if (auth.currentUser == null && email.value.isEmpty()){
+                    Toast.makeText(context, "Please enter email id", Toast.LENGTH_LONG).show()
+                }
+//                else if (auth.currentUser == null && email.value.isNotEmpty()){
+                   // TODO: implement after implementing realtime database
+//                }
+
+            }
             LoginWithGoogle(
                 expanded = expanded.value,
                 onGoogleClick = {expanded.value = !expanded.value}
             ) {
+                val googleSignInClient = getGoogleSignInClient(context)
                 launcher.launch(googleSignInClient.signInIntent)
             }
             Box(
@@ -121,7 +133,10 @@ fun LoginScreen(
                 contentAlignment = Alignment.Center
             ) {
                 if (googleSignInState.loading) LinearProgressIndicator()
-                else if (googleSignInState.success?.toString()?.isNotEmpty() == true) navController.navigate(InstantPostScreen.DashboardScreen.name)
+                else if (googleSignInState.success?.toString()?.isNotEmpty() == true) {
+                    navController.popBackStack()
+                    navController.navigate(InstantPostScreen.DashboardScreen.name)
+                }
                 else if (googleSignInState.error.isNotEmpty()) Text(
                     text = googleSignInState.error,
                     style = TextStyle(fontFamily = PoppinsFontFamily, textAlign = TextAlign.Center)
