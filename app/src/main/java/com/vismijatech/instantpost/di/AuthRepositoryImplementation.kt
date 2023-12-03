@@ -22,7 +22,7 @@ class AuthRepositoryImplementation @Inject constructor(private val auth: Firebas
 
     private val firebaseDatabase = FirebaseDatabase.getInstance()
     private val databaseRef = firebaseDatabase.getReference("users")
-    private val currentUser = FirebaseAuth.getInstance().currentUser
+//    private val currentUser = auth.currentUser
 
     override fun loginUser(email: String, password: String): Flow<Resource<AuthResult>> {
         return flow {
@@ -93,14 +93,14 @@ class AuthRepositoryImplementation @Inject constructor(private val auth: Firebas
     ): AuthResult {
         val result = auth.signInWithCredential(credential).addOnCompleteListener { task ->
             if (task.isSuccessful) {
-                val uid = currentUser?.uid.toString()
+                val uid = "${auth.currentUser?.uid}"
                 val credit = 10
-                val mail = currentUser?.email.toString()
-                val imageUrl = currentUser?.photoUrl.toString()
-                val name = currentUser?.displayName
+                val mail = auth.currentUser?.email.toString()
+                val imageUrl = auth.currentUser?.photoUrl.toString()
+                val name = auth.currentUser?.displayName
 
                 // Check if the user already exists in database using the email address
-                databaseRef.get().addOnCompleteListener { snapshot ->
+                databaseRef.child(uid).get().addOnCompleteListener { snapshot ->
                     if (snapshot.isSuccessful && snapshot.result.exists()) {
                         // User is already exists, navigate to dashboard
                         navController.popBackStack()
@@ -112,6 +112,7 @@ class AuthRepositoryImplementation @Inject constructor(private val auth: Firebas
                             databaseRef.child(uid).child("email").setValue(mail)
                             databaseRef.child(uid).child("imageUrl").setValue(imageUrl)
                             databaseRef.child(uid).child("name").setValue(name)
+                            navController.popBackStack()
                         } catch (e: Exception) {
                             e.printStackTrace()
                             Log.d("firebase database", "googleSignIn: ${e.message}")
