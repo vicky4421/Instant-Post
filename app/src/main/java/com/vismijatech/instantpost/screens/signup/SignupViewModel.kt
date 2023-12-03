@@ -14,23 +14,29 @@ import javax.inject.Inject
  * Created by Vivek Sawant on 30-11-2023.
  */
 @HiltViewModel
-class SignupViewModel @Inject constructor(private val authRepository: AuthRepository) : ViewModel() {
+class SignupViewModel @Inject constructor(private val authRepository: AuthRepository) :
+    ViewModel() {
     private val _signUpState = Channel<SignUpState>()
     val signUpState = _signUpState.receiveAsFlow()
 
-    fun signUpUser(email: String, password: String) = viewModelScope.launch {
-        authRepository.registerUser(email = email, password = password).collect{result ->
-            when(result){
-                is Resource.Success -> {
-                    _signUpState.send(SignUpState(isSuccess = "success"))
-                }
-                is Resource.Loading -> {
-                    _signUpState.send(SignUpState(isLoading = true))
-                }
-                is Resource.Error -> {
-                    _signUpState.send(SignUpState(isError = result.message))
+
+    fun signUpUser(email: String, password: String, name: String) = viewModelScope.launch {
+        authRepository.registerUser(email = email, password = password, name = name)
+            .collect { result ->
+                when (result) {
+                    is Resource.Success -> {
+                        // create new user
+                        _signUpState.send(SignUpState(isSuccess = "success"))
+                    }
+
+                    is Resource.Loading -> {
+                        _signUpState.send(SignUpState(isLoading = true))
+                    }
+
+                    is Resource.Error -> {
+                        _signUpState.send(SignUpState(isError = result.message))
+                    }
                 }
             }
-        }
     }
 }
