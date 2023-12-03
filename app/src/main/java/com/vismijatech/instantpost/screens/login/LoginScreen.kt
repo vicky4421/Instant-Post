@@ -16,6 +16,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -37,9 +38,7 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.vismijatech.instantpost.R
 import com.vismijatech.instantpost.navigation.InstantPostScreen
 import com.vismijatech.instantpost.ui.theme.PoppinsFontFamily
-import com.vismijatech.instantpost.utils.getGoogleSignInClient
-import com.vismijatech.instantpost.utils.isValidEmail
-import com.vismijatech.instantpost.utils.isValidPassword
+import kotlinx.coroutines.launch
 
 /**
  * Created by Vivek Sawant on 26-11-2023.
@@ -52,17 +51,19 @@ fun LoginScreen(
 ) {
     val auth = FirebaseAuth.getInstance()
     val context = LocalContext.current
+    val scope = rememberCoroutineScope()
 
-    val launcher = rememberLauncherForActivityResult(contract = ActivityResultContracts.StartActivityForResult()){
-        val account = GoogleSignIn.getSignedInAccountFromIntent(it.data)
-        try {
-            val result = account.getResult(ApiException::class.java)
-            val credentials = GoogleAuthProvider.getCredential(result.idToken, null)
-            viewModel.googleLogIn(credentials)
-        } catch (it: ApiException){
-            it.printStackTrace()
+    val launcher =
+        rememberLauncherForActivityResult(contract = ActivityResultContracts.StartActivityForResult()) {
+            val account = GoogleSignIn.getSignedInAccountFromIntent(it.data)
+            try {
+                val result = account.getResult(ApiException::class.java)
+                val credentials = GoogleAuthProvider.getCredential(result.idToken, null)
+                viewModel.googleLogIn(credentials, navController)
+            } catch (it: ApiException) {
+                it.printStackTrace()
+            }
         }
-    }
     val googleSignInState = viewModel.googleState.value
     val email = rememberSaveable {
         mutableStateOf("")
@@ -98,11 +99,12 @@ fun LoginScreen(
             Spacer(modifier = Modifier.height(10.dp))
             LoginTextInput(email = email)
             PasswordTextInput(password = password)
-            LoginButton(label = "Login",
+            LoginButton(
+                label = "Login",
                 enabled = email.value.isNotEmpty() && password.value.isNotEmpty() && validEmail && validPassword
             ) {
                 // check if the email is verified.
-                if (auth.currentUser?.isEmailVerified == true){
+                if (auth.currentUser?.isEmailVerified == true) {
                     navController.navigate(InstantPostScreen.DashboardScreen.name)
                 } else {
                     Toast.makeText(context, "Please verify your email", Toast.LENGTH_LONG).show()
@@ -110,23 +112,20 @@ fun LoginScreen(
             }
             ForgotPasswordText { }
             SendVerificationEmail {
-                if (auth.currentUser != null){
+                if (auth.currentUser != null) {
                     auth.currentUser?.sendEmailVerification()
-                    Toast.makeText(context, "Email verification link sent", Toast.LENGTH_LONG).show()
-                } else if (auth.currentUser == null && email.value.isEmpty()){
-                    Toast.makeText(context, "Please enter email id", Toast.LENGTH_LONG).show()
+                    Toast.makeText(context, "Email verification link sent", Toast.LENGTH_LONG)
+                        .show()
                 }
-//                else if (auth.currentUser == null && email.value.isNotEmpty()){
-                   // TODO: implement after implementing realtime database
-//                }
-
             }
             LoginWithGoogle(
                 expanded = expanded.value,
-                onGoogleClick = {expanded.value = !expanded.value}
+                onGoogleClick = { expanded.value = !expanded.value }
             ) {
-                val googleSignInClient = getGoogleSignInClient(context)
-                launcher.launch(googleSignInClient.signInIntent)
+                scope.launch {
+                    val googleSignInClient = getGoogleSignInClient(context)
+                    launcher.launch(googleSignInClient.signInIntent)
+                }
             }
             Box(
                 modifier = Modifier.padding(top = 20.dp),
@@ -136,8 +135,7 @@ fun LoginScreen(
                 else if (googleSignInState.success?.toString()?.isNotEmpty() == true) {
                     navController.popBackStack()
                     navController.navigate(InstantPostScreen.DashboardScreen.name)
-                }
-                else if (googleSignInState.error.isNotEmpty()) Text(
+                } else if (googleSignInState.error.isNotEmpty()) Text(
                     text = googleSignInState.error,
                     style = TextStyle(fontFamily = PoppinsFontFamily, textAlign = TextAlign.Center)
                 )
