@@ -105,6 +105,7 @@ fun LoginScreen(
             ) {
                 // check if the email is verified.
                 if (auth.currentUser?.isEmailVerified == true) {
+                    //TODO: check login with email and password.
                     navController.navigate(InstantPostScreen.DashboardScreen.name)
                 } else {
                     Toast.makeText(context, "Please verify your email", Toast.LENGTH_LONG).show()
