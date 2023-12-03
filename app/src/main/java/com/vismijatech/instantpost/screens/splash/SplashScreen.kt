@@ -29,6 +29,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.google.firebase.auth.FirebaseAuth
 import com.vismijatech.instantpost.R
 import com.vismijatech.instantpost.navigation.InstantPostScreen
 import kotlinx.coroutines.delay
@@ -108,10 +109,19 @@ fun SplashScreen(navController: NavHostController) {
             }
         }
     }
-    LaunchedEffect(key1 = Unit){
+    LaunchedEffect(key1 = Unit) {
         delay(timeMillis = 5000)
         navController.popBackStack()
-        navController.navigate(InstantPostScreen.LoginScreen.name)
+        if (FirebaseAuth.getInstance().currentUser != null) navController.navigate(InstantPostScreen.DashboardScreen.name)
+        else navController.navigate(InstantPostScreen.LoginScreen.name)
+
+        /*
+        TODO: check if user is removed from the firebase console auth and realtime database if the user is still able to
+         navigate to dashboard, right now its yes, but dashboard is not implemented.
+         After dashboard implementation before directly going to dashboard check another condition that user is exists
+         in database.
+         */
+
     }
 }
 
