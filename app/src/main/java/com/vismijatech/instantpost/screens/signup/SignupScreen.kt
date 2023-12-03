@@ -12,7 +12,6 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -32,9 +31,8 @@ import coil.request.ImageRequest
 import com.vismijatech.instantpost.R
 import com.vismijatech.instantpost.navigation.InstantPostScreen
 import com.vismijatech.instantpost.ui.theme.PoppinsFontFamily
-import com.vismijatech.instantpost.utils.isValidEmail
-import com.vismijatech.instantpost.utils.isValidName
-import com.vismijatech.instantpost.utils.isValidPassword
+import com.vismijatech.instantpost.screens.login.isValidEmail
+import com.vismijatech.instantpost.screens.login.isValidPassword
 import kotlinx.coroutines.launch
 
 /**
@@ -55,9 +53,7 @@ fun SignupScreen(
     val password = rememberSaveable {
         mutableStateOf("")
     }
-    val buttonEnabled = rememberSaveable {
-        mutableStateOf(false)
-    }
+
     val state = viewModel.signUpState.collectAsState(initial = null)
     val scope = rememberCoroutineScope()
     val validName = isValidName(name.value)
@@ -90,15 +86,21 @@ fun SignupScreen(
                 enabled = name.value.isNotEmpty() && password.value.isNotEmpty() && email.value.isNotEmpty() && validName && validEmail && validPassword
             ) {
                 scope.launch {
-                viewModel.signUpUser(email = email.value, password = password.value)
+                    viewModel.signUpUser(
+                        email = email.value,
+                        password = password.value,
+                        name = name.value
+                    )
                 }
             }
-            Box (
+            Box(
 //                modifier = Modifier.fillMaxSize(),
                 contentAlignment = Alignment.Center
-            ){
+            ) {
                 if (state.value?.isLoading == true) LinearProgressIndicator()
-                else if (state.value?.isSuccess?.isNotEmpty() == true) navController.navigate(InstantPostScreen.LoginScreen.name)
+                else if (state.value?.isSuccess?.isNotEmpty() == true) navController.navigate(
+                    InstantPostScreen.LoginScreen.name
+                )
                 else if (state.value?.isError?.isNotEmpty() == true) Text(
                     text = state.value?.isError!!,
                     style = TextStyle(fontFamily = PoppinsFontFamily, textAlign = TextAlign.Center)
