@@ -3,18 +3,13 @@ package com.vismijatech.instantpost.screens.signup
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.tooling.preview.Preview
 import com.vismijatech.instantpost.components.InputText
 import com.vismijatech.instantpost.screens.login.CreateNewAccountButton
 import com.vismijatech.instantpost.screens.login.LoginButton
 import com.vismijatech.instantpost.screens.login.LoginTextInput
 import com.vismijatech.instantpost.screens.login.PasswordTextInput
-import com.vismijatech.instantpost.utils.isContainsNumberOrSpace
-import com.vismijatech.instantpost.utils.isNameInRange
-import com.vismijatech.instantpost.utils.isValidName
 
 /**
  * Created by Vivek Sawant on 30-11-2023.
@@ -24,7 +19,7 @@ import com.vismijatech.instantpost.utils.isValidName
 fun SignupNameInput(name: MutableState<String>) {
     val validName = isValidName(name.value)
     val nameInRange = isNameInRange(name.value)
-    val containsNumberOrSpace = isContainsNumberOrSpace(name.value)
+//    val containsNumberOrSpace = isContainsNumberOrSpace(name.value)
     InputText(
         valueState = name,
         label = "Full name",
@@ -42,7 +37,7 @@ fun SignupNameInput(name: MutableState<String>) {
 }
 
 @Composable
-fun SignupEmailInput(email: MutableState<String>){
+fun SignupEmailInput(email: MutableState<String>) {
     LoginTextInput(email = email)
 }
 
