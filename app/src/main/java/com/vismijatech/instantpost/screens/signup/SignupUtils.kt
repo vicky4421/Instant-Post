@@ -1,4 +1,4 @@
-package com.vismijatech.instantpost.utils
+package com.vismijatech.instantpost.screens.signup
 
 /**
  * Created by Vivek Sawant on 30-11-2023.
@@ -24,12 +24,3 @@ fun isNameInRange(name: String): Boolean {
     return name.length in 2..50
 }
 
-//Check if each character is a letter or space
-fun isContainsNumberOrSpace(input: String): Boolean {
-    for (char in input) {
-        if (!char.isLetter() && char != ' ') {
-            return false
-        }
-    }
-    return true
-}
