@@ -1,16 +1,9 @@
-package com.vismijatech.instantpost.utils
+package com.vismijatech.instantpost.screens.login
 
 import android.content.Context
-import android.content.Intent
-import androidx.activity.compose.ManagedActivityResultLauncher
-import androidx.activity.compose.rememberLauncherForActivityResult
-import androidx.activity.result.ActivityResult
-import androidx.activity.result.contract.ActivityResultContracts
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.android.gms.common.api.ApiException
-import com.google.firebase.auth.GoogleAuthProvider
 import com.vismijatech.instantpost.R
 
 /**
@@ -63,16 +56,12 @@ fun hasOneNumber(password: String): Boolean {
 }
 
 // sign in with google
-fun getGoogleSignInOptions(context: Context): GoogleSignInOptions{
-    return GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-        .requestEmail()
-        .requestIdToken(context.getString(R.string.web_client_id))
-        .requestProfile()
-        .requestId()
-        .build()
+fun getGoogleSignInOptions(context: Context): GoogleSignInOptions {
+    return GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail()
+        .requestIdToken(context.getString(R.string.web_client_id)).build()
 }
 
-fun getGoogleSignInClient(context: Context): GoogleSignInClient{
+fun getGoogleSignInClient(context: Context): GoogleSignInClient {
     val googleSignInOptions = getGoogleSignInOptions(context)
     return GoogleSignIn.getClient(context, googleSignInOptions)
 }
