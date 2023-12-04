@@ -81,7 +81,7 @@ fun PasswordTextInput(password: MutableState<String>) {
         trailingIcon = {
             IconButton(onClick = { showPassword.value = !showPassword.value }) {
                 Icon(
-                    painter = painterResource(id = if (showPassword.value) R.drawable.ic_visibility_on else R.drawable.ic_visibility_off),
+                    painter = painterResource(id = if (showPassword.value) R.drawable.ic_visible else R.drawable.ic_invisible),
                     contentDescription = "Show/Hide password"
                 )
             }
