@@ -9,5 +9,6 @@ data class NavigationDrawerItem(
     val title: String,
     val selectedIcon: ImageVector,
     val unSelectedIcon: ImageVector,
-    val imageDescription: String
+    val imageDescription: String,
+    val onClick: () -> Unit
 )
