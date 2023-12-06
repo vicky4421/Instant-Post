@@ -5,10 +5,19 @@ import androidx.navigation.NavHostController
 import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.GenericTypeIndicator
+import com.google.firebase.database.ValueEventListener
 import com.vismijatech.instantpost.navigation.InstantPostScreen
+import com.vismijatech.instantpost.user.IPUser
 import com.vismijatech.instantpost.utils.firebaseresource.Resource
+import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.tasks.await
@@ -17,12 +26,39 @@ import javax.inject.Inject
 /**
  * Created by Vivek Sawant on 30-11-2023.
  */
-class AuthRepositoryImplementation @Inject constructor(private val auth: FirebaseAuth) :
-    AuthRepository {
+class AuthRepositoryImplementation @Inject constructor(
+    private val auth: FirebaseAuth,
+    private val databaseRef: DatabaseReference,
+    private val id: String
+) : AuthRepository {
 
-    private val firebaseDatabase = FirebaseDatabase.getInstance()
-    private val databaseRef = firebaseDatabase.getReference("users")
-//    private val currentUser = auth.currentUser
+    override fun getUser(uid: String):Flow<IPUser?> = callbackFlow {
+        val eventListener = object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val data = snapshot.getValue(object : GenericTypeIndicator<Map<String, Any>>() {})
+
+                if (data != null){
+                    // this is because we've inconsistent fields in db, if there's no field we assign a default value
+                    val user = IPUser(
+                        userId = uid,
+                        username = data["name"] as? String?: "",
+                        credits = (data["credit"] as? Long)?.toInt()?:0,
+                        imageUrl = data["imageUrl"] as? String ?: "",
+                        email = data["email"] as? String ?: ""
+                    )
+                    trySend(element = user)
+                } else {
+                    trySend(element = null)
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                close(cause = error.toException())
+            }
+        }
+        databaseRef.child(uid).addValueEventListener(eventListener)
+        awaitClose { databaseRef.removeEventListener(eventListener) }
+    }
 
     override fun loginUser(email: String, password: String): Flow<Resource<AuthResult>> {
         return flow {
