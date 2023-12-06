@@ -1,6 +1,8 @@
 package com.vismijatech.instantpost.di
 
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,7 +22,15 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun providesAuthRepositoryImplementation(auth: FirebaseAuth): AuthRepository {
-        return AuthRepositoryImplementation(auth = auth)
+    fun providesAuthRepositoryImplementation(auth: FirebaseAuth, databaseReference: DatabaseReference, uid: String): AuthRepository {
+        return AuthRepositoryImplementation(auth = auth, databaseRef = databaseReference, id = uid)
     }
+
+    @Provides
+    @Singleton
+    fun providesFirebaseDatabaseRef() = FirebaseDatabase.getInstance().getReference("users")
+
+    @Provides
+    @Singleton
+    fun providesUserUid() = FirebaseAuth.getInstance().currentUser?.uid.toString()
 }
