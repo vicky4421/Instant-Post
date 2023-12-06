@@ -25,3 +25,12 @@ val rainbowBrush = Brush.radialGradient(
     radius = 1.0f,
     tileMode = TileMode.Repeated
 )
+
+val dashboardImageGradient = Brush.sweepGradient(
+    listOf(
+        Color(0xFF8a3ab9),
+        Color(0xFFfccc63),
+        Color(0xFFbc2a8d),
+        Color(0xFFfbad50)
+    )
+)
