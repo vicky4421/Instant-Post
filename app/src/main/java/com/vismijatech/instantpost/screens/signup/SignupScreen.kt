@@ -28,11 +28,12 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
+import com.google.firebase.auth.FirebaseAuth
 import com.vismijatech.instantpost.R
 import com.vismijatech.instantpost.navigation.InstantPostScreen
-import com.vismijatech.instantpost.ui.theme.PoppinsFontFamily
 import com.vismijatech.instantpost.screens.login.isValidEmail
 import com.vismijatech.instantpost.screens.login.isValidPassword
+import com.vismijatech.instantpost.ui.theme.PoppinsFontFamily
 import kotlinx.coroutines.launch
 
 /**
@@ -110,7 +111,6 @@ fun SignupScreen(
             SignupAlreadyHaveAccount {
                 navController.navigate(InstantPostScreen.LoginScreen.name)
             }
-
         }
     }
 }
