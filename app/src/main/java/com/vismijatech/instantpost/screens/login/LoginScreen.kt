@@ -15,6 +15,7 @@ import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -65,6 +66,8 @@ fun LoginScreen(
             }
         }
     val googleSignInState = viewModel.googleState.value
+    val signInState = viewModel.signInState.collectAsState(initial = null)
+
     val email = rememberSaveable {
         mutableStateOf("")
     }
@@ -103,12 +106,12 @@ fun LoginScreen(
                 label = "Login",
                 enabled = email.value.isNotEmpty() && password.value.isNotEmpty() && validEmail && validPassword
             ) {
-                // check if the email is verified.
-                if (auth.currentUser?.isEmailVerified == true) {
-                    //TODO: check login with email and password.
-                    navController.navigate(InstantPostScreen.DashboardScreen.name)
-                } else {
-                    Toast.makeText(context, "Please verify your email", Toast.LENGTH_LONG).show()
+                viewModel.logInUser(email.value, password.value)
+                if (signInState.value?.isSuccess?.isNotEmpty() == true) {
+                    navController.popBackStack()
+                    navController.navigate(
+                        InstantPostScreen.DashboardScreen.name
+                    )
                 }
             }
             ForgotPasswordText { }
@@ -139,6 +142,16 @@ fun LoginScreen(
                 } else if (googleSignInState.error.isNotEmpty()) Text(
                     text = googleSignInState.error,
                     style = TextStyle(fontFamily = PoppinsFontFamily, textAlign = TextAlign.Center)
+                )
+            }
+            Box(
+                modifier = Modifier.padding(top = 20.dp, start = 16.dp, end = 16.dp),
+                contentAlignment = Alignment.Center
+            ) {
+                if (signInState.value?.isLoading == true) LinearProgressIndicator()
+                else if (signInState.value?.isError?.isNotEmpty() == true) Text(text = signInState.value?.isError.toString())
+                else if (signInState.value?.isSuccess?.isNotEmpty() == true) navController.navigate(
+                    InstantPostScreen.DashboardScreen.name
                 )
             }
             Spacer(modifier = Modifier.weight(weight = 1f))
