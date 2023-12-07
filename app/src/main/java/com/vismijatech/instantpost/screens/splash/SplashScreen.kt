@@ -1,6 +1,5 @@
 package com.vismijatech.instantpost.screens.splash
 
-import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
@@ -23,7 +22,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -42,6 +40,7 @@ import kotlin.random.Random
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SplashScreen(navController: NavHostController) {
+    val auth = FirebaseAuth.getInstance()
 
     Scaffold {
         BoxWithConstraints(
@@ -109,19 +108,14 @@ fun SplashScreen(navController: NavHostController) {
             }
         }
     }
-    LaunchedEffect(key1 = Unit) {
+    LaunchedEffect(key1 = auth.currentUser) {
         delay(timeMillis = 5000)
         navController.popBackStack()
-        if (FirebaseAuth.getInstance().currentUser != null) navController.navigate(InstantPostScreen.DashboardScreen.name)
-        else navController.navigate(InstantPostScreen.LoginScreen.name)
-
-        /*
-        TODO: check if user is removed from the firebase console auth and realtime database if the user is still able to
-         navigate to dashboard, right now its yes, but dashboard is not implemented.
-         After dashboard implementation before directly going to dashboard check another condition that user is exists
-         in database.
-         */
-
+        if (auth.currentUser != null){
+            navController.navigate(InstantPostScreen.DashboardScreen.name)
+        } else {
+            navController.navigate(InstantPostScreen.LoginScreen.name)
+        }
     }
 }
 
