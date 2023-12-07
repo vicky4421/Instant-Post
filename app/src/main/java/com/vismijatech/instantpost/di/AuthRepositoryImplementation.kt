@@ -15,8 +15,6 @@ import com.vismijatech.instantpost.user.IPUser
 import com.vismijatech.instantpost.utils.firebaseresource.Resource
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
@@ -32,17 +30,17 @@ class AuthRepositoryImplementation @Inject constructor(
     private val id: String
 ) : AuthRepository {
 
-    override fun getUser(uid: String):Flow<IPUser?> = callbackFlow {
-        val eventListener = object : ValueEventListener{
+    override fun getUser(uid: String): Flow<IPUser?> = callbackFlow {
+        val eventListener = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val data = snapshot.getValue(object : GenericTypeIndicator<Map<String, Any>>() {})
 
-                if (data != null){
+                if (data != null) {
                     // this is because we've inconsistent fields in db, if there's no field we assign a default value
                     val user = IPUser(
                         userId = uid,
-                        username = data["name"] as? String?: "",
-                        credits = (data["credit"] as? Long)?.toInt()?:0,
+                        username = data["name"] as? String ?: "",
+                        credits = (data["credit"] as? Long)?.toInt() ?: 0,
                         imageUrl = data["imageUrl"] as? String ?: "",
                         email = data["email"] as? String ?: ""
                     )
@@ -64,7 +62,14 @@ class AuthRepositoryImplementation @Inject constructor(
         return flow {
             emit(value = Resource.Loading())
             val result = auth.signInWithEmailAndPassword(email, password).await()
-            emit(value = Resource.Success(data = result))
+
+            val user = auth.currentUser
+            if (user != null && user.isEmailVerified) {
+                emit(value = Resource.Success(data = result))
+            } else {
+                auth.signOut()
+                emit(Resource.Error("Email not verified. Please check your email for a verification link."))
+            }
         }.catch {
             emit(Resource.Error(it.message.toString()))
         }
@@ -96,15 +101,18 @@ class AuthRepositoryImplementation @Inject constructor(
                 val imageUrl = task.result.user?.photoUrl.toString()
                 val mail = task.result.user?.email.toString()
 
-                databaseRef.child(uid)
-                try {
-                    databaseRef.child(uid).child("name").setValue(name)
-                    databaseRef.child(uid).child("credit").setValue(credits)
-                    databaseRef.child(uid).child("imageUrl").setValue(imageUrl)
-                    databaseRef.child(uid).child("email").setValue(mail)
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                    Log.d("firebase database", "signUpUser: ${e.message}")
+                if (task.isSuccessful) {
+                    auth.currentUser?.sendEmailVerification()
+                    databaseRef.child(uid)
+                    try {
+                        databaseRef.child(uid).child("name").setValue(name)
+                        databaseRef.child(uid).child("credit").setValue(credits)
+                        databaseRef.child(uid).child("imageUrl").setValue(imageUrl)
+                        databaseRef.child(uid).child("email").setValue(mail)
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                        Log.d("firebase database", "signUpUser: ${e.message}")
+                    }
                 }
             }.await()
         return result
