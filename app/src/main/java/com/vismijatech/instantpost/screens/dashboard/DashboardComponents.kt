@@ -5,9 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
@@ -46,6 +44,10 @@ import com.vismijatech.instantpost.components.AnimatedBorderComposable
 import com.vismijatech.instantpost.components.dashboardImageGradient
 import com.vismijatech.instantpost.ui.theme.PoppinsFontFamily
 import com.vismijatech.instantpost.utils.navigationDrawerItems
+import com.vismijatech.instantpost.utils.openHowToUseBlogPage
+import com.vismijatech.instantpost.utils.openPlayStoreForRating
+import com.vismijatech.instantpost.utils.openTermsOfUseBlogPage
+import com.vismijatech.instantpost.utils.sendEmail
 import kotlinx.coroutines.launch
 
 /**
@@ -83,7 +85,6 @@ fun NavigationDrawer(
     ModalNavigationDrawer(
         drawerContent = {
             ModalDrawerSheet {
-                Spacer(modifier = Modifier.height(16.dp))
                 DrawerHeader(context = context, image = image, name = name, credits = credits)
                 navigationDrawerItems.forEachIndexed { index, item ->
                     NavigationDrawerItem(
@@ -95,9 +96,16 @@ fun NavigationDrawer(
                         },
                         selected = index == selectedItemIndex.intValue,
                         onClick = {
-                            // navigate
+                            when(item.title){
+                                "Rate us" -> openPlayStoreForRating(context = context)
+                                "Contact us" -> sendEmail(context = context)
+                                "How to use" -> openHowToUseBlogPage(context = context)
+                                "Terms of use" -> openTermsOfUseBlogPage(context = context)
+                                // TODO: delete account
+                            }
                             selectedItemIndex.intValue = index
                             scope.launch { drawerState.close() }
+
                         },
                         icon = {
                             Icon(
