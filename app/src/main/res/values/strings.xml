@@ -1,4 +1,28 @@
 <resources>
     <string name="app_name">Instant Post</string>
     <string name="web_client_id">397570466533-inepk5a2d2sfl7kko5btofrfdeea7nno.apps.googleusercontent.com</string>
+
+<!--    Login Screen-->
+    <string name="loginScreen_email_label">Email</string>
+    <string name="loginScreen_password_label">Password</string>
+    <string name="loginScreen_logIn_label">Log in</string>
+    <string name="loginScreen_forgotPassword_label">Forgot password?</string>
+    <string name="loginScreen_resendVerificationLink_label">Resend email verification link</string>
+    <string name="loginScreen_verificationLinkSent_label">Email verification link sent</string>
+    <string name="loginScreen_signInWith_label">Log in with</string>
+    <string name="loginScreen_googleSignIn_label">Google sign in</string>
+    <string name="loginScreen_createNewAccount_label">Create new account</string>
+    <string name="loginScreen_invalidEmail_label">Invalid email!</string>
+    <string name="loginScreen_minCharNeeded_supportingText">Min 6 characters needed!</string>
+    <string name="loginScreen_charLimitExceeded_supportingText">Character limit exceeded!</string>
+    <string name="loginScreen_mustUpperCase_supportingText">Must have a upper case character!</string>
+    <string name="loginScreen_mustLowerCase_supportingText">Must have a lower case character!</string>
+    <string name="loginScreen_mustANumber_supportingText">Must have a number!</string>
+    <string name="loginScreen_mustSpecialChar_supportingText">Must have one special character!</string>
+
+<!--    Signup Screen-->
+    <string name="signupScreen_fullName_label">Full name</string>
+    <string name="signupScreen_signup_label">Sign Up</string>
+    <string name="signupScreen_alreadyHaveAccount_label">Already have an account?</string>
+
 </resources>
