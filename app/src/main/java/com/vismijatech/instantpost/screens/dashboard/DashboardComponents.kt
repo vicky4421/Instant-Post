@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
@@ -16,7 +15,6 @@ import androidx.compose.material3.DrawerState
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.NavigationDrawerItem
@@ -32,13 +30,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
@@ -46,7 +42,7 @@ import com.vismijatech.instantpost.R
 import com.vismijatech.instantpost.components.AnimatedBorderComposable
 import com.vismijatech.instantpost.components.dashboardImageGradient
 import com.vismijatech.instantpost.ui.theme.PoppinsFontFamily
-import com.vismijatech.instantpost.utils.navigationDrawerItems
+import com.vismijatech.instantpost.utils.getNavDrawerItems
 import com.vismijatech.instantpost.utils.openHowToUseBlogPage
 import com.vismijatech.instantpost.utils.openPlayStoreForRating
 import com.vismijatech.instantpost.utils.openTermsOfUseBlogPage
@@ -56,19 +52,6 @@ import kotlinx.coroutines.launch
 /**
  * Created by Vivek Sawant on 03-12-2023.
  */
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Preview(showBackground = true)
-@Composable
-fun DashboardComponentsPreview() {
-    NavigationDrawer(
-        context = LocalContext.current,
-        image = "",
-        name = "Janhavi Sawant",
-        credits = "200",
-        drawerState = rememberDrawerState(initialValue = DrawerValue.Open)
-    )
-}
 
 // navigation drawer
 @OptIn(ExperimentalMaterial3Api::class)
@@ -93,6 +76,7 @@ fun NavigationDrawer(
                     .verticalScroll(rememberScrollState())
             ) {
                 DrawerHeader(context = context, image = image, name = name, credits = credits)
+                val navigationDrawerItems = getNavDrawerItems(context = context)
                 navigationDrawerItems.forEachIndexed { index, item ->
                     NavigationDrawerItem(
                         label = {
@@ -104,11 +88,10 @@ fun NavigationDrawer(
                         selected = index == selectedItemIndex.intValue,
                         onClick = {
                             when (item.title) {
-                                "Rate us" -> openPlayStoreForRating(context = context)
-                                "Contact us" -> sendEmail(context = context)
-                                "How to use" -> openHowToUseBlogPage(context = context)
-                                "Terms of use" -> openTermsOfUseBlogPage(context = context)
-                                // TODO: delete account
+                                context.getString(R.string.dashboardScreen_rateUs_navDrawerItem) -> openPlayStoreForRating(context = context)
+                                context.getString(R.string.dashboardScreen_contactUs_navDrawerItem) -> sendEmail(context = context)
+                                context.getString(R.string.dashboardScreen_howToUse_navDrawerItem) -> openHowToUseBlogPage(context = context)
+                                context.getString(R.string.dashboardScreen_termsOfUse_navDrawerItem) -> openTermsOfUseBlogPage(context = context)
                             }
                             selectedItemIndex.intValue = index
                             scope.launch { drawerState.close() }
@@ -159,7 +142,7 @@ fun DrawerHeader(
             )
             Row {
                 Text(
-                    text = "Credits: ",
+                    text = stringResource(id = R.string.dashboardScreen_credits) + " ",
                     style = TextStyle(fontFamily = PoppinsFontFamily),
                     textAlign = TextAlign.Center,
                     color = Color.Black.copy(alpha = 0.5f)
@@ -201,21 +184,5 @@ fun ProfileImage(context: Context, image: String) {
             .clip(shape = CircleShape)
             .size(size = 100.dp)
     )
-}
-
-@Composable
-fun LoadingScreen() {
-    Box(
-        modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
-    ) {
-        Column {
-            Text(
-                text = "Loading...",
-                style = TextStyle(fontFamily = PoppinsFontFamily, fontWeight = FontWeight.Bold)
-            )
-            LinearProgressIndicator()
-        }
-    }
 }
 

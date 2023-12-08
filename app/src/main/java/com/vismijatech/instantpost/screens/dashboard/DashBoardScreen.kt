@@ -20,6 +20,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.vismijatech.instantpost.components.AppBar
+import com.vismijatech.instantpost.components.LoadingScreen
 import com.vismijatech.instantpost.navigation.InstantPostScreen
 import kotlinx.coroutines.launch
 
