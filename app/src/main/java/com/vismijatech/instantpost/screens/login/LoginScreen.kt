@@ -25,6 +25,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -106,7 +107,6 @@ fun LoginScreen(
             LoginTextInput(email = email)
             PasswordTextInput(password = password)
             LoginButton(
-                label = "Login",
                 enabled = email.value.isNotEmpty() && password.value.isNotEmpty() && validEmail && validPassword
             ) {
                 viewModel.logInUser(email.value, password.value)
@@ -121,11 +121,17 @@ fun LoginScreen(
             SendVerificationEmail {
                 if (auth.currentUser != null) {
                     auth.currentUser?.sendEmailVerification()
-                    Toast.makeText(context, "Email verification link sent", Toast.LENGTH_LONG)
+                    Toast.makeText(
+                        context,
+                        context.getText(R.string.loginScreen_verificationLinkSent_label),
+                        Toast.LENGTH_LONG
+                    )
                         .show()
                 }
             }
             LoginWithGoogle(
+                label = stringResource(id = R.string.loginScreen_signInWith_label) + " ",
+                label2 = stringResource(id = R.string.loginScreen_googleSignIn_label),
                 expanded = expanded.value,
                 onGoogleClick = { expanded.value = !expanded.value }
             ) {
@@ -158,7 +164,7 @@ fun LoginScreen(
                 )
             }
             Spacer(modifier = Modifier.weight(weight = 1f))
-            CreateNewAccountButton(label = "Create new account") {
+            CreateNewAccountButton(label = stringResource(id = R.string.loginScreen_createNewAccount_label)) {
                 navController.navigate(InstantPostScreen.SignupScreen.name)
             }
         }

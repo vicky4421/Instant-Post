@@ -22,6 +22,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -46,7 +47,7 @@ fun LoginTextInput(email: MutableState<String>) {
     val validEmail = isValidEmail(email = email.value)
     InputText(
         valueState = email,
-        label = "email",
+        label = stringResource(id = R.string.loginScreen_email_label),
         trailingIcon = { },
         imeAction = ImeAction.Done,
         keyboardType = KeyboardType.Email,
@@ -55,7 +56,7 @@ fun LoginTextInput(email: MutableState<String>) {
             if (email.value.isEmpty()) {
                 Text(text = "")
             } else if (!validEmail) Text(
-                text = "Invalid email!",
+                text = stringResource(id = R.string.loginScreen_invalidEmail_label),
                 style = TextStyle(fontFamily = PoppinsFontFamily)
             )
         }
@@ -77,7 +78,7 @@ fun PasswordTextInput(password: MutableState<String>) {
     }
     InputText(
         valueState = password,
-        label = "password",
+        label = stringResource(id = R.string.loginScreen_password_label),
         trailingIcon = {
             IconButton(onClick = { showPassword.value = !showPassword.value }) {
                 Icon(
@@ -91,27 +92,27 @@ fun PasswordTextInput(password: MutableState<String>) {
         supportingText = {
             if (password.value.isEmpty()) Text(text = "")
             else if (password.value.length < 6) Text(
-                text = "Min 6 characters needed!",
+                text = stringResource(id = R.string.loginScreen_minCharNeeded_supportingText),
                 style = TextStyle(fontFamily = PoppinsFontFamily)
             )
             else if (password.value.length > 15) Text(
-                text = "Character limit exceeded!",
+                text = stringResource(id = R.string.loginScreen_charLimitExceeded_supportingText),
                 style = TextStyle(fontFamily = PoppinsFontFamily)
             )
             else if (!atLeastOneUpperCase) Text(
-                text = "Must have a upper case character!",
+                text = stringResource(id = R.string.loginScreen_mustUpperCase_supportingText),
                 style = TextStyle(fontFamily = PoppinsFontFamily)
             )
             else if (!atLeastOneLowerCase) Text(
-                text = "Must have a lower case character!",
+                text = stringResource(id = R.string.loginScreen_mustLowerCase_supportingText),
                 style = TextStyle(fontFamily = PoppinsFontFamily)
             )
             else if (!atLeastOneNumber) Text(
-                text = "Must have a number!",
+                text = stringResource(id = R.string.loginScreen_mustANumber_supportingText),
                 style = TextStyle(fontFamily = PoppinsFontFamily)
             )
             else if (!containsSymbol) Text(
-                text = "Must have on special character!",
+                text = stringResource(id = R.string.loginScreen_mustSpecialChar_supportingText),
                 style = TextStyle(fontFamily = PoppinsFontFamily)
             )
         },
@@ -122,7 +123,7 @@ fun PasswordTextInput(password: MutableState<String>) {
 }
 
 @Composable
-fun LoginButton(label: String, enabled: Boolean, onClick: () -> Unit) {
+fun LoginButton(enabled: Boolean, onClick: () -> Unit) {
     Button(
         onClick = { onClick() },
         modifier = Modifier
@@ -135,14 +136,14 @@ fun LoginButton(label: String, enabled: Boolean, onClick: () -> Unit) {
             .height(height = 50.dp),
         enabled = enabled
     ) {
-        Text(text = label, style = TextStyle(fontFamily = PoppinsFontFamily))
+        Text(text = stringResource(id = R.string.loginScreen_logIn_label), style = TextStyle(fontFamily = PoppinsFontFamily))
     }
 }
 
 @Composable
 fun ForgotPasswordText(onClick: () -> Unit) {
     Text(
-        text = "Forgot password?",
+        text = stringResource(id = R.string.loginScreen_forgotPassword_label),
         style = TextStyle(fontFamily = PoppinsFontFamily, fontWeight = FontWeight.Bold),
         modifier = Modifier
             .clickable { onClick() }
@@ -153,7 +154,7 @@ fun ForgotPasswordText(onClick: () -> Unit) {
 @Composable
 fun SendVerificationEmail(onClick: () -> Unit) {
     Text(
-        text = "Resend email verification link",
+        text = stringResource(id = R.string.loginScreen_resendVerificationLink_label),
         style = TextStyle(fontFamily = PoppinsFontFamily, fontWeight = FontWeight.Light),
         modifier = Modifier
             .clickable { onClick() }
@@ -178,7 +179,7 @@ fun CreateNewAccountButton(label: String, onClick: () -> Unit) {
 }
 
 @Composable
-fun LoginWithGoogle(expanded: Boolean, onGoogleClick: () -> Unit, onClick: () -> Unit) {
+fun LoginWithGoogle(label: String,label2: String, expanded: Boolean, onGoogleClick: () -> Unit, onClick: () -> Unit) {
     Column(
 //        modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -192,7 +193,7 @@ fun LoginWithGoogle(expanded: Boolean, onGoogleClick: () -> Unit, onClick: () ->
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = "Sign in with ",
+                text = stringResource(id = R.string.loginScreen_signInWith_label) + " ",
                 style = TextStyle(fontFamily = PoppinsFontFamily),
                 modifier = Modifier.align(alignment = Alignment.CenterVertically)
             )
@@ -200,16 +201,11 @@ fun LoginWithGoogle(expanded: Boolean, onGoogleClick: () -> Unit, onClick: () ->
         }
         AnimatedVisibility(visible = expanded) {
             OutlinedButton(onClick = { onClick() }, modifier = Modifier.padding(top = 20.dp)) {
-                Text(text = "Google sign in")
+                Text(text = stringResource(id = R.string.loginScreen_googleSignIn_label))
             }
         }
 
     }
-}
-
-@Preview
-@Composable
-fun LoginButtonPreview() {
 }
 
 @Composable

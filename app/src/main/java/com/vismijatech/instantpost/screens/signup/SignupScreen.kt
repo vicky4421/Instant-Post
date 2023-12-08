@@ -19,6 +19,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -84,7 +85,12 @@ fun SignupScreen(
             SignupEmailInput(email = email)
             SignupPasswordInput(password = password)
             SignupSubmitButton(
-                enabled = name.value.isNotEmpty() && password.value.isNotEmpty() && email.value.isNotEmpty() && validName && validEmail && validPassword
+                enabled = name.value.isNotEmpty() &&
+                        password.value.isNotEmpty() &&
+                        email.value.isNotEmpty() &&
+                        validName &&
+                        validEmail &&
+                        validPassword
             ) {
                 scope.launch {
                     viewModel.signUpUser(
@@ -95,7 +101,6 @@ fun SignupScreen(
                 }
             }
             Box(
-//                modifier = Modifier.fillMaxSize(),
                 contentAlignment = Alignment.Center
             ) {
                 if (state.value?.isLoading == true) LinearProgressIndicator()
