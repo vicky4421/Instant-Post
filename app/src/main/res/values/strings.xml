@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">Instant Post</string>
-    <string name="web_client_id">397570466533-inepk5a2d2sfl7kko5btofrfdeea7nno.apps.googleusercontent.com</string>
+    <string name="app_name" translatable="false">Instant Post</string>
+    <string name="web_client_id" translatable="false">397570466533-inepk5a2d2sfl7kko5btofrfdeea7nno.apps.googleusercontent.com</string>
 
 <!--    Login Screen-->
     <string name="loginScreen_email_label">Email</string>
@@ -24,5 +24,15 @@
     <string name="signupScreen_fullName_label">Full name</string>
     <string name="signupScreen_signup_label">Sign Up</string>
     <string name="signupScreen_alreadyHaveAccount_label">Already have an account?</string>
+
+<!--    Dashboard Screen-->
+    <string name="dashboardScreen_credits">Credits:</string>
+    <string name="dashboardScreen_rateUs_navDrawerItem">Rate us</string>
+    <string name="dashboardScreen_contactUs_navDrawerItem">Contact us</string>
+    <string name="dashboardScreen_termsOfUse_navDrawerItem">Terms of use</string>
+    <string name="dashboardScreen_howToUse_navDrawerItem">How to use</string>
+
+<!--    Loading Screen-->
+    <string name="loadingScreen_loading">Loading</string>
 
 </resources>

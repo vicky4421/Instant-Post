@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--    Login Screen-->
+    <string name="loginScreen_email_label">ईमेल</string>
+    <string name="loginScreen_password_label">पासवर्ड</string>
+    <string name="loginScreen_logIn_label">लॉग इन करें</string>
+    <string name="loginScreen_forgotPassword_label">पासवर्ड भूल गए?</string>
+    <string name="loginScreen_resendVerificationLink_label">ईमेल सत्यापन लिंक पुनः भेजें</string>
+    <string name="loginScreen_verificationLinkSent_label">ईमेल सत्यापन लिंक भेजा गया</string>
+    <string name="loginScreen_signInWith_label">गूगल से लॉग इन करें</string>
+    <string name="loginScreen_googleSignIn_label">गूगल से लॉग इन करें</string>
+    <string name="loginScreen_createNewAccount_label">नया खाता बनाएँ</string>
+    <string name="loginScreen_invalidEmail_label">अमान्य ईमेल!</string>
+    <string name="loginScreen_minCharNeeded_supportingText">न्यूनतम 6 अक्षर आवश्यक!</string>
+    <string name="loginScreen_charLimitExceeded_supportingText">वर्ण सीमा पार हो गई!</string>
+    <string name="loginScreen_mustUpperCase_supportingText">अपर केस कैरेक्टर होना चाहिए!</string>
+    <string name="loginScreen_mustLowerCase_supportingText">लोअर केस कैरेक्टर होना चाहिए!</string>
+    <string name="loginScreen_mustANumber_supportingText">एक नंबर होना चाहिए!</string>
+    <string name="loginScreen_mustSpecialChar_supportingText">एक विशेष चरित्र होना चाहिए!</string>
+
+    <!--    Signup Screen-->
+    <string name="signupScreen_fullName_label">पूरा नाम</string>
+    <string name="signupScreen_signup_label">साइन अप करें</string>
+    <string name="signupScreen_alreadyHaveAccount_label">क्या आपके पास पहले से एक खाता मौजूद है?</string>
+
+    <!--    Dashboard Screen-->
+    <string name="dashboardScreen_credits">Credits:</string>
+    <string name="dashboardScreen_rateUs_navDrawerItem">हमें रेटिंग दें</string>
+    <string name="dashboardScreen_contactUs_navDrawerItem">संपर्क करें</string>
+    <string name="dashboardScreen_termsOfUse_navDrawerItem">उपयोग की शर्तें</string>
+    <string name="dashboardScreen_howToUse_navDrawerItem">उपयोग कैसे करें</string>
+
+    <!--    Loading Screen-->
+    <string name="loadingScreen_loading">लोड हो रहा है</string>
+
+</resources>
