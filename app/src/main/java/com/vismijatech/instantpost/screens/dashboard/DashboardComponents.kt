@@ -5,10 +5,13 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.DrawerState
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -76,15 +79,19 @@ fun NavigationDrawer(
     name: String,
     credits: String,
     drawerState: DrawerState = rememberDrawerState(initialValue = DrawerValue.Closed),
-    content: @Composable (drawerState:DrawerState) -> Unit = {}
+    content: @Composable (drawerState: DrawerState) -> Unit = {}
 ) {
     val scope = rememberCoroutineScope()
     val selectedItemIndex = rememberSaveable {
         mutableIntStateOf(0)
     }
     ModalNavigationDrawer(
+        modifier = Modifier.fillMaxHeight(),
         drawerContent = {
-            ModalDrawerSheet {
+            ModalDrawerSheet(
+                modifier = Modifier
+                    .verticalScroll(rememberScrollState())
+            ) {
                 DrawerHeader(context = context, image = image, name = name, credits = credits)
                 navigationDrawerItems.forEachIndexed { index, item ->
                     NavigationDrawerItem(
@@ -96,7 +103,7 @@ fun NavigationDrawer(
                         },
                         selected = index == selectedItemIndex.intValue,
                         onClick = {
-                            when(item.title){
+                            when (item.title) {
                                 "Rate us" -> openPlayStoreForRating(context = context)
                                 "Contact us" -> sendEmail(context = context)
                                 "How to use" -> openHowToUseBlogPage(context = context)
@@ -114,13 +121,14 @@ fun NavigationDrawer(
                                 contentDescription = item.imageDescription
                             )
                         },
-                        modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding)
+                        modifier = Modifier
+                            .padding(NavigationDrawerItemDefaults.ItemPadding)
                     )
                 }
             }
         },
         drawerState = drawerState
-    ){
+    ) {
         content(drawerState)
     }
 }
@@ -197,12 +205,15 @@ fun ProfileImage(context: Context, image: String) {
 
 @Composable
 fun LoadingScreen() {
-    Box (
+    Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
-    ){
+    ) {
         Column {
-            Text(text = "Loading...", style = TextStyle(fontFamily = PoppinsFontFamily, fontWeight = FontWeight.Bold))
+            Text(
+                text = "Loading...",
+                style = TextStyle(fontFamily = PoppinsFontFamily, fontWeight = FontWeight.Bold)
+            )
             LinearProgressIndicator()
         }
     }
