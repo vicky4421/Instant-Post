@@ -14,49 +14,46 @@ import androidx.compose.material.icons.outlined.Email
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.icons.outlined.Send
 import androidx.compose.material.icons.outlined.Star
+import com.vismijatech.instantpost.R
 import com.vismijatech.instantpost.model.NavigationDrawerItem
 
 /**
  * Created by Vivek Sawant on 04-12-2023.
  */
 
-val navigationDrawerItems = listOf<NavigationDrawerItem>(
-    NavigationDrawerItem(
-        title = "Rate us",
-        selectedIcon = Icons.Filled.Star,
-        unSelectedIcon = Icons.Outlined.Star,
-        imageDescription = "Rate us",
-        onClick = {}
-    ),
-    NavigationDrawerItem(
-        title = "Contact us",
-        selectedIcon = Icons.Filled.Email,
-        unSelectedIcon = Icons.Outlined.Email,
-        imageDescription = "Contact us",
-        onClick = {}
-    ),
-    NavigationDrawerItem(
-        title = "Terms of use",
-        selectedIcon = Icons.Filled.Info,
-        unSelectedIcon = Icons.Outlined.Info,
-        imageDescription = "Terms of use",
-        onClick = {}
-    ),
-    NavigationDrawerItem(
-        title = "How to use",
-        selectedIcon = Icons.Filled.Send,
-        unSelectedIcon = Icons.Outlined.Send,
-        imageDescription = "How to use",
-        onClick = {}
-    ),
-    NavigationDrawerItem(
-        title = "Delete account",
-        selectedIcon = Icons.Filled.AccountCircle,
-        unSelectedIcon = Icons.Outlined.AccountCircle,
-        imageDescription = "Delete account",
-        onClick = {}
+fun getNavDrawerItems(context: Context): List<NavigationDrawerItem>{
+    return listOf<NavigationDrawerItem>(
+        NavigationDrawerItem(
+            title = context.getString(R.string.dashboardScreen_rateUs_navDrawerItem),
+            selectedIcon = Icons.Filled.Star,
+            unSelectedIcon = Icons.Outlined.Star,
+            imageDescription = "Rate us",
+            onClick = {}
+        ),
+        NavigationDrawerItem(
+            title = context.getString(R.string.dashboardScreen_contactUs_navDrawerItem),
+            selectedIcon = Icons.Filled.Email,
+            unSelectedIcon = Icons.Outlined.Email,
+            imageDescription = "Contact us",
+            onClick = {}
+        ),
+        NavigationDrawerItem(
+            title = context.getString(R.string.dashboardScreen_termsOfUse_navDrawerItem),
+            selectedIcon = Icons.Filled.Info,
+            unSelectedIcon = Icons.Outlined.Info,
+            imageDescription = "Terms of use",
+            onClick = {}
+        ),
+        NavigationDrawerItem(
+            title = context.getString(R.string.dashboardScreen_howToUse_navDrawerItem),
+            selectedIcon = Icons.Filled.Send,
+            unSelectedIcon = Icons.Outlined.Send,
+            imageDescription = "How to use",
+            onClick = {}
+        )
     )
-)
+}
+
 
 fun openPlayStoreForRating(context: Context) {
     val uri = Uri.parse("market://details?id=${context.packageName}")
