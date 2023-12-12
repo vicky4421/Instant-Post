@@ -1,10 +1,14 @@
 package com.vismijatech.instantpost.screens.login
 
 import android.content.Context
+import android.widget.Toast
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.firebase.auth.FirebaseAuth
 import com.vismijatech.instantpost.R
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 
 /**
  * Created by Vivek Sawant on 27-11-2023.
@@ -64,4 +68,13 @@ fun getGoogleSignInOptions(context: Context): GoogleSignInOptions {
 fun getGoogleSignInClient(context: Context): GoogleSignInClient {
     val googleSignInOptions = getGoogleSignInOptions(context)
     return GoogleSignIn.getClient(context, googleSignInOptions)
+}
+
+fun resetPassword(auth: FirebaseAuth, email: String, context: Context, scope: CoroutineScope){
+    scope.launch {
+        auth.sendPasswordResetEmail(email).addOnCompleteListener { task ->
+            if (task.isSuccessful) Toast.makeText(context, context.getText(R.string.loginScreen_checkEmail_forgotPassword), Toast.LENGTH_LONG).show()
+            else Toast.makeText(context, context.getText(R.string.loginScreen_somethingWrong_forgotPassword), Toast.LENGTH_LONG).show()
+        }
+    }
 }
