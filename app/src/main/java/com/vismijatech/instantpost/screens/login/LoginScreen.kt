@@ -51,7 +51,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun LoginScreen(
     navController: NavHostController,
-    viewModel: LoginViewModel = hiltViewModel(),
+    viewModel: LoginViewModel = hiltViewModel()
 ) {
     val auth = FirebaseAuth.getInstance()
     val context = LocalContext.current
@@ -86,7 +86,7 @@ fun LoginScreen(
     val forgotEmail = rememberSaveable {
         mutableStateOf("")
     }
-    
+
     val validEmail = isValidEmail(email.value)
     val validPassword = isValidPassword(password.value)
     Surface(
@@ -130,7 +130,7 @@ fun LoginScreen(
                 auth = auth,
                 context = context,
                 scope = scope,
-                onEndIconClick = { showEmailInput.value = !showEmailInput.value}
+                onEndIconClick = { showEmailInput.value = !showEmailInput.value }
             ) {
                 showEmailInput.value = !showEmailInput.value
             }

@@ -24,64 +24,64 @@ import com.vismijatech.instantpost.screens.whatsapp.WhatsappScreen
  */
 
 @Composable
-fun InstantPostNavigation(){
+fun InstantPostNavigation() {
 
     // define NavHostController
     val navController: NavHostController = rememberNavController()
 
     // define NavHost
-    NavHost(navController = navController, startDestination = InstantPostScreen.SplashScreen.name){
+    NavHost(navController = navController, startDestination = InstantPostScreen.SplashScreen.name) {
 
         // define composable here
-        composable(route = InstantPostScreen.SplashScreen.name){
+        composable(route = InstantPostScreen.SplashScreen.name) {
             SplashScreen(navController = navController)
         }
 
-        composable(route = InstantPostScreen.LoginScreen.name){
+        composable(route = InstantPostScreen.LoginScreen.name) {
             LoginScreen(navController = navController)
         }
 
-        composable(route = InstantPostScreen.SignupScreen.name){
+        composable(route = InstantPostScreen.SignupScreen.name) {
             SignupScreen(navController = navController)
         }
 
-        composable(route = InstantPostScreen.DashboardScreen.name){
+        composable(route = InstantPostScreen.DashboardScreen.name) {
             DashboardScreen(navController = navController)
         }
 
-        composable(route = InstantPostScreen.SocialMediaCaptionScreen.name){
+        composable(route = InstantPostScreen.SocialMediaCaptionScreen.name) {
             SocialMediaCaptionScreen(navController = navController)
         }
 
-        composable(route = InstantPostScreen.WhatsappScreen.name){
+        composable(route = InstantPostScreen.WhatsappScreen.name) {
             WhatsappScreen(navController = navController)
         }
 
-        composable(route = InstantPostScreen.BlogScreen.name){
+        composable(route = InstantPostScreen.BlogScreen.name) {
             BlogScreen(navController = navController)
         }
 
-        composable(route = InstantPostScreen.TravelBlogScreen.name){
+        composable(route = InstantPostScreen.TravelBlogScreen.name) {
             TravelBlogScreen(navController = navController)
         }
 
-        composable(route = InstantPostScreen.BusinessMailScreen.name){
+        composable(route = InstantPostScreen.BusinessMailScreen.name) {
             BusinessMailScreen(navController = navController)
         }
 
-        composable(route = InstantPostScreen.NewsletterScreen.name){
+        composable(route = InstantPostScreen.NewsletterScreen.name) {
             NewsletterScreen(navController = navController)
         }
 
-        composable(route = InstantPostScreen.PersonalMailScreen.name){
+        composable(route = InstantPostScreen.PersonalMailScreen.name) {
             PersonalMailScreen(navController = navController)
         }
 
-        composable(route = InstantPostScreen.PromotionalMailScreen.name){
+        composable(route = InstantPostScreen.PromotionalMailScreen.name) {
             PromotionalMailScreen(navController = navController)
         }
 
-        composable(route = InstantPostScreen.CreditScreen.name){
+        composable(route = InstantPostScreen.CreditScreen.name) {
             CreditScreen(navController = navController)
         }
 
