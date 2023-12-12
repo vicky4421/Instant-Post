@@ -80,6 +80,13 @@ fun LoginScreen(
     val expanded = rememberSaveable {
         mutableStateOf(false)
     }
+    val showEmailInput = rememberSaveable {
+        mutableStateOf(false)
+    }
+    val forgotEmail = rememberSaveable {
+        mutableStateOf("")
+    }
+    
     val validEmail = isValidEmail(email.value)
     val validPassword = isValidPassword(password.value)
     Surface(
@@ -117,7 +124,16 @@ fun LoginScreen(
                     )
                 }
             }
-            ForgotPasswordText { }
+            ForgotPasswordText(
+                showEmailInput = showEmailInput.value,
+                forgotEmail = forgotEmail,
+                auth = auth,
+                context = context,
+                scope = scope,
+                onEndIconClick = { showEmailInput.value = !showEmailInput.value}
+            ) {
+                showEmailInput.value = !showEmailInput.value
+            }
             SendVerificationEmail {
                 if (auth.currentUser != null) {
                     auth.currentUser?.sendEmailVerification()
@@ -130,8 +146,6 @@ fun LoginScreen(
                 }
             }
             LoginWithGoogle(
-                label = stringResource(id = R.string.loginScreen_signInWith_label) + " ",
-                label2 = stringResource(id = R.string.loginScreen_googleSignIn_label),
                 expanded = expanded.value,
                 onGoogleClick = { expanded.value = !expanded.value }
             ) {
