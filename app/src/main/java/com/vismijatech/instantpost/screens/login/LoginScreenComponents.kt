@@ -1,5 +1,6 @@
 package com.vismijatech.instantpost.screens.login
 
+import android.content.Context
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -9,6 +10,8 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Send
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -32,12 +35,13 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.withStyle
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.google.firebase.auth.FirebaseAuth
 import com.vismijatech.instantpost.R
 import com.vismijatech.instantpost.components.InputText
 import com.vismijatech.instantpost.ui.theme.PoppinsFontFamily
+import kotlinx.coroutines.CoroutineScope
 
 /**
  * Created by Vivek Sawant on 27-11-2023.
@@ -116,6 +120,7 @@ fun PasswordTextInput(password: MutableState<String>) {
                 style = TextStyle(fontFamily = PoppinsFontFamily)
             )
         },
+        keyboardType = KeyboardType.Password,
         visualTransformation = if (showPassword.value) VisualTransformation.None else PasswordVisualTransformation()
     ) {
         // onImeAction / onTrailingIconClick
@@ -136,12 +141,23 @@ fun LoginButton(enabled: Boolean, onClick: () -> Unit) {
             .height(height = 50.dp),
         enabled = enabled
     ) {
-        Text(text = stringResource(id = R.string.loginScreen_logIn_label), style = TextStyle(fontFamily = PoppinsFontFamily))
+        Text(
+            text = stringResource(id = R.string.loginScreen_logIn_label),
+            style = TextStyle(fontFamily = PoppinsFontFamily)
+        )
     }
 }
 
 @Composable
-fun ForgotPasswordText(onClick: () -> Unit) {
+fun ForgotPasswordText(
+    showEmailInput: Boolean,
+    forgotEmail: MutableState<String>,
+    auth: FirebaseAuth,
+    context: Context,
+    scope: CoroutineScope,
+    onEndIconClick: () -> Unit,
+    onClick: () -> Unit
+) {
     Text(
         text = stringResource(id = R.string.loginScreen_forgotPassword_label),
         style = TextStyle(fontFamily = PoppinsFontFamily, fontWeight = FontWeight.Bold),
@@ -149,6 +165,16 @@ fun ForgotPasswordText(onClick: () -> Unit) {
             .clickable { onClick() }
             .padding(start = 10.dp, end = 10.dp, bottom = 5.dp)
     )
+    AnimatedVisibility(visible = showEmailInput) {
+        ForgotPassword(
+            forgotEmail = forgotEmail,
+            auth = auth,
+            context = context,
+            scope = scope
+        ){
+            onEndIconClick()
+        }
+    }
 }
 
 @Composable
@@ -179,15 +205,17 @@ fun CreateNewAccountButton(label: String, onClick: () -> Unit) {
 }
 
 @Composable
-fun LoginWithGoogle(label: String,label2: String, expanded: Boolean, onGoogleClick: () -> Unit, onClick: () -> Unit) {
+fun LoginWithGoogle(
+    expanded: Boolean,
+    onGoogleClick: () -> Unit,
+    onClick: () -> Unit
+) {
     Column(
-//        modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
         Row(
             modifier = Modifier
-//                .fillMaxWidth()
                 .clickable { onGoogleClick() },
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically
@@ -261,4 +289,45 @@ fun AnnotatedGoogleText() {
             append(text = "e")
         }
     })
+}
+
+@Composable
+fun ForgotPassword(
+    forgotEmail: MutableState<String>,
+    auth: FirebaseAuth,
+    context: Context,
+    scope: CoroutineScope,
+    onClick: () -> Unit
+) {
+    val validEmail = isValidEmail(email = forgotEmail.value)
+    InputText(
+        valueState = forgotEmail,
+        label = stringResource(id = R.string.loginScreen_email_label),
+        trailingIcon = {
+            IconButton(onClick = {
+                resetPassword(
+                    auth = auth,
+                    context = context,
+                    scope = scope,
+                    email = forgotEmail.value
+                )
+                onClick()
+            }) {
+                Icon(imageVector = Icons.Filled.Send, contentDescription = "Send")
+            }
+        },
+        imeAction = ImeAction.Done,
+        keyboardType = KeyboardType.Email,
+        isError = if (forgotEmail.value.isEmpty()) false else !validEmail,
+        supportingText = {
+            if (forgotEmail.value.isEmpty()) {
+                Text(text = "")
+            } else if (!validEmail) Text(
+                text = stringResource(id = R.string.loginScreen_invalidEmail_label),
+                style = TextStyle(fontFamily = PoppinsFontFamily)
+            )
+        }
+    ) {
+        // on imeAction
+    }
 }
