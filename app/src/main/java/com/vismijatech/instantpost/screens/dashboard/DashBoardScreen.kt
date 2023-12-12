@@ -30,13 +30,16 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DashboardScreen(navController: NavHostController, viewModel: DashboardViewModel = hiltViewModel()) {
+fun DashboardScreen(
+    navController: NavHostController,
+    viewModel: DashboardViewModel = hiltViewModel()
+) {
     val auth = FirebaseAuth.getInstance()
     val uid = auth.currentUser?.uid.toString()
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
 
-    LaunchedEffect(uid){
+    LaunchedEffect(uid) {
         viewModel.getUserData(uid)
     }
 
@@ -49,7 +52,7 @@ fun DashboardScreen(navController: NavHostController, viewModel: DashboardViewMo
             image = user.imageUrl.orEmpty(),
             name = user.username.orEmpty(),
             credits = user.credits.toString()
-        ){drawerState ->
+        ) { drawerState ->
             Scaffold(
                 topBar = {
                     AppBar(onEndIconClick = {
