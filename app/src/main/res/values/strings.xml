@@ -19,6 +19,8 @@
     <string name="loginScreen_mustLowerCase_supportingText">Must have a lower case character!</string>
     <string name="loginScreen_mustANumber_supportingText">Must have a number!</string>
     <string name="loginScreen_mustSpecialChar_supportingText">Must have one special character!</string>
+    <string name="loginScreen_checkEmail_forgotPassword">Check you email!</string>
+    <string name="loginScreen_somethingWrong_forgotPassword">Something went wrong!</string>
 
 <!--    Signup Screen-->
     <string name="signupScreen_fullName_label">Full name</string>
