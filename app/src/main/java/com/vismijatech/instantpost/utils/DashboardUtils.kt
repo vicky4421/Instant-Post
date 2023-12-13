@@ -4,17 +4,17 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Send
 import androidx.compose.material.icons.filled.Star
-import androidx.compose.material.icons.outlined.AccountCircle
 import androidx.compose.material.icons.outlined.Email
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.icons.outlined.Send
 import androidx.compose.material.icons.outlined.Star
+import androidx.compose.ui.graphics.Color
 import com.vismijatech.instantpost.R
+import com.vismijatech.instantpost.model.DashboardItems
 import com.vismijatech.instantpost.model.NavigationDrawerItem
 
 /**
@@ -54,7 +54,6 @@ fun getNavDrawerItems(context: Context): List<NavigationDrawerItem>{
     )
 }
 
-
 fun openPlayStoreForRating(context: Context) {
     val uri = Uri.parse("market://details?id=${context.packageName}")
     val intent = Intent(Intent.ACTION_VIEW, uri)
@@ -80,4 +79,33 @@ fun openTermsOfUseBlogPage(context: Context) {
     val blogUrl = "https://instantpostblog.blogspot.com/2023/12/terms-and-conditions-of-use.html"
     val intent = Intent(Intent.ACTION_VIEW, Uri.parse(blogUrl))
     context.startActivity(intent)
+}
+
+fun getDashboardItems(context: Context): List<DashboardItems>{
+    return listOf<DashboardItems>(
+        DashboardItems(
+            itemName = context.getString(R.string.dashboardScreen_socialMedia_dashboardItem),
+            itemIcon = R.drawable.ic_social_media,
+            itemBackgroundColor = Color(color = 0xFF4267B2),
+            textColor = Color.White
+        ),
+        DashboardItems(
+            itemName = context.getString(R.string.dashboardScreen_whatsapp_dashboardItem),
+            itemIcon = R.drawable.ic_whatsapp,
+            itemBackgroundColor = Color(color = 0xFF25D366),
+            textColor = Color.White
+        ),
+        DashboardItems(
+            itemName = context.getString(R.string.loginScreen_email_label),
+            itemIcon = R.drawable.ic_email,
+            itemBackgroundColor = Color(color = 0xFFBB001B),
+            textColor = Color(color = 0xFFFBBc05)
+        ),
+        DashboardItems(
+            itemName = context.getString(R.string.dashboardScreen_blog_dashboardItem),
+            itemIcon = R.drawable.ic_blog,
+            itemBackgroundColor = Color(color = 0xFF00749C),
+            textColor = Color.White
+        )
+    )
 }
