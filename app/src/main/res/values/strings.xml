@@ -41,4 +41,10 @@
 <!--    Loading Screen-->
     <string name="loadingScreen_loading">Loading</string>
 
+<!--    Email Screen-->
+    <string name="emailScreen_personal_emailItem">Personal Email</string>
+    <string name="emailScreen_business_emailItem">Business Email</string>
+    <string name="emailScreen_promotional_emailItem">Promotional Email</string>
+    <string name="emailScreen_newsletter_emailItem">Newsletter</string>
+
 </resources>
