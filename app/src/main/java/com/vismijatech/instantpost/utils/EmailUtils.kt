@@ -12,25 +12,25 @@ import com.vismijatech.instantpost.model.ListItems
 fun getEmailItems(context: Context): List<ListItems> = listOf(
     ListItems(
         itemName = context.getString(R.string.emailScreen_personal_emailItem),
-        itemIcon = R.drawable.ic_email,
+        itemIcon = R.drawable.ic_person,
         itemBackgroundColor = Color.White,
         textColor = Color.Black
     ),
     ListItems(
         itemName = context.getString(R.string.emailScreen_business_emailItem),
-        itemIcon = R.drawable.ic_email,
+        itemIcon = R.drawable.ic_business,
         itemBackgroundColor = Color.White,
         textColor = Color.Black
     ),
     ListItems(
         itemName = context.getString(R.string.emailScreen_promotional_emailItem),
-        itemIcon = R.drawable.ic_email,
+        itemIcon = R.drawable.ic_promotional,
         itemBackgroundColor = Color.White,
         textColor = Color.Black
     ),
     ListItems(
         itemName = context.getString(R.string.emailScreen_newsletter_emailItem),
-        itemIcon = R.drawable.ic_email,
+        itemIcon = R.drawable.ic_newsletter,
         itemBackgroundColor = Color.White,
         textColor = Color.Black
     ),
