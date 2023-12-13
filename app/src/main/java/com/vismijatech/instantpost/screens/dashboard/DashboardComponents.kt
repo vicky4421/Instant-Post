@@ -280,6 +280,10 @@ fun DashboardList(
                         context.getString(R.string.dashboardScreen_blog_dashboardItem) -> navController.navigate(
                             InstantPostScreen.BlogScreen.name
                         )
+
+                        context.getString(R.string.dashboardScreen_images_dashboardItem) -> navController.navigate(
+                            InstantPostScreen.ImageScreen.name
+                        )
                     }
                 }
             }
