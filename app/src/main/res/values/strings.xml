@@ -33,6 +33,9 @@
     <string name="dashboardScreen_contactUs_navDrawerItem">Contact us</string>
     <string name="dashboardScreen_termsOfUse_navDrawerItem">Terms of use</string>
     <string name="dashboardScreen_howToUse_navDrawerItem">How to use</string>
+    <string name="dashboardScreen_socialMedia_dashboardItem">Social Media</string>
+    <string name="dashboardScreen_whatsapp_dashboardItem">Whatsapp</string>
+    <string name="dashboardScreen_blog_dashboardItem">Blog</string>
 
 <!--    Loading Screen-->
     <string name="loadingScreen_loading">Loading</string>
