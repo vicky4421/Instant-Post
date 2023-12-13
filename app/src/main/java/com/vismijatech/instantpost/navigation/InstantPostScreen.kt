@@ -10,11 +10,13 @@ enum class InstantPostScreen {
     DashboardScreen,
     SocialMediaCaptionScreen,
     WhatsappScreen,
-    BlogScreen,
+    OtherBlogScreen,
     TravelBlogScreen,
     BusinessMailScreen,
     NewsletterScreen,
     PersonalMailScreen,
     PromotionalMailScreen,
-    CreditScreen
+    CreditScreen,
+    EmailScreen,
+    BlogScreen
 }
