@@ -47,4 +47,7 @@
     <string name="emailScreen_promotional_emailItem">Promotional Email</string>
     <string name="emailScreen_newsletter_emailItem">Newsletter</string>
 
+<!--    Blog Screen-->
+    <string name="blogScreen_travel_blogItem">Travel Blog</string>
+
 </resources>
