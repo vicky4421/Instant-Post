@@ -8,6 +8,6 @@ import androidx.navigation.NavHostController
  */
 
 @Composable
-fun BlogScreen(navController: NavHostController) {
+fun OtherBlogScreen(navController: NavHostController) {
 
 }
