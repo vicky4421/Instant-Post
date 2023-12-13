@@ -21,6 +21,12 @@ import com.vismijatech.instantpost.screens.signup.SignupScreen
 import com.vismijatech.instantpost.screens.socialmedia.SocialMediaCaptionScreen
 import com.vismijatech.instantpost.screens.splash.SplashScreen
 import com.vismijatech.instantpost.screens.whatsapp.WhatsappScreen
+import com.vismijatech.instantpost.screens.whatsapp.business.WhatsappBusinessScreen
+import com.vismijatech.instantpost.screens.whatsapp.caption.WhatsappCaptionScreen
+import com.vismijatech.instantpost.screens.whatsapp.newsletter.WhatsappNewsletterScreen
+import com.vismijatech.instantpost.screens.whatsapp.personal.WhatsappPersonalScreen
+import com.vismijatech.instantpost.screens.whatsapp.promotional.WhatsappPromotionalScreen
+import com.vismijatech.instantpost.screens.whatsapp.reply.WhatsappReplyScreen
 
 /**
  * Created by Vivek Sawant on 26-11-2023.
@@ -98,6 +104,30 @@ fun InstantPostNavigation() {
 
         composable(route = InstantPostScreen.ImageScreen.name){
             ImageScreen(navController = navController)
+        }
+
+        composable(route = InstantPostScreen.WhatsappBusinessScreen.name){
+            WhatsappBusinessScreen(navController = navController)
+        }
+
+        composable(route = InstantPostScreen.WhatsappCaptionScreen.name){
+            WhatsappCaptionScreen(navController = navController)
+        }
+
+        composable(route = InstantPostScreen.WhatsappNewsletterScreen.name){
+            WhatsappNewsletterScreen(navController = navController)
+        }
+
+        composable(route = InstantPostScreen.WhatsappPersonalScreen.name){
+            WhatsappPersonalScreen(navController = navController)
+        }
+
+        composable(route = InstantPostScreen.WhatsappPromotionalScreen.name){
+            WhatsappPromotionalScreen(navController = navController)
+        }
+
+        composable(route = InstantPostScreen.WhatsappReplyScreen.name){
+            WhatsappReplyScreen(navController = navController)
         }
     }
 
