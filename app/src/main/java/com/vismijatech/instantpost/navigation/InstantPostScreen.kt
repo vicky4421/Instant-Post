@@ -19,5 +19,11 @@ enum class InstantPostScreen {
     CreditScreen,
     EmailScreen,
     BlogScreen,
-    ImageScreen
+    ImageScreen,
+    WhatsappBusinessScreen,
+    WhatsappCaptionScreen,
+    WhatsappNewsletterScreen,
+    WhatsappPersonalScreen,
+    WhatsappPromotionalScreen,
+    WhatsappReplyScreen
 }
