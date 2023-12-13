@@ -213,7 +213,7 @@ fun ProfileImage(context: Context, image: String) {
 }
 
 @Composable
-fun DashboardCard(item: ListItems, onClick: () -> Unit) {
+fun ItemCard(item: ListItems, onClick: () -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -250,14 +250,14 @@ fun DashboardCard(item: ListItems, onClick: () -> Unit) {
 }
 
 @Composable
-fun DashboardList(
+fun ItemList(
     itemList: List<ListItems>,
     navController: NavController,
     context: Context
 ) {
     LazyColumn {
         items(itemList) { item ->
-            DashboardCard(item = item) {
+            ItemCard(item = item) {
                 when (item.itemName) {
                     context.getString(R.string.dashboardScreen_socialMedia_dashboardItem) -> navController.navigate(
                         InstantPostScreen.SocialMediaCaptionScreen.name
@@ -287,7 +287,7 @@ fun DashboardList(
 @Preview(showBackground = true)
 @Composable
 fun CardPreview() {
-    DashboardList(
+    ItemList(
         itemList = getDashboardItems(context = LocalContext.current),
         navController = rememberNavController(),
         LocalContext.current
