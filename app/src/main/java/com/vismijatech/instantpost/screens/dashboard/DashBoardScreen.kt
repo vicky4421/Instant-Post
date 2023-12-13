@@ -1,8 +1,6 @@
 package com.vismijatech.instantpost.screens.dashboard
 
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
@@ -22,6 +20,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.vismijatech.instantpost.components.AppBar
 import com.vismijatech.instantpost.components.LoadingScreen
 import com.vismijatech.instantpost.navigation.InstantPostScreen
+import com.vismijatech.instantpost.utils.getDashboardItems
 import kotlinx.coroutines.launch
 
 /**
@@ -66,9 +65,12 @@ fun DashboardScreen(
                 Surface(
                     modifier = Modifier
                         .padding(it)
-                        .verticalScroll(rememberScrollState())
                 ) {
-
+                    DashboardList(
+                        itemList = getDashboardItems(context = context),
+                        navController = navController,
+                        context = context
+                    )
                 }
             }
         }
