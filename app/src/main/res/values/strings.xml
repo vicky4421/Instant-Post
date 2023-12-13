@@ -36,6 +36,7 @@
     <string name="dashboardScreen_socialMedia_dashboardItem">Social Media</string>
     <string name="dashboardScreen_whatsapp_dashboardItem">Whatsapp</string>
     <string name="dashboardScreen_blog_dashboardItem">Blog</string>
+    <string name="dashboardScreen_images_dashboardItem">Images</string>
 
 <!--    Loading Screen-->
     <string name="loadingScreen_loading">Loading</string>
