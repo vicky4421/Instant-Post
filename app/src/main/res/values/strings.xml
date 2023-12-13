@@ -50,4 +50,12 @@
 <!--    Blog Screen-->
     <string name="blogScreen_travel_blogItem">Travel Blog</string>
 
+<!--    Whatsapp Screen-->
+    <string name="whatsappScreen_personal_whatsappItem">Personal</string>
+    <string name="whatsappScreen_messageReply_whatsappItem">Message Reply</string>
+    <string name="whatsappScreen_caption_whatsappItem">Caption</string>
+    <string name="whatsappScreen_business_whatsappItem">Business</string>
+    <string name="whatsappScreen_promotional_whatsappItem">Promotional</string>
+    <string name="whatsappScreen_newsletter_whatsappItem">Newsletter</string>
+
 </resources>
