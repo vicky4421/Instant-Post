@@ -10,6 +10,7 @@ import com.vismijatech.instantpost.screens.blog.blog.OtherBlogScreen
 import com.vismijatech.instantpost.screens.blog.travel.TravelBlogScreen
 import com.vismijatech.instantpost.screens.credits.CreditScreen
 import com.vismijatech.instantpost.screens.dashboard.DashboardScreen
+import com.vismijatech.instantpost.screens.images.ImageScreen
 import com.vismijatech.instantpost.screens.login.LoginScreen
 import com.vismijatech.instantpost.screens.mail.EmailScreen
 import com.vismijatech.instantpost.screens.mail.business.BusinessMailScreen
@@ -93,6 +94,10 @@ fun InstantPostNavigation() {
 
         composable(route = InstantPostScreen.BlogScreen.name){
             BlogScreen(navController = navController)
+        }
+
+        composable(route = InstantPostScreen.ImageScreen.name){
+            ImageScreen(navController = navController)
         }
     }
 

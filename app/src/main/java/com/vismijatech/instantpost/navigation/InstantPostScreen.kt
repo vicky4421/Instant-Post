@@ -18,5 +18,6 @@ enum class InstantPostScreen {
     PromotionalMailScreen,
     CreditScreen,
     EmailScreen,
-    BlogScreen
+    BlogScreen,
+    ImageScreen
 }
