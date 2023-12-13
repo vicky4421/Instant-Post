@@ -18,9 +18,7 @@ import com.vismijatech.instantpost.utils.getEmailItems
 @Composable
 fun EmailScreen(navController: NavHostController) {
     val context = LocalContext.current
-    Surface(
-        modifier = Modifier.padding(16.dp)
-    ) {
+    Surface {
         EmailList(
             itemList = getEmailItems(context = context),
             navController = navController,
