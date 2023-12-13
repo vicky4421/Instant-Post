@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -27,7 +26,6 @@ import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.NavigationDrawerItem
 import androidx.compose.material3.NavigationDrawerItemDefaults
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
@@ -37,7 +35,6 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -56,7 +53,7 @@ import coil.request.ImageRequest
 import com.vismijatech.instantpost.R
 import com.vismijatech.instantpost.components.AnimatedBorderComposable
 import com.vismijatech.instantpost.components.dashboardImageGradient
-import com.vismijatech.instantpost.model.DashboardItems
+import com.vismijatech.instantpost.model.ListItems
 import com.vismijatech.instantpost.navigation.InstantPostScreen
 import com.vismijatech.instantpost.ui.theme.PoppinsFontFamily
 import com.vismijatech.instantpost.utils.getDashboardItems
@@ -216,7 +213,7 @@ fun ProfileImage(context: Context, image: String) {
 }
 
 @Composable
-fun DashboardCard(item: DashboardItems, onClick: () -> Unit) {
+fun DashboardCard(item: ListItems, onClick: () -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -254,7 +251,7 @@ fun DashboardCard(item: DashboardItems, onClick: () -> Unit) {
 
 @Composable
 fun DashboardList(
-    itemList: List<DashboardItems>,
+    itemList: List<ListItems>,
     navController: NavController,
     context: Context
 ) {

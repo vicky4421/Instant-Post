@@ -5,7 +5,7 @@ import androidx.compose.ui.graphics.Color
 /**
  * Created by Vivek Sawant on 12-12-2023.
  */
-data class DashboardItems(
+data class ListItems(
     val itemName: String,
     val itemIcon: Int,
     val itemBackgroundColor: Color,

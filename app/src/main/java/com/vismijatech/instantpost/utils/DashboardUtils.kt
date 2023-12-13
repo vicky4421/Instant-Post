@@ -14,7 +14,7 @@ import androidx.compose.material.icons.outlined.Send
 import androidx.compose.material.icons.outlined.Star
 import androidx.compose.ui.graphics.Color
 import com.vismijatech.instantpost.R
-import com.vismijatech.instantpost.model.DashboardItems
+import com.vismijatech.instantpost.model.ListItems
 import com.vismijatech.instantpost.model.NavigationDrawerItem
 
 /**
@@ -81,33 +81,33 @@ fun openTermsOfUseBlogPage(context: Context) {
     context.startActivity(intent)
 }
 
-fun getDashboardItems(context: Context): List<DashboardItems>{
-    return listOf<DashboardItems>(
-        DashboardItems(
+fun getDashboardItems(context: Context): List<ListItems>{
+    return listOf<ListItems>(
+        ListItems(
             itemName = context.getString(R.string.dashboardScreen_socialMedia_dashboardItem),
             itemIcon = R.drawable.ic_social_media,
             itemBackgroundColor = Color(color = 0xFF4267B2),
             textColor = Color.White
         ),
-        DashboardItems(
+        ListItems(
             itemName = context.getString(R.string.dashboardScreen_whatsapp_dashboardItem),
             itemIcon = R.drawable.ic_whatsapp,
             itemBackgroundColor = Color(color = 0xFF25D366),
             textColor = Color.White
         ),
-        DashboardItems(
+        ListItems(
             itemName = context.getString(R.string.loginScreen_email_label),
             itemIcon = R.drawable.ic_email,
             itemBackgroundColor = Color(color = 0xFFBB001B),
             textColor = Color(color = 0xFFFBBc05)
         ),
-        DashboardItems(
+        ListItems(
             itemName = context.getString(R.string.dashboardScreen_blog_dashboardItem),
             itemIcon = R.drawable.ic_blog,
             itemBackgroundColor = Color(color = 0xFF00749C),
             textColor = Color.White
         ),
-        DashboardItems(
+        ListItems(
             itemName = context.getString(R.string.dashboardScreen_images_dashboardItem),
             itemIcon = R.drawable.ic_images,
             itemBackgroundColor = Color(color = 0xFF05A081),
