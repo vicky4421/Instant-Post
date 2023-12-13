@@ -11,11 +11,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.vismijatech.instantpost.components.AppBar
 import com.vismijatech.instantpost.components.LoadingScreen
@@ -66,7 +64,7 @@ fun DashboardScreen(
                     modifier = Modifier
                         .padding(it)
                 ) {
-                    DashboardList(
+                    ItemList(
                         itemList = getDashboardItems(context = context),
                         navController = navController,
                         context = context
@@ -75,11 +73,4 @@ fun DashboardScreen(
             }
         }
     }
-
-}
-
-@Preview
-@Composable
-fun DashboardScreenPreview() {
-    DashboardScreen(navController = rememberNavController())
 }
