@@ -5,11 +5,13 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.vismijatech.instantpost.screens.blog.blog.BlogScreen
+import com.vismijatech.instantpost.screens.blog.BlogScreen
+import com.vismijatech.instantpost.screens.blog.blog.OtherBlogScreen
 import com.vismijatech.instantpost.screens.blog.travel.TravelBlogScreen
 import com.vismijatech.instantpost.screens.credits.CreditScreen
 import com.vismijatech.instantpost.screens.dashboard.DashboardScreen
 import com.vismijatech.instantpost.screens.login.LoginScreen
+import com.vismijatech.instantpost.screens.mail.EmailScreen
 import com.vismijatech.instantpost.screens.mail.business.BusinessMailScreen
 import com.vismijatech.instantpost.screens.mail.newsletter.NewsletterScreen
 import com.vismijatech.instantpost.screens.mail.personal.PersonalMailScreen
@@ -57,8 +59,8 @@ fun InstantPostNavigation() {
             WhatsappScreen(navController = navController)
         }
 
-        composable(route = InstantPostScreen.BlogScreen.name) {
-            BlogScreen(navController = navController)
+        composable(route = InstantPostScreen.OtherBlogScreen.name) {
+            OtherBlogScreen(navController = navController)
         }
 
         composable(route = InstantPostScreen.TravelBlogScreen.name) {
@@ -85,6 +87,13 @@ fun InstantPostNavigation() {
             CreditScreen(navController = navController)
         }
 
+        composable(route = InstantPostScreen.EmailScreen.name){
+            EmailScreen(navController = navController)
+        }
+
+        composable(route = InstantPostScreen.BlogScreen.name){
+            BlogScreen(navController = navController)
+        }
     }
 
 }
