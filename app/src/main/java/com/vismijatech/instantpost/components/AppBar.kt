@@ -10,6 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
@@ -26,6 +27,7 @@ import com.vismijatech.instantpost.ui.theme.PoppinsFontFamily
 @Composable
 fun TopAppBarPreview() {
     AppBar(
+        startIcon = Icons.Default.Menu,
         onEndIconClick = {}
     ) {
 
@@ -36,6 +38,7 @@ fun TopAppBarPreview() {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppBar(
+    startIcon: ImageVector = Icons.Default.Menu,
     onEndIconClick: () -> Unit,
     onNavigationIconClick: () -> Unit
 ) {
@@ -49,7 +52,7 @@ fun AppBar(
         navigationIcon = {
             IconButton(onClick = { onNavigationIconClick() }) {
                 Icon(
-                    imageVector = Icons.Default.Menu,
+                    imageVector = startIcon,
                     contentDescription = "Menu"
                 )
             }
