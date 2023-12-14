@@ -58,4 +58,8 @@
     <string name="whatsappScreen_promotional_whatsappItem">Promotional</string>
     <string name="whatsappScreen_newsletter_whatsappItem">Newsletter</string>
 
+<!--    Social Media Caption Screen-->
+    <string name="socialMedia_imageDesc_label">Image Description</string>
+    <string name="socialMedia_imageDesc_info">What words would you use to describe image associated with post?</string>
+
 </resources>
