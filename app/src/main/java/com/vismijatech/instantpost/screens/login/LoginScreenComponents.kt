@@ -5,7 +5,6 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -186,22 +185,6 @@ fun SendVerificationEmail(onClick: () -> Unit) {
             .clickable { onClick() }
             .padding(start = 10.dp, end = 10.dp, bottom = 5.dp)
     )
-}
-
-@Composable
-fun CreateNewAccountButton(label: String, onClick: () -> Unit) {
-    OutlinedButton(
-        onClick = { onClick() },
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(height = 60.dp)
-            .padding(paddingValues = PaddingValues(10.dp))
-    ) {
-        Text(
-            text = label,
-            style = TextStyle(fontFamily = PoppinsFontFamily)
-        )
-    }
 }
 
 @Composable
