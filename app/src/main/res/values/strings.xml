@@ -60,6 +60,28 @@
 
 <!--    Social Media Caption Screen-->
     <string name="socialMedia_imageDesc_label">Image Description</string>
+    <string name="socialMedia_emotions_label">Emotions or mood</string>
+    <string name="socialMedia_captionStyle_label">Caption Style</string>
+    <string name="socialMedia_keywords_label">Key keywords</string>
+    <string name="socialMedia_message_label">Message or story</string>
+    <string name="socialMedia_location_label">Location</string>
+    <string name="socialMedia_callToAction_label">Call to action</string>
+    <string name="socialMedia_goal_label">Goal</string>
+    <string name="socialMedia_tagline_label">Brand or personal tagline</string>
+    <string name="socialMedia_length_label">Length</string>
+    <string name="socialMedia_targetAudience_label">Target audience</string>
+
     <string name="socialMedia_imageDesc_info">What words would you use to describe image associated with post?</string>
+    <string name="socialMedia_emotions_info">What mood does your image create? e.g Happy, Excited, Relaxed, Inspired etc</string>
+    <string name="socialMedia_captionStyle_info">What kind of tone do you want to set with your caption? e.g Funny, Serious, Inspirational etc</string>
+    <string name="socialMedia_keywords_info">What keywords do you want people to use when they search for you post?</string>
+    <string name="socialMedia_message_info">What\'s the message or story you want to share with you audience?</string>
+    <string name="socialMedia_location_info">What\'s the name of the place?</string>
+    <string name="socialMedia_callToAction_info">What do you want people to do after they see you post?</string>
+    <string name="socialMedia_goal_info">What do you want to achieve with your post. e.g more likes, traffic for website, start a conversation etc.</string>
+    <string name="socialMedia_tagline_info">Tagline</string>
+    <string name="socialMedia_length_info">How long do you want your caption to be? e.g One liner, short: 10 words, Medium: 20 words approx max limit 20 words.</string>
+    <string name="socialMedia_targetAudience_info">Who are you trying to reach with this instagram post? e.g Global audience, family, friends etc.</string>
+    <string name="socialMedia_submit_button">Submit</string>
 
 </resources>
