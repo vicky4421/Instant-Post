@@ -7,8 +7,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import com.vismijatech.instantpost.R
+import com.vismijatech.instantpost.components.HollowButton
 import com.vismijatech.instantpost.components.InputText
-import com.vismijatech.instantpost.screens.login.CreateNewAccountButton
 import com.vismijatech.instantpost.screens.login.LoginButton
 import com.vismijatech.instantpost.screens.login.LoginTextInput
 import com.vismijatech.instantpost.screens.login.PasswordTextInput
@@ -57,7 +57,7 @@ fun SignupSubmitButton(enabled: Boolean, onClick: () -> Unit) {
 
 @Composable
 fun SignupAlreadyHaveAccount(onClick: () -> Unit) {
-    CreateNewAccountButton(label = stringResource(id = R.string.signupScreen_alreadyHaveAccount_label)) {
+    HollowButton(label = stringResource(id = R.string.signupScreen_alreadyHaveAccount_label)) {
         onClick()
     }
 }
