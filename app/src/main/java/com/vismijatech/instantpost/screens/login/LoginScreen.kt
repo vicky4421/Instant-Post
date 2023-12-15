@@ -40,6 +40,7 @@ import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.vismijatech.instantpost.R
+import com.vismijatech.instantpost.components.HollowButton
 import com.vismijatech.instantpost.navigation.InstantPostScreen
 import com.vismijatech.instantpost.ui.theme.PoppinsFontFamily
 import kotlinx.coroutines.launch
@@ -178,7 +179,7 @@ fun LoginScreen(
                 )
             }
             Spacer(modifier = Modifier.weight(weight = 1f))
-            CreateNewAccountButton(label = stringResource(id = R.string.loginScreen_createNewAccount_label)) {
+            HollowButton(label = stringResource(id = R.string.loginScreen_createNewAccount_label)) {
                 navController.navigate(InstantPostScreen.SignupScreen.name)
             }
         }
