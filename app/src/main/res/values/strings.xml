@@ -85,6 +85,8 @@
     <string name="socialMedia_submit_button">Submit</string>
 
 <!--    Personal Mail / Whatsapp Screen-->
+    <string name="personal_whatsapp_header">Whatsapp</string>
+    <string name="personal_mail_header">Personal Mail</string>
     <string name="personal_recipientName_label">Recipient\'s Name</string>
     <string name="personal_recipientName_info">What is the recipient\'s name?</string>
     <string name="personal_relationship_label">Relationship with recipient</string>
