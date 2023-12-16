@@ -5,6 +5,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.input.ImeAction
 import com.vismijatech.instantpost.R
 
 /**
@@ -16,6 +17,7 @@ fun QueryInput(imageDesc: MutableState<String>, label: String, onClick: () -> Un
     InputText(
         valueState = imageDesc,
         label = label,
+        imeAction = ImeAction.Done,
         trailingIcon = {
             IconButton(onClick = { onClick() }) {
                 Icon(painter = painterResource(id = R.drawable.ic_info), contentDescription = "Info")
