@@ -81,7 +81,7 @@
     <string name="socialMedia_goal_info">What do you want to achieve with your post. e.g more likes, traffic for website, start a conversation etc.</string>
     <string name="socialMedia_tagline_info">Tagline</string>
     <string name="socialMedia_length_info">How long do you want your caption to be? e.g One liner, short: 10 words, Medium: 20 words approx max limit 20 words.</string>
-    <string name="socialMedia_targetAudience_info">Who are you trying to reach with this instagram post? e.g Global audience, family, friends etc.</string>
+    <string name="socialMedia_targetAudience_info">Who are you trying to reach with this social post? e.g Global audience, family, friends etc.</string>
     <string name="socialMedia_submit_button">Submit</string>
 
 <!--    Whatsapp reply-->
@@ -127,5 +127,22 @@
     <string name="business_callToAction_info">Do you want them to reply, schedule a meeting, or something else?</string>
     <string name="business_signature_label">Signature</string>
     <string name="business_signature_info">Please include your name, title, and contact information.</string>
+
+<!--    Promotional Mail / Whatsapp screen-->
+    <string name="promotional_header">Promotional Mail</string>
+    <string name="promotional_targetAudience_info">Who is the target audience for this promotional content?</string>
+    <string name="promotional_product_label">Product or service to promote</string>
+    <string name="promotional_product_info">Please provide a brief description of the product or service.</string>
+    <string name="promotional_keyPoints_label">Key selling points</string>
+    <string name="promotional_keyPoints_info">What makes this product or service unique?</string>
+    <string name="promotional_callToAction_info">Do you want them to visit your website, sign up for a newsletter, or something else?</string>
+    <string name="promotional_discounts_label">Discounts or promotions</string>
+    <string name="promotional_discounts_info">Are you offering any discounts or promotions? If so, please list the discounts or promotions.</string>
+    <string name="promotional_emailSubjectLine_label">Email subject line</string>
+    <string name="promotional_emailSubjectLine_info">Subject line suggestions, as it\'s a crucial factor that determines whether the email will be opened or not.</string>
+    <string name="promotional_personalization_label">Personalization</string>
+    <string name="promotional_personalization_info">Do you want to personalize the content? If so, what information do you want to include in the personalization?</string>
+    <string name="promotional_emailTone_label">Content tone</string>
+    <string name="promotional_length_info">How long would you like your promotional email to be?</string>
 
 </resources>
