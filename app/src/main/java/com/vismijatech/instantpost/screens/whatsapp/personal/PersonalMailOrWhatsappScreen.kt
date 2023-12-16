@@ -27,8 +27,7 @@ import com.vismijatech.instantpost.utils.getPersonalOrWhatsappUserInput
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PersonalMailOrWhatsappScreen(
-    navController: NavHostController,
-    header: String
+    navController: NavHostController, header: String
 ) {
     val context = LocalContext.current
     val inputList = getPersonalOrWhatsappUserInput(context = context)
@@ -40,11 +39,9 @@ fun PersonalMailOrWhatsappScreen(
     val tone = rememberSaveable { mutableStateOf("") }
     val closing = rememberSaveable { mutableStateOf("") }
 
-    Scaffold(
-        topBar = {
-            UserInputTopAppBar(header = header, navController = navController)
-        }
-    ) {
+    Scaffold(topBar = {
+        UserInputTopAppBar(header = header, navController = navController)
+    }) {
         Surface(
             modifier = Modifier.padding(it)
         ) {
@@ -53,8 +50,7 @@ fun PersonalMailOrWhatsappScreen(
             ) {
                 inputList.forEach { userInput ->
                     InputCard(
-                        text =
-                        when (userInput.label) {
+                        text = when (userInput.label) {
                             stringResource(id = R.string.personal_recipientName_label) -> name
                             stringResource(id = R.string.personal_relationship_label) -> relationship
                             stringResource(id = R.string.personal_occasion_label) -> occasion
@@ -63,9 +59,7 @@ fun PersonalMailOrWhatsappScreen(
                             stringResource(id = R.string.personal_tone_label) -> tone
                             stringResource(id = R.string.personal_closing_label) -> closing
                             else -> throw Exception("User input exception")
-                        },
-                        label = userInput.label,
-                        info = userInput.info
+                        }, label = userInput.label, info = userInput.info
                     )
                 }
                 HollowButton(label = stringResource(id = R.string.socialMedia_submit_button)) {
