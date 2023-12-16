@@ -9,5 +9,5 @@ import androidx.navigation.NavHostController
 
 @Composable
 fun WhatsappPersonalScreen(navController: NavHostController) {
-
+    PersonalMailOrWhatsappScreen(navController = navController)
 }
