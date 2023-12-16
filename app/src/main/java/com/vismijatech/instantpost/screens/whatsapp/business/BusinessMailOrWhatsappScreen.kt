@@ -1,6 +1,9 @@
 package com.vismijatech.instantpost.screens.whatsapp.business
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
@@ -12,6 +15,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
 import com.vismijatech.instantpost.R
+import com.vismijatech.instantpost.components.HollowButton
 import com.vismijatech.instantpost.components.InputCard
 import com.vismijatech.instantpost.components.UserInputTopAppBar
 import com.vismijatech.instantpost.utils.getBusinessOrWhatsappUserInputList
@@ -45,23 +49,30 @@ fun BusinessMailOrWhatsappScreen(
         Surface(
             modifier = Modifier.padding(it)
         ) {
-            businessInputList.forEach { userInput ->
-                InputCard(
-                    text =
-                    when (userInput.label) {
-                        stringResource(id = R.string.business_recipientNameAndTitle_label) -> name
-                        stringResource(id = R.string.business_purpose_label) -> purpose
-                        stringResource(id = R.string.business_backgroundInfo_label) -> backgroundInfo
-                        stringResource(id = R.string.personal_mainPoints_label) -> mainPoints
-                        stringResource(id = R.string.business_tone_label) -> tone
-                        stringResource(id = R.string.socialMedia_callToAction_label) -> callToAction
-                        stringResource(id = R.string.personal_closing_label) -> closing
-                        stringResource(id = R.string.business_signature_label) -> sign
-                        else -> throw Exception("User input exception")
-                    },
-                    label = userInput.label,
-                    info = userInput.info
-                )
+            Column(
+                modifier = Modifier.verticalScroll(rememberScrollState())
+            ) {
+                businessInputList.forEach { userInput ->
+                    InputCard(
+                        text =
+                        when (userInput.label) {
+                            stringResource(id = R.string.business_recipientNameAndTitle_label) -> name
+                            stringResource(id = R.string.business_purpose_label) -> purpose
+                            stringResource(id = R.string.business_backgroundInfo_label) -> backgroundInfo
+                            stringResource(id = R.string.personal_mainPoints_label) -> mainPoints
+                            stringResource(id = R.string.business_tone_label) -> tone
+                            stringResource(id = R.string.socialMedia_callToAction_label) -> callToAction
+                            stringResource(id = R.string.personal_closing_label) -> closing
+                            stringResource(id = R.string.business_signature_label) -> sign
+                            else -> throw Exception("User input exception")
+                        },
+                        label = userInput.label,
+                        info = userInput.info
+                    )
+                }
+                HollowButton(label = stringResource(id = R.string.socialMedia_submit_button)) {
+
+                }
             }
         }
     }
