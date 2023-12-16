@@ -72,7 +72,7 @@ fun InputCard(
                     text = info,
                     style = TextStyle(
                         fontFamily = PoppinsFontFamily, fontSize = 16.sp,
-                        color = Color.LightGray,
+                        color = Color.Gray,
                     )
                 )
             }
