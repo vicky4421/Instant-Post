@@ -84,4 +84,21 @@
     <string name="socialMedia_targetAudience_info">Who are you trying to reach with this instagram post? e.g Global audience, family, friends etc.</string>
     <string name="socialMedia_submit_button">Submit</string>
 
+<!--    Personal Mail / Whatsapp Screen-->
+    <string name="personal_recipientName_label">Recipient\'s Name</string>
+    <string name="personal_recipientName_info">What is the recipient\'s name?</string>
+    <string name="personal_relationship_label">Relationship with recipient</string>
+    <string name="personal_relationship_info">Are you the recipient\'s friend, family member, colleague, or someone else?</string>
+    <string name="personal_occasion_label">Occasion</string>
+    <string name="personal_occasion_info">Are you sending this email for a birthday, anniversary, job promotion, or something else?</string>
+    <string name="pose_hint">Purpose</string>
+    <string name="personal_mainPoints_label">Main points to include</string>
+    <string name="personal_mainPoints_info">Please list the main points you want to make.</string>
+    <string name="personal_qualities_label">Positive qualities of recipient.</string>
+    <string name="personal_qualities_info">What do you admire about the recipient?</string>
+    <string name="personal_tone_label">Emotional tone.</string>
+    <string name="personal_tone_info">Do you want the email to be formal, informal, humorous, or something else?</string>
+    <string name="personal_closing_label">Closing sentiment</string>
+    <string name="personal_closing_info">Would you like to use a friendly, formal, or humorous closing?</string>
+
 </resources>
