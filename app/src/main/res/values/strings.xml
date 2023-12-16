@@ -84,6 +84,21 @@
     <string name="socialMedia_targetAudience_info">Who are you trying to reach with this instagram post? e.g Global audience, family, friends etc.</string>
     <string name="socialMedia_submit_button">Submit</string>
 
+<!--    Whatsapp reply-->
+    <string name="whatsapp_message_label">Message Content</string>
+    <string name="whatsapp_message_info">What\'s the message about or paste senders message?</string>
+    <string name="whatsapp_sendersTone_label">Sender\'s message tone</string>
+    <string name="whatsapp_sendersTone_info">What is the tone of the sender\'s message?</string>
+    <string name="whatsapp_relationship_label">Relationship</string>
+    <string name="whatsapp_relationship_info">What is your relationship with sender?</string>
+    <string name="whatsapp_goal_info">What is your goal for this conversation?</string>
+    <string name="whatsapp_tone_label">Your tone</string>
+    <string name="whatsapp_tone_info">What tone do you want to use in your reply?</string>
+    <string name="whatsapp_occasion_info">Is there a special occasion that this conversation is about?</string>
+    <string name="whatsapp_instruction_label">Special instructions</string>
+    <string name="whatsapp_instruction_info">Do you have any special instructions for your reply?</string>
+    <string name="whatsapp_length_info">How long do you want your reply to be?</string>
+
 <!--    Personal Mail / Whatsapp Screen-->
     <string name="personal_whatsapp_header">Whatsapp</string>
     <string name="personal_mail_header">Personal Mail</string>
@@ -92,15 +107,25 @@
     <string name="personal_relationship_label">Relationship with recipient</string>
     <string name="personal_relationship_info">Are you the recipient\'s friend, family member, colleague, or someone else?</string>
     <string name="personal_occasion_label">Occasion</string>
-    <string name="personal_occasion_info">Are you sending this email for a birthday, anniversary, job promotion, or something else?</string>
-    <string name="pose_hint">Purpose</string>
+    <string name="personal_occasion_info">Are you sending this for a birthday, anniversary, job promotion, or something else?</string>
     <string name="personal_mainPoints_label">Main points to include</string>
     <string name="personal_mainPoints_info">Please list the main points you want to make.</string>
     <string name="personal_qualities_label">Positive qualities of recipient.</string>
     <string name="personal_qualities_info">What do you admire about the recipient?</string>
     <string name="personal_tone_label">Emotional tone.</string>
-    <string name="personal_tone_info">Do you want the email to be formal, informal, humorous, or something else?</string>
+    <string name="personal_tone_info">Do you want this to be formal, informal, humorous, or something else?</string>
     <string name="personal_closing_label">Closing sentiment</string>
     <string name="personal_closing_info">Would you like to use a friendly, formal, or humorous closing?</string>
+
+<!--    Business Mail / Whatsapp Screen-->
+    <string name="business_header">Business Mail</string>
+    <string name="business_recipientNameAndTitle_label">Recipient\'s Name and Title</string>
+    <string name="business_purpose_label">Purpose</string>
+    <string name="business_backgroundInfo_label">Background information</string>
+    <string name="business_backgroundInfo_info">Can you provide some background information about the topic of this conversation?</string>
+    <string name="business_tone_label">Professional Tone</string>
+    <string name="business_callToAction_info">Do you want them to reply, schedule a meeting, or something else?</string>
+    <string name="business_signature_label">Signature</string>
+    <string name="business_signature_info">Please include your name, title, and contact information.</string>
 
 </resources>
