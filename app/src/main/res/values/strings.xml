@@ -129,7 +129,6 @@
     <string name="business_signature_info">Please include your name, title, and contact information.</string>
 
 <!--    Promotional Mail / Whatsapp screen-->
-    <string name="promotional_header">Promotional Mail</string>
     <string name="promotional_targetAudience_info">Who is the target audience for this promotional content?</string>
     <string name="promotional_product_label">Product or service to promote</string>
     <string name="promotional_product_info">Please provide a brief description of the product or service.</string>
@@ -144,5 +143,21 @@
     <string name="promotional_personalization_info">Do you want to personalize the content? If so, what information do you want to include in the personalization?</string>
     <string name="promotional_emailTone_label">Content tone</string>
     <string name="promotional_length_info">How long would you like your promotional email to be?</string>
+
+<!--    Newsletter / Whatsapp screen-->
+    <string name="newsletter_theme_label">Theme or topic</string>
+    <string name="newsletter_theme_info">What do you want to write about?</string>
+    <string name="newsletter_title_label">Title</string>
+    <string name="newsletter_title_info">What is the title of your newsletter? The title should be clear, concise, and attention-grabbing.</string>
+    <string name="newsletter_sections_label">Sections and content</string>
+    <string name="newsletter_sections_info">What sections will be included in your newsletter? What content will be included in each section?</string>
+    <string name="newsletter_links_label">Links and resources</string>
+    <string name="newsletter_links_info">Will you be including any links or resources in your newsletter? If so, please provide the links and resources.</string>
+    <string name="newsletter_tone_label">Tone and style</string>
+    <string name="newsletter_tone_info">Do you want the newsletter to be formal, informal, humorous, or something else?</string>
+    <string name="newsletter_personalization_info">Do you want to personalize the newsletter? If so, what information do you want to include in the personalization?</string>
+    <string name="newsletter_frequency_label">Frequency</string>
+    <string name="newsletter_frequency_info">How often will you send the newsletter? Will you send it weekly, monthly, or something else?</string>
+    <string name="newsletter_length_info">How long would you like your newsletter to be?</string>
 
 </resources>
