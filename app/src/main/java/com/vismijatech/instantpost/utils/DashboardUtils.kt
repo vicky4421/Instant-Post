@@ -106,12 +106,6 @@ fun getDashboardItems(context: Context): List<ListItems>{
             itemIcon = R.drawable.ic_blog,
             itemBackgroundColor = Color(color = 0xFF00749C),
             textColor = Color.White
-        ),
-        ListItems(
-            itemName = context.getString(R.string.dashboardScreen_images_dashboardItem),
-            itemIcon = R.drawable.ic_images,
-            itemBackgroundColor = Color(color = 0xFF05A081),
-            textColor = Color.White
         )
     )
 }
