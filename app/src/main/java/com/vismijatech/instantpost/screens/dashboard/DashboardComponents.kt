@@ -227,7 +227,7 @@ fun ItemCard(
             .fillMaxWidth(),
         shape = RoundedCornerShape(size = 25.dp),
         elevation = CardDefaults.cardElevation(
-            defaultElevation = 16.dp,
+            defaultElevation = 4.dp,
         ),
         colors = CardDefaults.cardColors(
             containerColor = item.itemBackgroundColor
@@ -237,7 +237,7 @@ fun ItemCard(
             text = item.itemName,
             style = TextStyle(
                 fontFamily = PoppinsFontFamily,
-                fontSize = 34.sp,
+                fontSize = 24.sp,
                 color = item.textColor
             ),
             modifier = Modifier.padding(8.dp)
@@ -247,7 +247,7 @@ fun ItemCard(
             contentDescription = "Item icon",
             modifier = Modifier
                 .padding(8.dp)
-                .size(48.dp)
+                .size(36.dp)
                 .align(Alignment.End),
             tint = item.textColor,
         )
