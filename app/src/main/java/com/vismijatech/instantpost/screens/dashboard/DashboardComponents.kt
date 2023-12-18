@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -26,6 +27,7 @@ import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.NavigationDrawerItem
 import androidx.compose.material3.NavigationDrawerItemDefaults
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
@@ -213,7 +215,10 @@ fun ProfileImage(context: Context, image: String) {
 }
 
 @Composable
-fun ItemCard(item: ListItems, onClick: () -> Unit) {
+fun ItemCard(
+    item: ListItems,
+    onClick: () -> Unit
+) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -255,29 +260,35 @@ fun ItemList(
     navController: NavController,
     context: Context
 ) {
-    LazyColumn {
-        items(itemList) { item ->
-            ItemCard(item = item) {
-                when (item.itemName) {
-                    context.getString(R.string.dashboardScreen_socialMedia_dashboardItem) -> navController.navigate(
-                        InstantPostScreen.SocialMediaCaptionScreen.name
-                    )
+    Surface(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(bottom = 16.dp)
+    ) {
+        LazyColumn {
+            items(itemList) { item ->
+                ItemCard(item = item) {
+                    when (item.itemName) {
+                        context.getString(R.string.dashboardScreen_socialMedia_dashboardItem) -> navController.navigate(
+                            InstantPostScreen.SocialMediaCaptionScreen.name
+                        )
 
-                    context.getString(R.string.dashboardScreen_whatsapp_dashboardItem) -> navController.navigate(
-                        InstantPostScreen.WhatsappScreen.name
-                    )
+                        context.getString(R.string.dashboardScreen_whatsapp_dashboardItem) -> navController.navigate(
+                            InstantPostScreen.WhatsappScreen.name
+                        )
 
-                    context.getString(R.string.loginScreen_email_label) -> navController.navigate(
-                        InstantPostScreen.EmailScreen.name
-                    )
+                        context.getString(R.string.loginScreen_email_label) -> navController.navigate(
+                            InstantPostScreen.EmailScreen.name
+                        )
 
-                    context.getString(R.string.dashboardScreen_blog_dashboardItem) -> navController.navigate(
-                        InstantPostScreen.BlogScreen.name
-                    )
+                        context.getString(R.string.dashboardScreen_blog_dashboardItem) -> navController.navigate(
+                            InstantPostScreen.BlogScreen.name
+                        )
 
-                    context.getString(R.string.dashboardScreen_images_dashboardItem) -> navController.navigate(
-                        InstantPostScreen.ImageScreen.name
-                    )
+                        context.getString(R.string.dashboardScreen_images_dashboardItem) -> navController.navigate(
+                            InstantPostScreen.ImageScreen.name
+                        )
+                    }
                 }
             }
         }
