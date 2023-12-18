@@ -12,5 +12,8 @@ import com.vismijatech.instantpost.screens.whatsapp.newsletter.NewsletterOrWhats
 
 @Composable
 fun NewsletterScreen(navController: NavHostController) {
-    NewsletterOrWhatsappScreen(navController = navController, header = stringResource(id = R.string.emailScreen_newsletter_emailItem))
+    NewsletterOrWhatsappScreen(
+        navController = navController,
+        header = stringResource(id = R.string.emailScreen_newsletter_emailItem)
+    )
 }
