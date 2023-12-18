@@ -160,4 +160,48 @@
     <string name="newsletter_frequency_info">How often will you send the newsletter? Will you send it weekly, monthly, or something else?</string>
     <string name="newsletter_length_info">How long would you like your newsletter to be?</string>
 
+<!--    Blog Screen-->
+    <string name="blog_title_info">What is the title of your blog post? The title should be clear, concise, and attention-grabbing.</string>
+    <string name="blog_introduction_label">Introduction</string>
+    <string name="blog_introduction_info">The introduction should provide a brief overview of the topic of the blog post.</string>
+    <string name="blog_sections_info">What sections will be included in your blog post? What content will be included in each section?</string>
+    <string name="blog_tone_info">Do you want the blog post to be formal, informal, humorous, or something else?</string>
+    <string name="blog_links_info">Will you be including any links or resources in your blog post? If so, please provide the links and resources.</string>
+    <string name="blog_targetAudience_info">Are you targeting men, women, both, or a specific age group?</string>
+    <string name="blog_length_info">Do you want it to be a certain number of words, characters, or reading time?</string>
+    <string name="blog_seo_label">SEO Keywords</string>
+    <string name="blog_seo_info">These are the keywords that you want people to find your blog post when they search for these terms on Google.</string>
+    <string name="blog_supportingData_label">Supporting data / references</string>
+    <string name="blog_supportingData_info">Do you have any supporting data that you want to include in your blog post? This could include statistics, research, or quotes.</string>
+    <string name="blog_formatting_label">Formatting preferences</string>
+    <string name="blog_formatting_info">Do you want to use bullet points, numbered lists, or headings?</string>
+    <string name="blog_keyMessages_label">Key messages</string>
+    <string name="blog_keyMessages_info">What do you want your readers to take away from your blog post?</string>
+    <string name="blog_conclusion_label">Conclusion</string>
+    <string name="blog_conclusion_info">Do you want to summarize your key points, ask a question, or leave the reader with something to think about?</string>
+
+<!--    Travel Blog Screen-->
+    <string name="travelBlog_title_info">What is the title of your travel blog post?</string>
+    <string name="travelBlog_introduction_info">Give us a brief overview of your travel blog post. What is the destination? What is the purpose of your trip? What are your expectations?</string>
+    <string name="travelBlog_destinations_label">Destinations and Itinerary</string>
+    <string name="travelBlog_destinations_info">What destinations did you visit on your trip? What was your itinerary?</string>
+    <string name="travelBlog_experience_label">Travel experience</string>
+    <string name="travelBlog_experience_info">What did you do on your trip? Where did you go? What did you see and experience?</string>
+    <string name="travelBlog_food_label">Accommodations and food</string>
+    <string name="travelBlog_food_info">What were your thoughts on the accommodations and food you experienced on your trip?</string>
+    <string name="travelBlog_tips_label">Travel tips</string>
+    <string name="travelBlog_tips_info">Do you have any tips for other travelers? This could include tips on how to save money, how to get around, or what to see and do.</string>
+    <string name="travelBlog_reflections_label">Personal reflections</string>
+    <string name="travelBlog_reflections_info">What are your thoughts on the destination? The people you met? The things you learned?</string>
+    <string name="travelBlog_recommendations_label">Recommendations</string>
+    <string name="travelBlog_recommendations_info">Do you have any recommendations for places or activities you enjoyed?</string>
+    <string name="travelBlog_conclusion_info">What are the main points of your travel blog post? What do you want readers to take away from it?</string>
+    <string name="travelBlog_callToAction_info">What do you want readers to do after reading your travel blog post? This could be a link to your website, a request for feedback, or an invitation to follow you on social media.</string>
+    <string name="travelBlog_links_info">Did you find any links or resources helpful during your trip?</string>
+    <string name="travelBlog_personalization_info">Do you want to personalize your travel blog post? This could include adding your name, photos, or other personal details.</string>
+    <string name="travelBlog_frequency_info">How often do you want to publish travel blog posts?</string>
+    <string name="travelBlog_length_info">Do you want it to be a certain number of words, characters, or reading time?</string>
+
+    <string name="userInput_textNotProvided">Not Provided</string>
+
 </resources>
