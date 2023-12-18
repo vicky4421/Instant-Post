@@ -19,6 +19,7 @@ import androidx.navigation.compose.rememberNavController
 import com.vismijatech.instantpost.R
 import com.vismijatech.instantpost.components.HollowButton
 import com.vismijatech.instantpost.components.InputCard
+import com.vismijatech.instantpost.components.UserInputTopAppBar
 import com.vismijatech.instantpost.utils.getBlogUserInput
 
 /**
@@ -48,7 +49,11 @@ fun OtherBlogScreen(
     val keyMessage = rememberSaveable { mutableStateOf("") }
     val conclusion = rememberSaveable { mutableStateOf("") }
 
-    Scaffold {
+    Scaffold(
+        topBar = {
+            UserInputTopAppBar(header = header, navController = navController)
+        }
+    ) {
         Surface(
             modifier = Modifier.padding(it)
         ) {
