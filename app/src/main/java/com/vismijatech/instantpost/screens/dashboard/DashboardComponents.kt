@@ -260,35 +260,29 @@ fun ItemList(
     navController: NavController,
     context: Context
 ) {
-    Surface(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(bottom = 16.dp)
-    ) {
-        LazyColumn {
-            items(itemList) { item ->
-                ItemCard(item = item) {
-                    when (item.itemName) {
-                        context.getString(R.string.dashboardScreen_socialMedia_dashboardItem) -> navController.navigate(
-                            InstantPostScreen.SocialMediaCaptionScreen.name
-                        )
+    LazyColumn {
+        items(itemList) { item ->
+            ItemCard(item = item) {
+                when (item.itemName) {
+                    context.getString(R.string.dashboardScreen_socialMedia_dashboardItem) -> navController.navigate(
+                        InstantPostScreen.SocialMediaCaptionScreen.name
+                    )
 
-                        context.getString(R.string.dashboardScreen_whatsapp_dashboardItem) -> navController.navigate(
-                            InstantPostScreen.WhatsappScreen.name
-                        )
+                    context.getString(R.string.dashboardScreen_whatsapp_dashboardItem) -> navController.navigate(
+                        InstantPostScreen.WhatsappScreen.name
+                    )
 
-                        context.getString(R.string.loginScreen_email_label) -> navController.navigate(
-                            InstantPostScreen.EmailScreen.name
-                        )
+                    context.getString(R.string.loginScreen_email_label) -> navController.navigate(
+                        InstantPostScreen.EmailScreen.name
+                    )
 
-                        context.getString(R.string.dashboardScreen_blog_dashboardItem) -> navController.navigate(
-                            InstantPostScreen.BlogScreen.name
-                        )
+                    context.getString(R.string.dashboardScreen_blog_dashboardItem) -> navController.navigate(
+                        InstantPostScreen.BlogScreen.name
+                    )
 
-                        context.getString(R.string.dashboardScreen_images_dashboardItem) -> navController.navigate(
-                            InstantPostScreen.ImageScreen.name
-                        )
-                    }
+                    context.getString(R.string.dashboardScreen_images_dashboardItem) -> navController.navigate(
+                        InstantPostScreen.ImageScreen.name
+                    )
                 }
             }
         }
