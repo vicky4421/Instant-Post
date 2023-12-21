@@ -13,13 +13,14 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
 import com.vismijatech.instantpost.R
 import com.vismijatech.instantpost.components.HollowButton
 import com.vismijatech.instantpost.components.InputCard
 import com.vismijatech.instantpost.components.UserInputTopAppBar
+import com.vismijatech.instantpost.model.queries.SocialMediaQuery
+import com.vismijatech.instantpost.navigation.InstantPostScreen
+import com.vismijatech.instantpost.screens.SharedViewModel
 import com.vismijatech.instantpost.utils.getSocialMediaUserInputList
 
 /**
@@ -30,6 +31,7 @@ import com.vismijatech.instantpost.utils.getSocialMediaUserInputList
 @Composable
 fun SocialMediaCaptionScreen(
     navController: NavHostController,
+    sharedViewModel: SharedViewModel,
     header: String = stringResource(id = R.string.dashboardScreen_socialMedia_dashboardItem)
 ) {
     val context = LocalContext.current
@@ -79,15 +81,27 @@ fun SocialMediaCaptionScreen(
                     )
                 }
                 HollowButton(label = stringResource(id = R.string.socialMedia_submit_button)) {
+                    val query = "socialMediaQuery"
+                    val socialMediaQuery = SocialMediaQuery(
+                        imageDescription = imageDesc.value,
+                        emotions = emotions.value,
+                        captionStyle = captionStyle.value,
+                        keywords = keywords.value,
+                        messageOrStory = message.value,
+                        location = location.value,
+                        callToAction = callToAction.value,
+                        goal = goal.value,
+                        tagline = tagline.value,
+                        length = length.value,
+                        targetAudience = targetAudience.value
+                    )
+                    sharedViewModel.setSocialMediaInput(query = socialMediaQuery)
+
                     // navigate to result
+                    navController.navigate(route = InstantPostScreen.ResultScreen.name + "/$query")
+
                 }
             }
         }
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun PreviewSocial() {
-    SocialMediaCaptionScreen(navController = rememberNavController())
 }
