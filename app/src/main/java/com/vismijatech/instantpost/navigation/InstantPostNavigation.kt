@@ -91,7 +91,7 @@ fun InstantPostNavigation() {
         }
 
         composable(route = InstantPostScreen.PromotionalMailScreen.name) {
-            PromotionalMailScreen(navController = navController)
+            PromotionalMailScreen(navController = navController, sharedViewModel = sharedViewModel)
         }
 
         composable(route = InstantPostScreen.CreditScreen.name) {
@@ -127,7 +127,7 @@ fun InstantPostNavigation() {
         }
 
         composable(route = InstantPostScreen.WhatsappPromotionalScreen.name) {
-            WhatsappPromotionalScreen(navController = navController)
+            WhatsappPromotionalScreen(navController = navController, sharedViewModel = sharedViewModel)
         }
 
         composable(route = InstantPostScreen.WhatsappReplyScreen.name) {
