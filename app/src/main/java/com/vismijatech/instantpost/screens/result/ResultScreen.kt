@@ -50,5 +50,12 @@ fun ResultScreen(
                     "length: ${promotionalQuery?.length} \n" +
                     "query: $query"
         )
+    } else if (query != null && query == "newsletterQuery") {
+        val newsletterQuery = sharedViewModel.newsletterQuery.value
+        Text(
+            text = "theme topic: ${newsletterQuery?.themeOrTopic} \n" +
+                    "length: ${newsletterQuery?.length} \n" +
+                    "query: $query"
+        )
     }
 }
