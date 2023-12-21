@@ -5,6 +5,7 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
+import com.vismijatech.instantpost.model.queries.BusinessQuery
 import com.vismijatech.instantpost.model.queries.PersonalQuery
 import com.vismijatech.instantpost.model.queries.SocialMediaQuery
 import com.vismijatech.instantpost.model.queries.WhatsappReplyQuery
@@ -14,6 +15,8 @@ import com.vismijatech.instantpost.model.queries.WhatsappReplyQuery
  */
 class SharedViewModel : ViewModel() {
 
+    // query states
+
     private val _socialQuery: MutableState<SocialMediaQuery?> = mutableStateOf(null)
     val socialQuery: State<SocialMediaQuery?> = _socialQuery
 
@@ -22,6 +25,11 @@ class SharedViewModel : ViewModel() {
 
     private val _whatsappReplyQuery: MutableState<WhatsappReplyQuery?> = mutableStateOf(null)
     val whatsappReplyQuery: State<WhatsappReplyQuery?> = _whatsappReplyQuery
+
+    private val _businessQuery: MutableState<BusinessQuery?> = mutableStateOf(null)
+    val businessQuery: State<BusinessQuery?> = _businessQuery
+
+    // query setter functions
 
     fun setSocialMediaInput(query: SocialMediaQuery) {
         _socialQuery.value = query
@@ -33,5 +41,9 @@ class SharedViewModel : ViewModel() {
 
     fun setWhatsappReplyInput(query: WhatsappReplyQuery){
         _whatsappReplyQuery.value = query
+    }
+
+    fun setBusinessInput(query: BusinessQuery){
+        _businessQuery.value = query
     }
 }

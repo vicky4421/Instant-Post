@@ -36,5 +36,12 @@ fun ResultScreen(
                     "length: ${whatsappReplyQuery?.length} \n" +
                     "query: $query"
         )
+    } else if (query != null && query == "businessQuery") {
+        val businessQuery = sharedViewModel.businessQuery.value
+        Text(
+            text = "name: ${businessQuery?.recipientsName} \n" +
+                    "sign: ${businessQuery?.signature} \n" +
+                    "query: $query"
+        )
     }
 }
