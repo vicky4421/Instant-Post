@@ -76,7 +76,7 @@ fun InstantPostNavigation() {
         }
 
         composable(route = InstantPostScreen.TravelBlogScreen.name) {
-            TravelBlogScreen(navController = navController)
+            TravelBlogScreen(navController = navController, sharedViewModel = sharedViewModel)
         }
 
         composable(route = InstantPostScreen.BusinessMailScreen.name) {
