@@ -43,5 +43,12 @@ fun ResultScreen(
                     "sign: ${businessQuery?.signature} \n" +
                     "query: $query"
         )
+    } else if (query != null && query == "promotionalQuery") {
+        val promotionalQuery = sharedViewModel.promotionalQuery.value
+        Text(
+            text = "target audience: ${promotionalQuery?.targetAudience} \n" +
+                    "length: ${promotionalQuery?.length} \n" +
+                    "query: $query"
+        )
     }
 }
