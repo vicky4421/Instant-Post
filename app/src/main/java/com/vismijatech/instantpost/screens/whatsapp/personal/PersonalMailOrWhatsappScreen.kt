@@ -18,6 +18,9 @@ import com.vismijatech.instantpost.R
 import com.vismijatech.instantpost.components.HollowButton
 import com.vismijatech.instantpost.components.InputCard
 import com.vismijatech.instantpost.components.UserInputTopAppBar
+import com.vismijatech.instantpost.model.queries.PersonalQuery
+import com.vismijatech.instantpost.navigation.InstantPostScreen
+import com.vismijatech.instantpost.screens.SharedViewModel
 import com.vismijatech.instantpost.utils.getPersonalOrWhatsappUserInput
 
 /**
@@ -27,13 +30,16 @@ import com.vismijatech.instantpost.utils.getPersonalOrWhatsappUserInput
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PersonalMailOrWhatsappScreen(
-    navController: NavHostController, header: String
+    navController: NavHostController,
+    sharedViewModel: SharedViewModel,
+    header: String
 ) {
     val context = LocalContext.current
     val inputList = getPersonalOrWhatsappUserInput(context = context)
     val name = rememberSaveable { mutableStateOf("") }
     val relationship = rememberSaveable { mutableStateOf("") }
     val occasion = rememberSaveable { mutableStateOf("") }
+    val purpose = rememberSaveable { mutableStateOf("") }
     val mainPoints = rememberSaveable { mutableStateOf("") }
     val qualities = rememberSaveable { mutableStateOf("") }
     val tone = rememberSaveable { mutableStateOf("") }
@@ -54,6 +60,7 @@ fun PersonalMailOrWhatsappScreen(
                             stringResource(id = R.string.personal_recipientName_label) -> name
                             stringResource(id = R.string.personal_relationship_label) -> relationship
                             stringResource(id = R.string.personal_occasion_label) -> occasion
+                            stringResource(id = R.string.business_purpose_label) -> purpose
                             stringResource(id = R.string.personal_mainPoints_label) -> mainPoints
                             stringResource(id = R.string.personal_qualities_label) -> qualities
                             stringResource(id = R.string.personal_tone_label) -> tone
@@ -63,7 +70,19 @@ fun PersonalMailOrWhatsappScreen(
                     )
                 }
                 HollowButton(label = stringResource(id = R.string.socialMedia_submit_button)) {
-
+                    val query = "personalQuery"
+                    val personalQuery = PersonalQuery(
+                        recipientsName = name.value,
+                        relationship = relationship.value,
+                        occasion = occasion.value,
+                        purpose = purpose.value,
+                        mainPoints = mainPoints.value,
+                        positiveQualities = qualities.value,
+                        emotionalTone = tone.value,
+                        closingSentiment = closing.value
+                    )
+                    sharedViewModel.setPersonalInput(query = personalQuery)
+                    navController.navigate(InstantPostScreen.ResultScreen.name + "/$query")
                 }
             }
         }

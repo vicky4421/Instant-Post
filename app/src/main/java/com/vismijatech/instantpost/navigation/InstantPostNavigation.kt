@@ -63,7 +63,7 @@ fun InstantPostNavigation() {
         }
         
         composable(route = InstantPostScreen.SocialMediaCaptionScreen.name){
-            SocialMediaCaptionScreen(navController = navController, sharedViewModel)
+            SocialMediaCaptionScreen(navController = navController, sharedViewModel = sharedViewModel)
         }
 
         composable(route = InstantPostScreen.WhatsappScreen.name) {
@@ -87,7 +87,7 @@ fun InstantPostNavigation() {
         }
 
         composable(route = InstantPostScreen.PersonalMailScreen.name) {
-            PersonalMailScreen(navController = navController)
+            PersonalMailScreen(navController = navController, sharedViewModel = sharedViewModel)
         }
 
         composable(route = InstantPostScreen.PromotionalMailScreen.name) {
@@ -115,7 +115,7 @@ fun InstantPostNavigation() {
         }
 
         composable(route = InstantPostScreen.WhatsappCaptionScreen.name) {
-            WhatsappCaptionScreen(navController = navController, sharedViewModel)
+            WhatsappCaptionScreen(navController = navController, sharedViewModel = sharedViewModel)
         }
 
         composable(route = InstantPostScreen.WhatsappNewsletterScreen.name) {
@@ -123,7 +123,7 @@ fun InstantPostNavigation() {
         }
 
         composable(route = InstantPostScreen.WhatsappPersonalScreen.name) {
-            WhatsappPersonalScreen(navController = navController)
+            WhatsappPersonalScreen(navController = navController, sharedViewModel = sharedViewModel)
         }
 
         composable(route = InstantPostScreen.WhatsappPromotionalScreen.name) {
@@ -136,7 +136,7 @@ fun InstantPostNavigation() {
 
         composable(route = InstantPostScreen.ResultScreen.name + "/{query}"){
             val query = it.arguments?.getString("query")
-            ResultScreen(navController = navController, query = query, sharedViewModel)
+            ResultScreen(navController = navController, query = query, sharedViewModel = sharedViewModel)
         }
     }
 
