@@ -18,6 +18,9 @@ import com.vismijatech.instantpost.R
 import com.vismijatech.instantpost.components.HollowButton
 import com.vismijatech.instantpost.components.InputCard
 import com.vismijatech.instantpost.components.UserInputTopAppBar
+import com.vismijatech.instantpost.model.queries.PromotionalQuery
+import com.vismijatech.instantpost.navigation.InstantPostScreen
+import com.vismijatech.instantpost.screens.SharedViewModel
 import com.vismijatech.instantpost.utils.getPromotionalMailOrWhatsappUserInputList
 
 /**
@@ -28,6 +31,7 @@ import com.vismijatech.instantpost.utils.getPromotionalMailOrWhatsappUserInputLi
 @Composable
 fun PromotionalMailOrWhatsappScreen(
     navController: NavHostController,
+    sharedViewModel: SharedViewModel,
     header: String
 ) {
     val context = LocalContext.current
@@ -72,7 +76,21 @@ fun PromotionalMailOrWhatsappScreen(
                     )
                 }
                 HollowButton(label = stringResource(id = R.string.socialMedia_submit_button)) {
-
+                    val query = "promotionalQuery"
+                    val promotionalQuery = PromotionalQuery(
+                        targetAudience = audience.value,
+                        product = product.value,
+                        keyPoints = sellingPoints.value,
+                        callToAction = callToAction.value,
+                        discounts = discounts.value,
+                        subjectLine = subjectLine.value,
+                        personalization = personalization.value,
+                        tone = tone.value,
+                        closing = closing.value,
+                        length = length.value
+                    )
+                    sharedViewModel.setPromotionalInput(query = promotionalQuery)
+                    navController.navigate(InstantPostScreen.ResultScreen.name + "/$query")
                 }
             }
         }
