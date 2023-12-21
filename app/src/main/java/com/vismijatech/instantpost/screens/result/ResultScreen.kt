@@ -20,5 +20,10 @@ fun ResultScreen(
         Text(text = "ImageDesc: ${socialMediaQuery?.imageDescription} \n" +
                 "length: ${socialMediaQuery?.length} \n" +
                 "query: $query")
+    } else if (query != null && query == "personalQuery"){
+        val personalQuery = sharedViewModel.personalQuery.value
+        Text(text = "recipientName: ${personalQuery?.recipientsName} \n" +
+                "closing: ${personalQuery?.closingSentiment}" +
+                "query: $query")
     }
 }
