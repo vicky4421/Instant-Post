@@ -18,6 +18,9 @@ import com.vismijatech.instantpost.R
 import com.vismijatech.instantpost.components.HollowButton
 import com.vismijatech.instantpost.components.InputCard
 import com.vismijatech.instantpost.components.UserInputTopAppBar
+import com.vismijatech.instantpost.model.queries.BusinessQuery
+import com.vismijatech.instantpost.navigation.InstantPostScreen
+import com.vismijatech.instantpost.screens.SharedViewModel
 import com.vismijatech.instantpost.utils.getBusinessOrWhatsappUserInputList
 
 /**
@@ -28,6 +31,7 @@ import com.vismijatech.instantpost.utils.getBusinessOrWhatsappUserInputList
 @Composable
 fun BusinessMailOrWhatsappScreen(
     navController: NavHostController,
+    sharedViewModel: SharedViewModel,
     header: String
 ) {
     val context = LocalContext.current
@@ -71,7 +75,19 @@ fun BusinessMailOrWhatsappScreen(
                     )
                 }
                 HollowButton(label = stringResource(id = R.string.socialMedia_submit_button)) {
-
+                    val query = "businessQuery"
+                    val businessQuery = BusinessQuery(
+                        recipientsName =  name.value,
+                        purpose = purpose.value,
+                        backgroundInfo = backgroundInfo.value,
+                        mainPoints = mainPoints.value,
+                        professionalTone = tone.value,
+                        callToAction = callToAction.value,
+                        closingSentiment = closing.value,
+                        signature = sign.value
+                    )
+                    sharedViewModel.setBusinessInput(query = businessQuery)
+                    navController.navigate(route = InstantPostScreen.ResultScreen.name + "/$query")
                 }
             }
         }
