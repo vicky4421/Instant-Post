@@ -20,6 +20,9 @@ import com.vismijatech.instantpost.R
 import com.vismijatech.instantpost.components.HollowButton
 import com.vismijatech.instantpost.components.InputCard
 import com.vismijatech.instantpost.components.UserInputTopAppBar
+import com.vismijatech.instantpost.model.queries.BlogQuery
+import com.vismijatech.instantpost.navigation.InstantPostScreen
+import com.vismijatech.instantpost.screens.SharedViewModel
 import com.vismijatech.instantpost.utils.getBlogUserInput
 
 /**
@@ -30,6 +33,7 @@ import com.vismijatech.instantpost.utils.getBlogUserInput
 @Composable
 fun OtherBlogScreen(
     navController: NavHostController,
+    sharedViewModel: SharedViewModel,
     header: String = stringResource(id = R.string.dashboardScreen_blog_dashboardItem)
 ) {
     val context = LocalContext.current
@@ -84,15 +88,27 @@ fun OtherBlogScreen(
                     )
                 }
                 HollowButton(label = stringResource(id = R.string.socialMedia_submit_button)) {
-                    
+                    val query = "blogQuery"
+                    val blogQuery = BlogQuery(
+                        title = title.value,
+                        introduction = introduction.value,
+                        sections = sections.value,
+                        tone = tone.value,
+                        personalization = personalization.value,
+                        callToAction = callToAction.value,
+                        links = links.value,
+                        targetAudience = targetAudience.value,
+                        length = length.value,
+                        seo = seo.value,
+                        supportingData = data.value,
+                        formatting = formatting.value,
+                        keyMessage = keyMessage.value,
+                        conclusion = conclusion.value
+                    )
+                    sharedViewModel.setBlogInput(query = blogQuery)
+                    navController.navigate(InstantPostScreen.ResultScreen.name + "/$query")
                 }
             }
         }
     }
-}
-
-@Preview
-@Composable
-fun BlogPreview() {
-    OtherBlogScreen(navController = rememberNavController(), header = "Blog")
 }
