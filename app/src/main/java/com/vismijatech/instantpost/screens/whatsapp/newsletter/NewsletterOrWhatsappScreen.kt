@@ -18,6 +18,9 @@ import com.vismijatech.instantpost.R
 import com.vismijatech.instantpost.components.HollowButton
 import com.vismijatech.instantpost.components.InputCard
 import com.vismijatech.instantpost.components.UserInputTopAppBar
+import com.vismijatech.instantpost.model.NewsletterQuery
+import com.vismijatech.instantpost.navigation.InstantPostScreen
+import com.vismijatech.instantpost.screens.SharedViewModel
 import com.vismijatech.instantpost.utils.getNewsletterOrWhatsappUserInputList
 
 /**
@@ -28,6 +31,7 @@ import com.vismijatech.instantpost.utils.getNewsletterOrWhatsappUserInputList
 @Composable
 fun NewsletterOrWhatsappScreen(
     navController: NavHostController,
+    sharedViewModel: SharedViewModel,
     header: String
 ) {
     val context = LocalContext.current
@@ -72,7 +76,21 @@ fun NewsletterOrWhatsappScreen(
                     )
                 }
                 HollowButton(label = stringResource(id = R.string.socialMedia_submit_button)) {
-
+                    val query = "newsletterQuery"
+                    val newsletterQuery = NewsletterQuery(
+                        themeOrTopic = theme.value,
+                        title = title.value,
+                        sectionAndContents = sections.value,
+                        callToAction = callToAction.value,
+                        links = links.value,
+                        subjectLine = subjectLine.value,
+                        tone = tone.value,
+                        personalization = personalization.value,
+                        frequency = frequency.value,
+                        length = length.value
+                    )
+                    sharedViewModel.setNewsletterInput(query = newsletterQuery)
+                    navController.navigate(InstantPostScreen.ResultScreen.name + "/$query")
                 }
             }
         }
