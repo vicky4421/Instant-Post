@@ -6,6 +6,7 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import com.vismijatech.instantpost.model.NewsletterQuery
+import com.vismijatech.instantpost.model.queries.BlogQuery
 import com.vismijatech.instantpost.model.queries.BusinessQuery
 import com.vismijatech.instantpost.model.queries.PersonalQuery
 import com.vismijatech.instantpost.model.queries.PromotionalQuery
@@ -37,6 +38,9 @@ class SharedViewModel : ViewModel() {
     private val _newsletterQuery: MutableState<NewsletterQuery?> = mutableStateOf(null)
     val newsletterQuery: State<NewsletterQuery?> = _newsletterQuery
 
+    private val _blogQuery: MutableState<BlogQuery?> = mutableStateOf(null)
+    val blogQuery: State<BlogQuery?> = _blogQuery
+
     // query setter functions
 
     fun setSocialMediaInput(query: SocialMediaQuery) {
@@ -61,5 +65,9 @@ class SharedViewModel : ViewModel() {
 
     fun setNewsletterInput(query: NewsletterQuery){
         _newsletterQuery.value = query
+    }
+
+    fun setBlogInput(query: BlogQuery){
+        _blogQuery.value = query
     }
 }

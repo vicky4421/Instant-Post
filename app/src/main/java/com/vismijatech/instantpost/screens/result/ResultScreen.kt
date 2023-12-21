@@ -57,5 +57,12 @@ fun ResultScreen(
                     "length: ${newsletterQuery?.length} \n" +
                     "query: $query"
         )
+    } else if (query != null && query == "blogQuery") {
+        val blogQuery = sharedViewModel.blogQuery.value
+        Text(
+            text = "title: ${blogQuery?.title} \n" +
+                    "conclusion: ${blogQuery?.conclusion} \n" +
+                    "query: $query"
+        )
     }
 }
