@@ -40,6 +40,7 @@ fun InstantPostNavigation() {
 
     // define NavHostController
     val navController: NavHostController = rememberNavController()
+    // define shared view model for all screens, so that we can have only one instance for all screens.
     val sharedViewModel: SharedViewModel = viewModel()
 
     // define NavHost
@@ -83,7 +84,7 @@ fun InstantPostNavigation() {
         }
 
         composable(route = InstantPostScreen.NewsletterScreen.name) {
-            NewsletterScreen(navController = navController)
+            NewsletterScreen(navController = navController, sharedViewModel = sharedViewModel)
         }
 
         composable(route = InstantPostScreen.PersonalMailScreen.name) {
@@ -119,7 +120,7 @@ fun InstantPostNavigation() {
         }
 
         composable(route = InstantPostScreen.WhatsappNewsletterScreen.name) {
-            WhatsappNewsletterScreen(navController = navController)
+            WhatsappNewsletterScreen(navController = navController, sharedViewModel = sharedViewModel)
         }
 
         composable(route = InstantPostScreen.WhatsappPersonalScreen.name) {
