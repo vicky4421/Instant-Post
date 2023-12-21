@@ -15,15 +15,26 @@ fun ResultScreen(
     query: String?,
     sharedViewModel: SharedViewModel
 ) {
-    if (query != null && query == "socialMediaQuery"){
+    if (query != null && query == "socialMediaQuery") {
         val socialMediaQuery = sharedViewModel.socialQuery.value
-        Text(text = "ImageDesc: ${socialMediaQuery?.imageDescription} \n" +
-                "length: ${socialMediaQuery?.length} \n" +
-                "query: $query")
-    } else if (query != null && query == "personalQuery"){
+        Text(
+            text = "ImageDesc: ${socialMediaQuery?.imageDescription} \n" +
+                    "length: ${socialMediaQuery?.length} \n" +
+                    "query: $query"
+        )
+    } else if (query != null && query == "personalQuery") {
         val personalQuery = sharedViewModel.personalQuery.value
-        Text(text = "recipientName: ${personalQuery?.recipientsName} \n" +
-                "closing: ${personalQuery?.closingSentiment}" +
-                "query: $query")
+        Text(
+            text = "recipientName: ${personalQuery?.recipientsName} \n" +
+                    "closing: ${personalQuery?.closingSentiment}" +
+                    "query: $query"
+        )
+    } else if (query != null && query == "whatsappReplyQuery") {
+        val whatsappReplyQuery = sharedViewModel.whatsappReplyQuery.value
+        Text(
+            text = "ImageDesc: ${whatsappReplyQuery?.messageContent} \n" +
+                    "length: ${whatsappReplyQuery?.length} \n" +
+                    "query: $query"
+        )
     }
 }

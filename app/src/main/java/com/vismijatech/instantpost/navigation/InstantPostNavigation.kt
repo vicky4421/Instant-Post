@@ -131,7 +131,7 @@ fun InstantPostNavigation() {
         }
 
         composable(route = InstantPostScreen.WhatsappReplyScreen.name) {
-            WhatsappReplyScreen(navController = navController)
+            WhatsappReplyScreen(navController = navController, sharedViewModel = sharedViewModel)
         }
 
         composable(route = InstantPostScreen.ResultScreen.name + "/{query}"){
