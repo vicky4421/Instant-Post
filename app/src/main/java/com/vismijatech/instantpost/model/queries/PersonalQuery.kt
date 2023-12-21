@@ -1,4 +1,4 @@
-package com.vismijatech.instantpost.model
+package com.vismijatech.instantpost.model.queries
 
 /**
  * Created by Vivek Sawant on 13-12-2023.
