@@ -11,6 +11,7 @@ import com.vismijatech.instantpost.model.queries.BusinessQuery
 import com.vismijatech.instantpost.model.queries.PersonalQuery
 import com.vismijatech.instantpost.model.queries.PromotionalQuery
 import com.vismijatech.instantpost.model.queries.SocialMediaQuery
+import com.vismijatech.instantpost.model.queries.TravelBlogQuery
 import com.vismijatech.instantpost.model.queries.WhatsappReplyQuery
 
 /**
@@ -41,6 +42,9 @@ class SharedViewModel : ViewModel() {
     private val _blogQuery: MutableState<BlogQuery?> = mutableStateOf(null)
     val blogQuery: State<BlogQuery?> = _blogQuery
 
+    private val _travelBlogQuery: MutableState<TravelBlogQuery?> = mutableStateOf(null)
+    val travelBlogQuery: State<TravelBlogQuery?> = _travelBlogQuery
+
     // query setter functions
 
     fun setSocialMediaInput(query: SocialMediaQuery) {
@@ -63,11 +67,15 @@ class SharedViewModel : ViewModel() {
         _promotionalQuery.value = query
     }
 
-    fun setNewsletterInput(query: NewsletterQuery){
+    fun setNewsletterInput(query: NewsletterQuery) {
         _newsletterQuery.value = query
     }
 
-    fun setBlogInput(query: BlogQuery){
+    fun setBlogInput(query: BlogQuery) {
         _blogQuery.value = query
+    }
+
+    fun setTravelBlogInput(query: TravelBlogQuery){
+        _travelBlogQuery.value = query
     }
 }

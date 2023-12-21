@@ -64,5 +64,12 @@ fun ResultScreen(
                     "conclusion: ${blogQuery?.conclusion} \n" +
                     "query: $query"
         )
+    } else if (query != null && query == "travelBlogQuery") {
+        val travelBlogQuery = sharedViewModel.travelBlogQuery.value
+        Text(
+            text = "title: ${travelBlogQuery?.title} \n" +
+                    "length: ${travelBlogQuery?.length} \n" +
+                    "query: $query"
+        )
     }
 }
