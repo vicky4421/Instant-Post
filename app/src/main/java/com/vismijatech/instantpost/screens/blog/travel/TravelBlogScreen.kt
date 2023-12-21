@@ -18,6 +18,9 @@ import com.vismijatech.instantpost.R
 import com.vismijatech.instantpost.components.HollowButton
 import com.vismijatech.instantpost.components.InputCard
 import com.vismijatech.instantpost.components.UserInputTopAppBar
+import com.vismijatech.instantpost.model.queries.TravelBlogQuery
+import com.vismijatech.instantpost.navigation.InstantPostScreen
+import com.vismijatech.instantpost.screens.SharedViewModel
 import com.vismijatech.instantpost.utils.getTravelBlogUserInputs
 
 /**
@@ -28,6 +31,7 @@ import com.vismijatech.instantpost.utils.getTravelBlogUserInputs
 @Composable
 fun TravelBlogScreen(
     navController: NavHostController,
+    sharedViewModel: SharedViewModel,
     header: String = stringResource(id = R.string.blogScreen_travel_blogItem)
 ) {
     val context = LocalContext.current
@@ -82,7 +86,26 @@ fun TravelBlogScreen(
                     )
                 }
                 HollowButton(label = stringResource(id = R.string.socialMedia_submit_button)) {
-
+                    val query = "travelBlogQuery"
+                    val travelBlogQuery = TravelBlogQuery(
+                        title = title.value,
+                        introduction = introduction.value,
+                        destinations = destinations.value,
+                        travelExperience = experience.value,
+                        food = food.value,
+                        tips = tips.value,
+                        reflections = reflections.value,
+                        recommendations = recommendations.value,
+                        conclusion = conclusion.value,
+                        callToAction = callToAction.value,
+                        links = links.value,
+                        tone = tone.value,
+                        personalization = personalization.value,
+                        frequency = frequency.value,
+                        length = length.value
+                    )
+                    sharedViewModel.setTravelBlogInput(query = travelBlogQuery)
+                    navController.navigate(InstantPostScreen.ResultScreen.name + "/$query")
                 }
             }
         }
