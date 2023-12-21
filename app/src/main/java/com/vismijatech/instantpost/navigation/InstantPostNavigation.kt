@@ -1,10 +1,12 @@
 package com.vismijatech.instantpost.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.vismijatech.instantpost.screens.SharedViewModel
 import com.vismijatech.instantpost.screens.blog.BlogScreen
 import com.vismijatech.instantpost.screens.blog.blog.OtherBlogScreen
 import com.vismijatech.instantpost.screens.blog.travel.TravelBlogScreen
@@ -17,6 +19,7 @@ import com.vismijatech.instantpost.screens.mail.business.BusinessMailScreen
 import com.vismijatech.instantpost.screens.mail.newsletter.NewsletterScreen
 import com.vismijatech.instantpost.screens.mail.personal.PersonalMailScreen
 import com.vismijatech.instantpost.screens.mail.promotional.PromotionalMailScreen
+import com.vismijatech.instantpost.screens.result.ResultScreen
 import com.vismijatech.instantpost.screens.signup.SignupScreen
 import com.vismijatech.instantpost.screens.socialmedia.SocialMediaCaptionScreen
 import com.vismijatech.instantpost.screens.splash.SplashScreen
@@ -37,6 +40,7 @@ fun InstantPostNavigation() {
 
     // define NavHostController
     val navController: NavHostController = rememberNavController()
+    val sharedViewModel: SharedViewModel = viewModel()
 
     // define NavHost
     NavHost(navController = navController, startDestination = InstantPostScreen.SplashScreen.name) {
@@ -57,9 +61,9 @@ fun InstantPostNavigation() {
         composable(route = InstantPostScreen.DashboardScreen.name) {
             DashboardScreen(navController = navController)
         }
-
-        composable(route = InstantPostScreen.SocialMediaCaptionScreen.name) {
-            SocialMediaCaptionScreen(navController = navController)
+        
+        composable(route = InstantPostScreen.SocialMediaCaptionScreen.name){
+            SocialMediaCaptionScreen(navController = navController, sharedViewModel)
         }
 
         composable(route = InstantPostScreen.WhatsappScreen.name) {
@@ -94,40 +98,45 @@ fun InstantPostNavigation() {
             CreditScreen(navController = navController)
         }
 
-        composable(route = InstantPostScreen.EmailScreen.name){
+        composable(route = InstantPostScreen.EmailScreen.name) {
             EmailScreen(navController = navController)
         }
 
-        composable(route = InstantPostScreen.BlogScreen.name){
+        composable(route = InstantPostScreen.BlogScreen.name) {
             BlogScreen(navController = navController)
         }
 
-        composable(route = InstantPostScreen.ImageScreen.name){
+        composable(route = InstantPostScreen.ImageScreen.name) {
             ImageScreen(navController = navController)
         }
 
-        composable(route = InstantPostScreen.WhatsappBusinessScreen.name){
+        composable(route = InstantPostScreen.WhatsappBusinessScreen.name) {
             WhatsappBusinessScreen(navController = navController)
         }
 
-        composable(route = InstantPostScreen.WhatsappCaptionScreen.name){
-            WhatsappCaptionScreen(navController = navController)
+        composable(route = InstantPostScreen.WhatsappCaptionScreen.name) {
+            WhatsappCaptionScreen(navController = navController, sharedViewModel)
         }
 
-        composable(route = InstantPostScreen.WhatsappNewsletterScreen.name){
+        composable(route = InstantPostScreen.WhatsappNewsletterScreen.name) {
             WhatsappNewsletterScreen(navController = navController)
         }
 
-        composable(route = InstantPostScreen.WhatsappPersonalScreen.name){
+        composable(route = InstantPostScreen.WhatsappPersonalScreen.name) {
             WhatsappPersonalScreen(navController = navController)
         }
 
-        composable(route = InstantPostScreen.WhatsappPromotionalScreen.name){
+        composable(route = InstantPostScreen.WhatsappPromotionalScreen.name) {
             WhatsappPromotionalScreen(navController = navController)
         }
 
-        composable(route = InstantPostScreen.WhatsappReplyScreen.name){
+        composable(route = InstantPostScreen.WhatsappReplyScreen.name) {
             WhatsappReplyScreen(navController = navController)
+        }
+
+        composable(route = InstantPostScreen.ResultScreen.name + "/{query}"){
+            val query = it.arguments?.getString("query")
+            ResultScreen(navController = navController, query = query, sharedViewModel)
         }
     }
 
