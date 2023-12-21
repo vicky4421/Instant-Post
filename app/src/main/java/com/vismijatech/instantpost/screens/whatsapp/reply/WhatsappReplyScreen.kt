@@ -18,6 +18,9 @@ import com.vismijatech.instantpost.R
 import com.vismijatech.instantpost.components.HollowButton
 import com.vismijatech.instantpost.components.InputCard
 import com.vismijatech.instantpost.components.UserInputTopAppBar
+import com.vismijatech.instantpost.model.queries.WhatsappReplyQuery
+import com.vismijatech.instantpost.navigation.InstantPostScreen
+import com.vismijatech.instantpost.screens.SharedViewModel
 import com.vismijatech.instantpost.utils.getWhatsappReplyUserInputList
 
 /**
@@ -26,7 +29,7 @@ import com.vismijatech.instantpost.utils.getWhatsappReplyUserInputList
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun WhatsappReplyScreen(navController: NavHostController) {
+fun WhatsappReplyScreen(navController: NavHostController, sharedViewModel: SharedViewModel) {
     val context = LocalContext.current
     val replyList = getWhatsappReplyUserInputList(context)
     val message = rememberSaveable { mutableStateOf("") }
@@ -67,7 +70,19 @@ fun WhatsappReplyScreen(navController: NavHostController) {
                     )
                 }
                 HollowButton(label = stringResource(id = R.string.socialMedia_submit_button)) {
-
+                    val query = "whatsappReplyQuery"
+                    val whatsappReplyQuery = WhatsappReplyQuery(
+                        messageContent = message.value,
+                        sendersTone = sendersTone.value,
+                        relationship = relationship.value,
+                        goal = goal.value,
+                        yourTone = tone.value,
+                        occasion = occasion.value,
+                        specialInstructions = instructions.value,
+                        length = length.value
+                    )
+                    sharedViewModel.setWhatsappReplyInput(query = whatsappReplyQuery)
+                    navController.navigate(route = InstantPostScreen.ResultScreen.name + "/$query")
                 }
             }
         }
