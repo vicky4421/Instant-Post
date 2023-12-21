@@ -12,7 +12,10 @@ import com.vismijatech.instantpost.screens.socialmedia.SocialMediaCaptionScreen
  */
 
 @Composable
-fun WhatsappCaptionScreen(navController: NavHostController, sharedViewModel: SharedViewModel) {
+fun WhatsappCaptionScreen(
+    navController: NavHostController,
+    sharedViewModel: SharedViewModel
+) {
     SocialMediaCaptionScreen(
         navController = navController,
         sharedViewModel = sharedViewModel,
