@@ -39,9 +39,6 @@ fun ResultScreen(
 
         else -> throw Exception("Input query not found!")
     }
-    Box(
-        contentAlignment = Alignment.Center
-    ) {
-        Text(text = prompt)
-    }
+
+    ResultDisplay(result = prompt)
 }
