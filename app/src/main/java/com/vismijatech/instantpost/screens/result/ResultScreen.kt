@@ -1,10 +1,20 @@
 package com.vismijatech.instantpost.screens.result
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.navigation.NavHostController
 import com.vismijatech.instantpost.screens.SharedViewModel
 import com.vismijatech.instantpost.utils.InputQuery
+import com.vismijatech.instantpost.utils.getBlogPrompt
+import com.vismijatech.instantpost.utils.getBusinessPrompt
+import com.vismijatech.instantpost.utils.getNewsletterPrompt
+import com.vismijatech.instantpost.utils.getPersonalPrompt
+import com.vismijatech.instantpost.utils.getPromotionalPrompt
+import com.vismijatech.instantpost.utils.getSocialMediaPrompt
+import com.vismijatech.instantpost.utils.getTravelBlogPrompt
+import com.vismijatech.instantpost.utils.getWhatsappReplyPrompt
 
 /**
  * Created by Vivek Sawant on 21-12-2023.
@@ -16,61 +26,22 @@ fun ResultScreen(
     query: String?,
     sharedViewModel: SharedViewModel
 ) {
-    if (query != null && query == InputQuery.SocialMediaQuery.name) {
-        val socialMediaQuery = sharedViewModel.socialQuery.value
-        Text(
-            text = "ImageDesc: ${socialMediaQuery?.imageDescription} \n" +
-                    "length: ${socialMediaQuery?.length} \n" +
-                    "query: $query"
-        )
-    } else if (query != null && query == InputQuery.PersonalQuery.name) {
-        val personalQuery = sharedViewModel.personalQuery.value
-        Text(
-            text = "recipientName: ${personalQuery?.recipientsName} \n" +
-                    "closing: ${personalQuery?.closingSentiment}" +
-                    "query: $query"
-        )
-    } else if (query != null && query == InputQuery.WhatsappReplyQuery.name) {
-        val whatsappReplyQuery = sharedViewModel.whatsappReplyQuery.value
-        Text(
-            text = "ImageDesc: ${whatsappReplyQuery?.messageContent} \n" +
-                    "length: ${whatsappReplyQuery?.length} \n" +
-                    "query: $query"
-        )
-    } else if (query != null && query == InputQuery.BusinessQuery.name) {
-        val businessQuery = sharedViewModel.businessQuery.value
-        Text(
-            text = "name: ${businessQuery?.recipientsName} \n" +
-                    "sign: ${businessQuery?.signature} \n" +
-                    "query: $query"
-        )
-    } else if (query != null && query == InputQuery.PromotionalQuery.name) {
-        val promotionalQuery = sharedViewModel.promotionalQuery.value
-        Text(
-            text = "target audience: ${promotionalQuery?.targetAudience} \n" +
-                    "length: ${promotionalQuery?.length} \n" +
-                    "query: $query"
-        )
-    } else if (query != null && query == InputQuery.NewsletterQuery.name) {
-        val newsletterQuery = sharedViewModel.newsletterQuery.value
-        Text(
-            text = "theme topic: ${newsletterQuery?.themeOrTopic} \n" +
-                    "length: ${newsletterQuery?.length} \n" +
-                    "query: $query"
-        )
-    } else if (query != null && query == InputQuery.BlogQuery.name) {
-        val blogQuery = sharedViewModel.blogQuery.value
-        Text(
-            text = "title: ${blogQuery?.title} \n" +
-                    "conclusion: ${blogQuery?.conclusion} \n" +
-                    "query: $query"
-        )
-    } else if (query != null && query == InputQuery.TravelBlogQuery.name) {
-        val travelBlogQuery = sharedViewModel.travelBlogQuery.value
-        Text(
-            text = "title: ${travelBlogQuery?.title} \n" +
-                    "length: ${travelBlogQuery?.length} \n" +
-                    "query: $query"
-        )
+    val prompt = when(query){
+
+        InputQuery.SocialMediaQuery.name -> getSocialMediaPrompt(query = sharedViewModel.socialQuery.value)
+        InputQuery.WhatsappReplyQuery.name -> getWhatsappReplyPrompt(query = sharedViewModel.whatsappReplyQuery.value)
+        InputQuery.PersonalQuery.name -> getPersonalPrompt(query = sharedViewModel.personalQuery.value)
+        InputQuery.BusinessQuery.name -> getBusinessPrompt(query = sharedViewModel.businessQuery.value)
+        InputQuery.PromotionalQuery.name -> getPromotionalPrompt(query = sharedViewModel.promotionalQuery.value)
+        InputQuery.NewsletterQuery.name -> getNewsletterPrompt(query = sharedViewModel.newsletterQuery.value)
+        InputQuery.BlogQuery.name -> getBlogPrompt(query = sharedViewModel.blogQuery.value)
+        InputQuery.TravelBlogQuery.name -> getTravelBlogPrompt(query = sharedViewModel.travelBlogQuery.value)
+
+        else -> throw Exception("Input query not found!")
+    }
+    Box(
+        contentAlignment = Alignment.Center
+    ) {
+        Text(text = prompt)
     }
 }
