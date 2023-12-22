@@ -21,6 +21,7 @@ import com.vismijatech.instantpost.components.UserInputTopAppBar
 import com.vismijatech.instantpost.model.queries.PersonalQuery
 import com.vismijatech.instantpost.navigation.InstantPostScreen
 import com.vismijatech.instantpost.screens.SharedViewModel
+import com.vismijatech.instantpost.utils.InputQuery
 import com.vismijatech.instantpost.utils.getPersonalOrWhatsappUserInput
 
 /**
@@ -70,7 +71,7 @@ fun PersonalMailOrWhatsappScreen(
                     )
                 }
                 HollowButton(label = stringResource(id = R.string.socialMedia_submit_button)) {
-                    val query = "personalQuery"
+                    val query = InputQuery.PersonalQuery.name
                     val personalQuery = PersonalQuery(
                         recipientsName = name.value,
                         relationship = relationship.value,

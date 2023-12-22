@@ -21,6 +21,7 @@ import com.vismijatech.instantpost.components.UserInputTopAppBar
 import com.vismijatech.instantpost.model.queries.WhatsappReplyQuery
 import com.vismijatech.instantpost.navigation.InstantPostScreen
 import com.vismijatech.instantpost.screens.SharedViewModel
+import com.vismijatech.instantpost.utils.InputQuery
 import com.vismijatech.instantpost.utils.getWhatsappReplyUserInputList
 
 /**
@@ -70,7 +71,7 @@ fun WhatsappReplyScreen(navController: NavHostController, sharedViewModel: Share
                     )
                 }
                 HollowButton(label = stringResource(id = R.string.socialMedia_submit_button)) {
-                    val query = "whatsappReplyQuery"
+                    val query = InputQuery.WhatsappReplyQuery.name
                     val whatsappReplyQuery = WhatsappReplyQuery(
                         messageContent = message.value,
                         sendersTone = sendersTone.value,

@@ -21,6 +21,7 @@ import com.vismijatech.instantpost.components.UserInputTopAppBar
 import com.vismijatech.instantpost.model.queries.TravelBlogQuery
 import com.vismijatech.instantpost.navigation.InstantPostScreen
 import com.vismijatech.instantpost.screens.SharedViewModel
+import com.vismijatech.instantpost.utils.InputQuery
 import com.vismijatech.instantpost.utils.getTravelBlogUserInputs
 
 /**
@@ -86,7 +87,7 @@ fun TravelBlogScreen(
                     )
                 }
                 HollowButton(label = stringResource(id = R.string.socialMedia_submit_button)) {
-                    val query = "travelBlogQuery"
+                    val query = InputQuery.TravelBlogQuery.name
                     val travelBlogQuery = TravelBlogQuery(
                         title = title.value,
                         introduction = introduction.value,

@@ -21,6 +21,7 @@ import com.vismijatech.instantpost.components.UserInputTopAppBar
 import com.vismijatech.instantpost.model.queries.BusinessQuery
 import com.vismijatech.instantpost.navigation.InstantPostScreen
 import com.vismijatech.instantpost.screens.SharedViewModel
+import com.vismijatech.instantpost.utils.InputQuery
 import com.vismijatech.instantpost.utils.getBusinessOrWhatsappUserInputList
 
 /**
@@ -75,7 +76,7 @@ fun BusinessMailOrWhatsappScreen(
                     )
                 }
                 HollowButton(label = stringResource(id = R.string.socialMedia_submit_button)) {
-                    val query = "businessQuery"
+                    val query = InputQuery.BusinessQuery.name
                     val businessQuery = BusinessQuery(
                         recipientsName =  name.value,
                         purpose = purpose.value,

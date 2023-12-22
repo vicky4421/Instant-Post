@@ -21,6 +21,7 @@ import com.vismijatech.instantpost.components.UserInputTopAppBar
 import com.vismijatech.instantpost.model.NewsletterQuery
 import com.vismijatech.instantpost.navigation.InstantPostScreen
 import com.vismijatech.instantpost.screens.SharedViewModel
+import com.vismijatech.instantpost.utils.InputQuery
 import com.vismijatech.instantpost.utils.getNewsletterOrWhatsappUserInputList
 
 /**
@@ -76,7 +77,7 @@ fun NewsletterOrWhatsappScreen(
                     )
                 }
                 HollowButton(label = stringResource(id = R.string.socialMedia_submit_button)) {
-                    val query = "newsletterQuery"
+                    val query = InputQuery.NewsletterQuery.name
                     val newsletterQuery = NewsletterQuery(
                         themeOrTopic = theme.value,
                         title = title.value,

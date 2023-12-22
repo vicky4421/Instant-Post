@@ -21,6 +21,7 @@ import com.vismijatech.instantpost.components.UserInputTopAppBar
 import com.vismijatech.instantpost.model.queries.SocialMediaQuery
 import com.vismijatech.instantpost.navigation.InstantPostScreen
 import com.vismijatech.instantpost.screens.SharedViewModel
+import com.vismijatech.instantpost.utils.InputQuery
 import com.vismijatech.instantpost.utils.getSocialMediaUserInputList
 
 /**
@@ -81,7 +82,7 @@ fun SocialMediaCaptionScreen(
                     )
                 }
                 HollowButton(label = stringResource(id = R.string.socialMedia_submit_button)) {
-                    val query = "socialMediaQuery"
+                    val query = InputQuery.SocialMediaQuery.name
                     val socialMediaQuery = SocialMediaQuery(
                         imageDescription = imageDesc.value,
                         emotions = emotions.value,

@@ -21,6 +21,7 @@ import com.vismijatech.instantpost.components.UserInputTopAppBar
 import com.vismijatech.instantpost.model.queries.PromotionalQuery
 import com.vismijatech.instantpost.navigation.InstantPostScreen
 import com.vismijatech.instantpost.screens.SharedViewModel
+import com.vismijatech.instantpost.utils.InputQuery
 import com.vismijatech.instantpost.utils.getPromotionalMailOrWhatsappUserInputList
 
 /**
@@ -76,7 +77,7 @@ fun PromotionalMailOrWhatsappScreen(
                     )
                 }
                 HollowButton(label = stringResource(id = R.string.socialMedia_submit_button)) {
-                    val query = "promotionalQuery"
+                    val query = InputQuery.PromotionalQuery.name
                     val promotionalQuery = PromotionalQuery(
                         targetAudience = audience.value,
                         product = product.value,
