@@ -97,7 +97,6 @@ fun SocialMediaCaptionScreen(
                         targetAudience = targetAudience.value
                     )
                     sharedViewModel.setSocialMediaInput(query = socialMediaQuery)
-
                     // navigate to result
                     navController.navigate(route = InstantPostScreen.ResultScreen.name + "/$query")
 
