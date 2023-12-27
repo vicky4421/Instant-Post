@@ -8,6 +8,6 @@ import androidx.compose.ui.graphics.Color
 data class ListItems(
     val itemName: String,
     val itemIcon: Int,
-    val itemBackgroundColor: Color,
-    val textColor: Color
+    val itemBackgroundColor: Color?,
+    val textColor: Color?
 )
