@@ -15,10 +15,3 @@ val dashboardImageGradient = Brush.sweepGradient(
         Color(0xFFfbad50)
     )
 )
-
-val resultGradient = Brush.sweepGradient(
-    listOf(
-        Color.Gray,
-        Color.White
-    )
-)
