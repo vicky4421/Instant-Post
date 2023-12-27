@@ -14,7 +14,7 @@ import javax.inject.Inject
 /**
  * Created by Vivek Sawant on 24-12-2023.
  */
-class OpenAiRepository @Inject constructor(private val openAIApi: OpenAIApi, private val openAIInterceptor: OpenAIInterceptor) {
+class OpenAiRepository @Inject constructor(private val openAIApi: OpenAIApi) {
 
     private val _openAIResponse = MutableStateFlow<Message?>(value = null)
     val openAiResponse: StateFlow<Message?>
@@ -36,9 +36,6 @@ class OpenAiRepository @Inject constructor(private val openAIApi: OpenAIApi, pri
             )
             val response = openAIApi.getResponse(openAiRequest)
 
-            Log.d("repository", "getResponse: $openAiRequest")
-            Log.d("repository", "response code: ${response.code()}")
-
             if (response.isSuccessful && response.body() != null){
                 if (response.code() == 200){
                     response.body()?.choices?.first()?.message.let {
@@ -53,5 +50,4 @@ class OpenAiRepository @Inject constructor(private val openAIApi: OpenAIApi, pri
             e.printStackTrace()
         }
     }
-
 }
