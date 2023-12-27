@@ -12,7 +12,7 @@ import com.google.firebase.database.GenericTypeIndicator
 import com.google.firebase.database.ValueEventListener
 import com.vismijatech.instantpost.navigation.InstantPostScreen
 import com.vismijatech.instantpost.user.IPUser
-import com.vismijatech.instantpost.utils.firebaseresource.Resource
+import com.vismijatech.instantpost.utils.NetworkResult
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
@@ -58,20 +58,20 @@ class AuthRepositoryImplementation @Inject constructor(
         awaitClose { databaseRef.removeEventListener(eventListener) }
     }
 
-    override fun loginUser(email: String, password: String): Flow<Resource<AuthResult>> {
+    override fun loginUser(email: String, password: String): Flow<NetworkResult<AuthResult>> {
         return flow {
-            emit(value = Resource.Loading())
+            emit(value = NetworkResult.Loading())
             val result = auth.signInWithEmailAndPassword(email, password).await()
 
             val user = auth.currentUser
             if (user != null && user.isEmailVerified) {
-                emit(value = Resource.Success(data = result))
+                emit(value = NetworkResult.Success(data = result))
             } else {
                 auth.signOut()
-                emit(Resource.Error("Email not verified. Please check your email for a verification link."))
+                emit(NetworkResult.Error("Email not verified. Please check your email for a verification link."))
             }
         }.catch {
-            emit(Resource.Error(it.message.toString()))
+            emit(NetworkResult.Error(it.message.toString()))
         }
     }
 
@@ -79,13 +79,13 @@ class AuthRepositoryImplementation @Inject constructor(
         email: String,
         password: String,
         name: String
-    ): Flow<Resource<AuthResult>> {
+    ): Flow<NetworkResult<AuthResult>> {
         return flow {
-            emit(value = Resource.Loading())
+            emit(value = NetworkResult.Loading())
             val result = authResult(email, password, name)
-            emit(value = Resource.Success(data = result))
+            emit(value = NetworkResult.Success(data = result))
         }.catch {
-            emit(value = Resource.Error(it.message.toString()))
+            emit(value = NetworkResult.Error(it.message.toString()))
         }
     }
 
@@ -121,13 +121,13 @@ class AuthRepositoryImplementation @Inject constructor(
     override fun googleSignIn(
         credential: AuthCredential,
         navController: NavHostController
-    ): Flow<Resource<AuthResult>> {
+    ): Flow<NetworkResult<AuthResult>> {
         return flow {
-            emit(value = Resource.Loading())
+            emit(value = NetworkResult.Loading())
             val result = authResult1(credential, navController)
-            emit(value = Resource.Success(data = result))
+            emit(value = NetworkResult.Success(data = result))
         }.catch {
-            emit(value = Resource.Error(it.message.toString()))
+            emit(value = NetworkResult.Error(it.message.toString()))
         }
     }
 

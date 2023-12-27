@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavHostController
 import com.google.firebase.auth.AuthCredential
 import com.vismijatech.instantpost.di.AuthRepository
-import com.vismijatech.instantpost.utils.firebaseresource.Resource
+import com.vismijatech.instantpost.utils.NetworkResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
@@ -31,15 +31,15 @@ class LoginViewModel @Inject constructor(private val authRepository: AuthReposit
             authRepository.googleSignIn(credential, navController).collect {
                 authRepository.googleSignIn(credential, navController).collect { result ->
                     when (result) {
-                        is Resource.Success -> {
+                        is NetworkResult.Success -> {
                             _googleState.value = GoogleSignInState(success = result.data)
                         }
 
-                        is Resource.Loading -> {
+                        is NetworkResult.Loading -> {
                             _googleState.value = GoogleSignInState(loading = true)
                         }
 
-                        is Resource.Error -> {
+                        is NetworkResult.Error -> {
                             _googleState.value =
                                 GoogleSignInState(error = result.message.toString())
                         }
@@ -51,15 +51,15 @@ class LoginViewModel @Inject constructor(private val authRepository: AuthReposit
     fun logInUser(email: String, password: String) = viewModelScope.launch {
         authRepository.loginUser(email = email, password = password).collect { result ->
             when (result) {
-                is Resource.Success -> {
+                is NetworkResult.Success -> {
                     _signInState.send(LoginState(isSuccess = "Login success!"))
                 }
 
-                is Resource.Loading -> {
+                is NetworkResult.Loading -> {
                     _signInState.send(LoginState(isLoading = true))
                 }
 
-                is Resource.Error -> {
+                is NetworkResult.Error -> {
                     _signInState.send(LoginState(isError = result.message))
                 }
             }
