@@ -14,14 +14,14 @@ fun getBlogItems(context: Context): List<ListItems> = listOf(
     ListItems(
         itemName = context.getString(R.string.dashboardScreen_blog_dashboardItem),
         itemIcon = R.drawable.ic_blog,
-        itemBackgroundColor = Color.White,
-        textColor = Color.Black
+        itemBackgroundColor = null,
+        textColor = null
     ),
     ListItems(
         itemName = context.getString(R.string.blogScreen_travel_blogItem),
         itemIcon = R.drawable.ic_travel,
-        itemBackgroundColor = Color.White,
-        textColor = Color.Black
+        itemBackgroundColor = null,
+        textColor = null
     ),
 )
 
