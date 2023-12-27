@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -23,11 +22,11 @@ import androidx.compose.material3.DrawerState
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.NavigationDrawerItem
 import androidx.compose.material3.NavigationDrawerItemDefaults
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
@@ -217,6 +216,8 @@ fun ProfileImage(context: Context, image: String) {
 @Composable
 fun ItemCard(
     item: ListItems,
+    bgColor: Color = MaterialTheme.colorScheme.background,
+    textColor: Color = MaterialTheme.colorScheme.onBackground,
     onClick: () -> Unit
 ) {
     Card(
@@ -230,7 +231,7 @@ fun ItemCard(
             defaultElevation = 4.dp,
         ),
         colors = CardDefaults.cardColors(
-            containerColor = item.itemBackgroundColor
+            containerColor = item.itemBackgroundColor?: bgColor
         )
     ) {
         Text(
@@ -238,7 +239,7 @@ fun ItemCard(
             style = TextStyle(
                 fontFamily = PoppinsFontFamily,
                 fontSize = 24.sp,
-                color = item.textColor
+                color = item.textColor ?: textColor
             ),
             modifier = Modifier.padding(8.dp)
         )
@@ -249,7 +250,7 @@ fun ItemCard(
                 .padding(8.dp)
                 .size(36.dp)
                 .align(Alignment.End),
-            tint = item.textColor,
+            tint = item.textColor?: textColor,
         )
     }
 }
