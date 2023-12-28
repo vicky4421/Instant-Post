@@ -9,6 +9,7 @@ import com.vismijatech.instantpost.network.openaiapi.OpenAIApi
 import com.vismijatech.instantpost.network.openaiapi.OpenAIInterceptor
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import java.net.SocketTimeoutException
 import javax.inject.Inject
 
 /**
@@ -36,17 +37,24 @@ class OpenAiRepository @Inject constructor(private val openAIApi: OpenAIApi) {
             )
             val response = openAIApi.getResponse(openAiRequest)
 
-            if (response.isSuccessful && response.body() != null){
-                if (response.code() == 200){
+            if (response.isSuccessful && response.body() != null) {
+                if (response.code() == 200) {
                     response.body()?.choices?.first()?.message.let {
                         _openAIResponse.emit(it)
-                        Log.d(TAG, "getResponse: ${it.toString()}")
                     }
                 } else {
                     Log.d(TAG, "getResponse: ${response.errorBody().toString()}")
                 }
             }
-        } catch (e: Exception){
+        } catch (e: SocketTimeoutException) {
+            _openAIResponse.emit(
+                Message(
+                    content = "Timeout! Please try again!,\nyour credits are refunded!",
+                    role = "user"
+                )
+            )
+            // Refund user credits.
+        } catch (e: Exception) {
             e.printStackTrace()
         }
     }
