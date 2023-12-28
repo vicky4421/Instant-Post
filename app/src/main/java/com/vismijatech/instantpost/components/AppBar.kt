@@ -41,7 +41,7 @@ fun TopAppBarPreview() {
 fun AppBar(
     title: String = stringResource(id = R.string.app_name),
     startIcon: ImageVector = Icons.Default.Menu,
-    endIcon: Painter = painterResource(id = R.drawable.ic_logout),
+    endIcon: Painter? = painterResource(id = R.drawable.ic_logout),
     onEndIconClick: () -> Unit,
     onNavigationIconClick: () -> Unit
 ) {
@@ -62,10 +62,12 @@ fun AppBar(
         },
         actions = {
             IconButton(onClick = { onEndIconClick() }) {
-                Icon(
-                    painter = endIcon,
-                    contentDescription = "Logout"
-                )
+                if (endIcon != null) {
+                    Icon(
+                        painter = endIcon,
+                        contentDescription = "Logout"
+                    )
+                }
             }
         },
         colors = TopAppBarDefaults.mediumTopAppBarColors(
