@@ -5,6 +5,7 @@ import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.MaterialTheme
@@ -39,6 +40,7 @@ fun ABPreview() {
         ProfileImage(context = LocalContext.current, image = "")
     }
 }
+
 @Composable
 fun AnimatedBorderComposable(
     brush: Brush,
@@ -58,8 +60,10 @@ fun AnimatedBorderComposable(
         ), label = "Infinite colors"
     )
     Surface(
-        modifier = Modifier.clip(shape = shape),
-        shape = shape
+        modifier = Modifier
+            .clip(shape = shape)
+            .background(color = MaterialTheme.colorScheme.surface),
+//        shape = shape
     ) {
         Surface(
             modifier = Modifier
