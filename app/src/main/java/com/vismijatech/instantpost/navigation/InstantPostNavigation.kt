@@ -20,6 +20,7 @@ import com.vismijatech.instantpost.screens.mail.newsletter.NewsletterScreen
 import com.vismijatech.instantpost.screens.mail.personal.PersonalMailScreen
 import com.vismijatech.instantpost.screens.mail.promotional.PromotionalMailScreen
 import com.vismijatech.instantpost.screens.result.ResultScreen
+import com.vismijatech.instantpost.screens.saved.SavedContentScreen
 import com.vismijatech.instantpost.screens.signup.SignupScreen
 import com.vismijatech.instantpost.screens.socialmedia.SocialMediaCaptionScreen
 import com.vismijatech.instantpost.screens.splash.SplashScreen
@@ -138,6 +139,10 @@ fun InstantPostNavigation() {
         composable(route = InstantPostScreen.ResultScreen.name + "/{query}"){
             val query = it.arguments?.getString("query")
             ResultScreen(navController = navController, query = query, sharedViewModel = sharedViewModel)
+        }
+
+        composable(route = InstantPostScreen.SavedContentScreen.name){
+            SavedContentScreen(navController = navController)
         }
     }
 
