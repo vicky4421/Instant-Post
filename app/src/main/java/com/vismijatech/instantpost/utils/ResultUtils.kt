@@ -1,5 +1,10 @@
 package com.vismijatech.instantpost.utils
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
+import android.widget.Toast
+import com.vismijatech.instantpost.R
 import com.vismijatech.instantpost.model.NewsletterQuery
 import com.vismijatech.instantpost.model.queries.BlogQuery
 import com.vismijatech.instantpost.model.queries.BusinessQuery
@@ -133,3 +138,11 @@ fun getTravelBlogPrompt(query: TravelBlogQuery?) =
             "Personalization: ${query?.personalization} \n" +
             "Frequency: ${query?.frequency} \n" +
             "Length: ${query?.length}"
+
+// fun to copy text from result screen
+fun copyToClipboard(context: Context, text: String){
+    val clipboardManager = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+    val clipData = ClipData.newPlainText("Copied text", text)
+    clipboardManager.setPrimaryClip(clipData)
+    Toast.makeText(context, context.getText(R.string.resultScreen_textCopiedToast), Toast.LENGTH_LONG).show()
+}
