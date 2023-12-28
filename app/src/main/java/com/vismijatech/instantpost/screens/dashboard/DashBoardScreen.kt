@@ -16,6 +16,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import com.google.firebase.auth.FirebaseAuth
 import com.vismijatech.instantpost.components.AppBar
+import com.vismijatech.instantpost.components.BottomBar
 import com.vismijatech.instantpost.components.LoadingScreen
 import com.vismijatech.instantpost.navigation.InstantPostScreen
 import com.vismijatech.instantpost.utils.getDashboardItems
@@ -58,7 +59,8 @@ fun DashboardScreen(
                     }) {
                         scope.launch { drawerState.open() }
                     }
-                }
+                },
+                bottomBar = { BottomBar(navController = navController) }
             ) {
                 Surface(
                     modifier = Modifier
