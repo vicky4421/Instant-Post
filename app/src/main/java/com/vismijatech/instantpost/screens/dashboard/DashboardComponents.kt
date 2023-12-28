@@ -38,17 +38,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.vismijatech.instantpost.R
@@ -57,7 +54,6 @@ import com.vismijatech.instantpost.components.dashboardImageGradient
 import com.vismijatech.instantpost.model.ListItems
 import com.vismijatech.instantpost.navigation.InstantPostScreen
 import com.vismijatech.instantpost.ui.theme.PoppinsFontFamily
-import com.vismijatech.instantpost.utils.getDashboardItems
 import com.vismijatech.instantpost.utils.getNavDrawerItems
 import com.vismijatech.instantpost.utils.openHowToUseBlogPage
 import com.vismijatech.instantpost.utils.openPlayStoreForRating
@@ -231,7 +227,7 @@ fun ItemCard(
             defaultElevation = 4.dp,
         ),
         colors = CardDefaults.cardColors(
-            containerColor = item.itemBackgroundColor?: bgColor
+            containerColor = item.itemBackgroundColor ?: bgColor
         )
     ) {
         Text(
@@ -250,7 +246,7 @@ fun ItemCard(
                 .padding(8.dp)
                 .size(36.dp)
                 .align(Alignment.End),
-            tint = item.textColor?: textColor,
+            tint = item.textColor ?: textColor,
         )
     }
 }
@@ -290,12 +286,5 @@ fun ItemList(
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun CardPreview() {
-    ItemList(
-        itemList = getDashboardItems(context = LocalContext.current),
-        navController = rememberNavController(),
-        LocalContext.current
-    )
-}
+
+
