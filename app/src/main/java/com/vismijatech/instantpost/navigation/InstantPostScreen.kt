@@ -26,5 +26,6 @@ enum class InstantPostScreen {
     WhatsappPersonalScreen,
     WhatsappPromotionalScreen,
     WhatsappReplyScreen,
-    ResultScreen
+    ResultScreen,
+    SavedContentScreen
 }
