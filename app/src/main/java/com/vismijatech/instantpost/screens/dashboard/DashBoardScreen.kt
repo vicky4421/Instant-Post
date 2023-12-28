@@ -60,7 +60,7 @@ fun DashboardScreen(
                         scope.launch { drawerState.open() }
                     }
                 },
-                bottomBar = { BottomBar(navController = navController) }
+                bottomBar = { BottomBar(navController = navController, initialIndex = 0) }
             ) {
                 Surface(
                     modifier = Modifier
