@@ -32,6 +32,7 @@ import com.vismijatech.instantpost.utils.getPromotionalPrompt
 import com.vismijatech.instantpost.utils.getSocialMediaPrompt
 import com.vismijatech.instantpost.utils.getTravelBlogPrompt
 import com.vismijatech.instantpost.utils.getWhatsappReplyPrompt
+import com.vismijatech.instantpost.utils.copyToClipboard
 
 /**
  * Created by Vivek Sawant on 21-12-2023.
@@ -45,12 +46,12 @@ fun ResultScreen(
     sharedViewModel: SharedViewModel
 ) {
     val resultViewModel: ResultViewModel = hiltViewModel()
-    val resultState : State<Message?> = resultViewModel.response.collectAsState()
+    val resultState: State<Message?> = resultViewModel.response.collectAsState()
     var result: String by remember { mutableStateOf("") }
     val loading by resultViewModel.loading
     val context = LocalContext.current
-    val prompt = remember{
-        when(query){
+    val prompt = remember {
+        when (query) {
             InputQuery.SocialMediaQuery.name -> getSocialMediaPrompt(query = sharedViewModel.socialQuery.value)
             InputQuery.WhatsappReplyQuery.name -> getWhatsappReplyPrompt(query = sharedViewModel.whatsappReplyQuery.value)
             InputQuery.PersonalQuery.name -> getPersonalPrompt(query = sharedViewModel.personalQuery.value)
@@ -63,7 +64,7 @@ fun ResultScreen(
         }
     }
 
-    LaunchedEffect(key1 = prompt){
+    LaunchedEffect(key1 = prompt) {
         resultViewModel.getResponse(prompt = prompt)
     }
 
@@ -71,24 +72,22 @@ fun ResultScreen(
         topBar = {
             ResultScreenTopAppBar(
                 navController = navController,
-                onSaveClick = {Toast.makeText(context, "Saved!", Toast.LENGTH_LONG).show()},
-                onCopyClick = {Toast.makeText(context, "Copied!", Toast.LENGTH_LONG).show()},
-                onShareClick = {Toast.makeText(context, "Shared!", Toast.LENGTH_LONG).show()},
+                onSaveClick = { Toast.makeText(context, "Saved!", Toast.LENGTH_LONG).show() },
+                onCopyClick = { copyToClipboard(context = context, text = result) },
+                onShareClick = { Toast.makeText(context, "Shared!", Toast.LENGTH_LONG).show() },
                 iconEnabled = !loading
             )
         }
     ) {
-        Surface (
+        Surface(
             modifier = Modifier.padding(it)
-        ){
+        ) {
             if (loading) LoadingScreen() else {
                 result = resultState.value?.content.toString()
                 ResultDisplay(result = result)
             }
         }
     }
-
-
 
 
 }
