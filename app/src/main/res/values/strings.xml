@@ -206,4 +206,5 @@
 
 <!--    Result screen-->
     <string name="resultScreen_title">Result</string>
+    <string name="resultScreen_textCopiedToast">Text copied to clipboard!</string>
 </resources>
