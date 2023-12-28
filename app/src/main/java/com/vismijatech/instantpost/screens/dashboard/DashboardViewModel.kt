@@ -21,7 +21,8 @@ class DashboardViewModel @Inject constructor(private val authRepository: AuthRep
     val userData: StateFlow<IPUser?> = _userData
 
     private val _isLoading = MutableStateFlow(false)
-    val isLoading: StateFlow<Boolean> = _isLoading
+    val isLoading: StateFlow<Boolean>
+        get() = _isLoading
 
     fun getUserData(uid: String) {
         viewModelScope.launch {
