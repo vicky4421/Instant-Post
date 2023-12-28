@@ -63,9 +63,12 @@ fun InstantPostNavigation() {
         composable(route = InstantPostScreen.DashboardScreen.name) {
             DashboardScreen(navController = navController)
         }
-        
-        composable(route = InstantPostScreen.SocialMediaCaptionScreen.name){
-            SocialMediaCaptionScreen(navController = navController, sharedViewModel = sharedViewModel)
+
+        composable(route = InstantPostScreen.SocialMediaCaptionScreen.name) {
+            SocialMediaCaptionScreen(
+                navController = navController,
+                sharedViewModel = sharedViewModel
+            )
         }
 
         composable(route = InstantPostScreen.WhatsappScreen.name) {
@@ -121,7 +124,10 @@ fun InstantPostNavigation() {
         }
 
         composable(route = InstantPostScreen.WhatsappNewsletterScreen.name) {
-            WhatsappNewsletterScreen(navController = navController, sharedViewModel = sharedViewModel)
+            WhatsappNewsletterScreen(
+                navController = navController,
+                sharedViewModel = sharedViewModel
+            )
         }
 
         composable(route = InstantPostScreen.WhatsappPersonalScreen.name) {
@@ -129,19 +135,26 @@ fun InstantPostNavigation() {
         }
 
         composable(route = InstantPostScreen.WhatsappPromotionalScreen.name) {
-            WhatsappPromotionalScreen(navController = navController, sharedViewModel = sharedViewModel)
+            WhatsappPromotionalScreen(
+                navController = navController,
+                sharedViewModel = sharedViewModel
+            )
         }
 
         composable(route = InstantPostScreen.WhatsappReplyScreen.name) {
             WhatsappReplyScreen(navController = navController, sharedViewModel = sharedViewModel)
         }
 
-        composable(route = InstantPostScreen.ResultScreen.name + "/{query}"){
+        composable(route = InstantPostScreen.ResultScreen.name + "/{query}") {
             val query = it.arguments?.getString("query")
-            ResultScreen(navController = navController, query = query, sharedViewModel = sharedViewModel)
+            ResultScreen(
+                navController = navController,
+                query = query,
+                sharedViewModel = sharedViewModel
+            )
         }
 
-        composable(route = InstantPostScreen.SavedContentScreen.name){
+        composable(route = InstantPostScreen.SavedContentScreen.name) {
             SavedContentScreen(navController = navController)
         }
     }
