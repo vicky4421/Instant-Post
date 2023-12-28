@@ -18,14 +18,14 @@ import com.vismijatech.instantpost.utils.BottomBarItems
  */
 
 @Composable
-fun BottomBar(navController: NavController) {
+fun BottomBar(navController: NavController, initialIndex: Int) {
     val screens = listOf(
         BottomBarItems.Dashboard,
         BottomBarItems.Images,
         BottomBarItems.SavedContent
     )
     var selectedItemIndex by rememberSaveable {
-        mutableIntStateOf(value = 0)
+        mutableIntStateOf(value = initialIndex)
     }
 
     NavigationBar {
