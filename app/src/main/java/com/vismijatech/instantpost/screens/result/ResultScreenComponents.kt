@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
@@ -70,7 +71,9 @@ fun ResultDisplay(result: String) {
                         modifier = Modifier.rotate(180f),
                         alignment = Alignment.TopStart
                     )
-                    Text(text = result)
+                    SelectionContainer {
+                        Text(text = result)
+                    }
                     Image(
                         painter = painterResource(id = R.drawable.ic_format_quote),
                         contentDescription = "Quote",
