@@ -204,4 +204,6 @@
 
     <string name="userInput_textNotProvided">Not Provided</string>
 
+<!--    Result screen-->
+    <string name="resultScreen_title">Result</string>
 </resources>
