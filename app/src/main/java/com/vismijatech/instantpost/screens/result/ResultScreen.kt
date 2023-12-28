@@ -1,5 +1,10 @@
 package com.vismijatech.instantpost.screens.result
 
+import android.widget.Toast
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.State
@@ -8,8 +13,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.vismijatech.instantpost.components.LoadingScreen
 import com.vismijatech.instantpost.model.openai.Message
 import com.vismijatech.instantpost.screens.SharedViewModel
@@ -27,6 +37,7 @@ import com.vismijatech.instantpost.utils.getWhatsappReplyPrompt
  * Created by Vivek Sawant on 21-12-2023.
  */
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ResultScreen(
     navController: NavHostController,
@@ -35,9 +46,9 @@ fun ResultScreen(
 ) {
     val resultViewModel: ResultViewModel = hiltViewModel()
     val resultState : State<Message?> = resultViewModel.response.collectAsState()
-    var result by remember {
-        mutableStateOf("")
-    }
+    var result: String by remember { mutableStateOf("") }
+    val loading by resultViewModel.loading
+    val context = LocalContext.current
     val prompt = remember{
         when(query){
             InputQuery.SocialMediaQuery.name -> getSocialMediaPrompt(query = sharedViewModel.socialQuery.value)
@@ -52,12 +63,42 @@ fun ResultScreen(
         }
     }
 
-    if (resultViewModel.loading.value) LoadingScreen() else {
-        result = resultState.value?.content.toString()
-        ResultDisplay(result = result)
-    }
-
     LaunchedEffect(key1 = prompt){
         resultViewModel.getResponse(prompt = prompt)
     }
+
+    Scaffold(
+        topBar = {
+            ResultScreenTopAppBar(
+                navController = navController,
+                onSaveClick = {Toast.makeText(context, "Saved!", Toast.LENGTH_LONG).show()},
+                onCopyClick = {Toast.makeText(context, "Copied!", Toast.LENGTH_LONG).show()},
+                onShareClick = {Toast.makeText(context, "Shared!", Toast.LENGTH_LONG).show()},
+                iconEnabled = !loading
+            )
+        }
+    ) {
+        Surface (
+            modifier = Modifier.padding(it)
+        ){
+            if (loading) LoadingScreen() else {
+                result = resultState.value?.content.toString()
+                ResultDisplay(result = result)
+            }
+        }
+    }
+
+
+
+
+}
+
+@Preview
+@Composable
+fun ResultPreview() {
+    ResultScreen(
+        navController = rememberNavController(),
+        query = null,
+        sharedViewModel = viewModel()
+    )
 }
