@@ -21,6 +21,10 @@ import com.vismijatech.instantpost.screens.mail.personal.PersonalMailScreen
 import com.vismijatech.instantpost.screens.mail.promotional.PromotionalMailScreen
 import com.vismijatech.instantpost.screens.result.ResultScreen
 import com.vismijatech.instantpost.screens.saved.SavedContentScreen
+import com.vismijatech.instantpost.screens.saved.blogsaves.SavedBlogScreen
+import com.vismijatech.instantpost.screens.saved.emailsaves.SavedEmailScreen
+import com.vismijatech.instantpost.screens.saved.socialmediasaves.SavedSocialMediaScreen
+import com.vismijatech.instantpost.screens.saved.whatsappsaves.SavedWhatsappScreen
 import com.vismijatech.instantpost.screens.signup.SignupScreen
 import com.vismijatech.instantpost.screens.socialmedia.SocialMediaCaptionScreen
 import com.vismijatech.instantpost.screens.splash.SplashScreen
@@ -156,6 +160,22 @@ fun InstantPostNavigation() {
 
         composable(route = InstantPostScreen.SavedContentScreen.name) {
             SavedContentScreen(navController = navController)
+        }
+
+        composable(route = InstantPostScreen.SavedBlogScreen.name){
+            SavedBlogScreen(navController = navController)
+        }
+
+        composable(route = InstantPostScreen.SavedEmailScreen.name){
+            SavedEmailScreen(navController = navController)
+        }
+
+        composable(route = InstantPostScreen.SavedSocialMediaScreen.name){
+            SavedSocialMediaScreen(navController = navController)
+        }
+
+        composable(route = InstantPostScreen.SavedWhatsappScreen.name){
+            SavedWhatsappScreen(navController = navController)
         }
     }
 
