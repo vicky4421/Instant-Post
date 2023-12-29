@@ -4,18 +4,17 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.google.firebase.auth.FirebaseAuth
+import com.vismijatech.instantpost.R
 import com.vismijatech.instantpost.components.AppBar
 import com.vismijatech.instantpost.components.BottomBar
-import com.vismijatech.instantpost.navigation.InstantPostScreen
-import com.vismijatech.instantpost.screens.dashboard.ItemList
+import com.vismijatech.instantpost.screens.dashboard.DashboardItemList
 import com.vismijatech.instantpost.utils.getDashboardItems
 
 /**
@@ -30,14 +29,19 @@ fun SavedContentScreen(navController: NavHostController) {
 
     Scaffold(
         topBar = {
-            AppBar(onEndIconClick = { }, endIcon = null){ }
+            AppBar(
+                startIcon = null,
+                onEndIconClick = { },
+                endIcon = null,
+                title = stringResource(id = R.string.savedContent_title)
+            ){ }
         },
         bottomBar = { BottomBar(navController = navController, initialIndex = 2)}
     ) {
         Surface(
             modifier = Modifier.padding(it)
         ) {
-            ItemList(
+            SavedContentList(
                 itemList = getDashboardItems(context = context),
                 navController = navController,
                 context = context
