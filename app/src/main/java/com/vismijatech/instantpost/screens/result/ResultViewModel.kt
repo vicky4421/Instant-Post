@@ -3,7 +3,7 @@ package com.vismijatech.instantpost.screens.result
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.vismijatech.instantpost.model.openai.Message
+import com.vismijatech.instantpost.model.openai.OpenAiResponse
 import com.vismijatech.instantpost.repository.OpenAiRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.StateFlow
@@ -15,7 +15,7 @@ import javax.inject.Inject
  */
 @HiltViewModel
 class ResultViewModel @Inject constructor (private val repository: OpenAiRepository): ViewModel(){
-    val response : StateFlow<Message?>
+    val response : StateFlow<OpenAiResponse?>
         get() = repository.openAiResponse
 
     val loading = mutableStateOf(false)
