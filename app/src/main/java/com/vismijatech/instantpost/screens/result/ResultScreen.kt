@@ -15,15 +15,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
 import com.vismijatech.instantpost.components.LoadingScreen
-import com.vismijatech.instantpost.model.openai.Message
+import com.vismijatech.instantpost.model.openai.OpenAiResponse
 import com.vismijatech.instantpost.screens.SharedViewModel
 import com.vismijatech.instantpost.utils.InputQuery
+import com.vismijatech.instantpost.utils.copyToClipboard
 import com.vismijatech.instantpost.utils.getBlogPrompt
 import com.vismijatech.instantpost.utils.getBusinessPrompt
 import com.vismijatech.instantpost.utils.getNewsletterPrompt
@@ -32,7 +30,6 @@ import com.vismijatech.instantpost.utils.getPromotionalPrompt
 import com.vismijatech.instantpost.utils.getSocialMediaPrompt
 import com.vismijatech.instantpost.utils.getTravelBlogPrompt
 import com.vismijatech.instantpost.utils.getWhatsappReplyPrompt
-import com.vismijatech.instantpost.utils.copyToClipboard
 
 /**
  * Created by Vivek Sawant on 21-12-2023.
@@ -43,13 +40,15 @@ import com.vismijatech.instantpost.utils.copyToClipboard
 fun ResultScreen(
     navController: NavHostController,
     query: String?,
-    sharedViewModel: SharedViewModel
+    sharedViewModel: SharedViewModel,
 ) {
+
     val resultViewModel: ResultViewModel = hiltViewModel()
-    val resultState: State<Message?> = resultViewModel.response.collectAsState()
+    val resultState: State<OpenAiResponse?> = resultViewModel.response.collectAsState()
     var result: String by remember { mutableStateOf("") }
     val loading by resultViewModel.loading
     val context = LocalContext.current
+
     val prompt = remember {
         when (query) {
             InputQuery.SocialMediaQuery.name -> getSocialMediaPrompt(query = sharedViewModel.socialQuery.value)
@@ -83,21 +82,9 @@ fun ResultScreen(
             modifier = Modifier.padding(it)
         ) {
             if (loading) LoadingScreen() else {
-                result = resultState.value?.content.toString()
+                result = resultState.value?.choices?.first()?.message?.content ?: ""
                 ResultDisplay(result = result)
             }
         }
     }
-
-
-}
-
-@Preview
-@Composable
-fun ResultPreview() {
-    ResultScreen(
-        navController = rememberNavController(),
-        query = null,
-        sharedViewModel = viewModel()
-    )
 }
