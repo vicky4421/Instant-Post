@@ -40,7 +40,7 @@ fun TopAppBarPreview() {
 @Composable
 fun AppBar(
     title: String = stringResource(id = R.string.app_name),
-    startIcon: ImageVector = Icons.Default.Menu,
+    startIcon: ImageVector? = Icons.Default.Menu,
     endIcon: Painter? = painterResource(id = R.drawable.ic_logout),
     onEndIconClick: () -> Unit,
     onNavigationIconClick: () -> Unit
@@ -54,10 +54,12 @@ fun AppBar(
         },
         navigationIcon = {
             IconButton(onClick = { onNavigationIconClick() }) {
-                Icon(
-                    imageVector = startIcon,
-                    contentDescription = "Menu"
-                )
+                if (startIcon != null) {
+                    Icon(
+                        imageVector = startIcon,
+                        contentDescription = "Menu"
+                    )
+                }
             }
         },
         actions = {
