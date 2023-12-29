@@ -25,6 +25,7 @@ fun getSocialMediaPrompt(query: SocialMediaQuery?) =
             "posts with hashtags, considering the following points:\n\n" +
             "Start with a strong hook.Keep it clear and concise. " +
             "Use simple language and avoid jargon. Maximum characters: 280\n\n" +
+            "Title: Social Media \n" +
             "Image Description: ${query?.imageDescription} \n" +
             "Emotions or Mood: ${query?.emotions} \n" +
             "Caption style: ${query?.captionStyle} \n" +
@@ -40,6 +41,7 @@ fun getSocialMediaPrompt(query: SocialMediaQuery?) =
 fun getWhatsappReplyPrompt(query: WhatsappReplyQuery?) =
     "You are responding to a WhatsApp message. Your reply should be tailored, engaging, and relevant. " +
             "Consider the following details to create an appropriate response:\n\n" +
+            "Title: Whatsapp \n" +
             "Message Content: ${query?.messageContent} \n" +
             "Sender\'s message tone: ${query?.sendersTone} \n" +
             "Relationship: ${query?.relationship} \n" +
@@ -54,6 +56,7 @@ fun getPersonalPrompt(query: PersonalQuery?) =
             "${query?.occasion} considering with the following points. \n\n" +
             "Begin with a warm and personal greeting. Maintain a genuine and heartfelt tone throughout the email. " +
             "Keep the email concise and focused. \n" +
+            "Title: Personal \n" +
             "Relationship with recipient: ${query?.relationship} \n" +
             "Main points to include: ${query?.mainPoints} \n" +
             "Positive qualities of recipient: ${query?.positiveQualities} \n" +
@@ -63,6 +66,7 @@ fun getPersonalPrompt(query: PersonalQuery?) =
 
 fun getBusinessPrompt(query: BusinessQuery?) =
     "You are tasked with composing a business email. Write an email that includes the following elements: \n" +
+            "Title: Business \n" +
             "Recipient\'s Name and Title: ${query?.recipientsName} \n" +
             "Purpose: ${query?.purpose} \n" +
             "Background information: ${query?.backgroundInfo} \n" +
@@ -78,6 +82,7 @@ fun getPromotionalPrompt(query: PromotionalQuery?) =
             "targeted towards ${query?.targetAudience}. \n" +
             "The email should highlight ${query?.keyPoints} include a compelling call to action. \n" +
             "Consider the following points while composing the email: \n" +
+            "Title: Promotional \n" +
             "Call to action: ${query?.callToAction} \n" +
             "Discounts or promotions: ${query?.discounts} \n" +
             "Email subject line: ${query?.subjectLine} \n" +
@@ -94,6 +99,7 @@ fun getNewsletterPrompt(query: NewsletterQuery?) =
     "You are tasked with creating a newsletter on the theme or topic of ${query?.themeOrTopic}. \n" +
             "Craft a compelling newsletter with the following elements: \n" +
             "Title: ${query?.title} \n" +
+            "Title: Newsletter \n" +
             "Sections and content: ${query?.sectionAndContents} \n" +
             "Call to action: ${query?.callToAction} \n" +
             "Links and resources: ${query?.links} \n" +
@@ -105,6 +111,7 @@ fun getNewsletterPrompt(query: NewsletterQuery?) =
 
 fun getBlogPrompt(query: BlogQuery?) =
     "Title: ${query?.title} \n" +
+            "Title: blog \n" +
             "Introduction: ${query?.introduction} \n" +
             "Sections and content: ${query?.sections} \n" +
             "Tone and style: ${query?.tone} \n" +
