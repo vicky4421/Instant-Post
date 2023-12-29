@@ -71,7 +71,10 @@ fun ResultScreen(
         topBar = {
             ResultScreenTopAppBar(
                 navController = navController,
-                onSaveClick = { Toast.makeText(context, "Saved!", Toast.LENGTH_LONG).show() },
+                onSaveClick = {
+                    resultViewModel.saveResponse(prompt = prompt)
+                    Toast.makeText(context, "Saved!", Toast.LENGTH_LONG).show()
+                },
                 onCopyClick = { copyToClipboard(context = context, text = result) },
                 onShareClick = { Toast.makeText(context, "Shared!", Toast.LENGTH_LONG).show() },
                 iconEnabled = !loading
