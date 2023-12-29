@@ -252,7 +252,7 @@ fun ItemCard(
 }
 
 @Composable
-fun ItemList(
+fun DashboardItemList(
     itemList: List<ListItems>,
     navController: NavController,
     context: Context
@@ -275,10 +275,6 @@ fun ItemList(
 
                     context.getString(R.string.dashboardScreen_blog_dashboardItem) -> navController.navigate(
                         InstantPostScreen.BlogScreen.name
-                    )
-
-                    context.getString(R.string.dashboardScreen_images_dashboardItem) -> navController.navigate(
-                        InstantPostScreen.ImageScreen.name
                     )
                 }
             }
