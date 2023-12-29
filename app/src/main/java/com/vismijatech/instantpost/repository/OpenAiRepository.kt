@@ -3,10 +3,12 @@ package com.vismijatech.instantpost.repository
 import android.util.Log
 import com.vismijatech.instantpost.data.GPT_MODEL
 import com.vismijatech.instantpost.data.TAG
+import com.vismijatech.instantpost.model.openai.Choice
 import com.vismijatech.instantpost.model.openai.Message
 import com.vismijatech.instantpost.model.openai.OpenAiRequest
+import com.vismijatech.instantpost.model.openai.OpenAiResponse
+import com.vismijatech.instantpost.model.openai.Usage
 import com.vismijatech.instantpost.network.openaiapi.OpenAIApi
-import com.vismijatech.instantpost.network.openaiapi.OpenAIInterceptor
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import java.net.SocketTimeoutException
@@ -17,8 +19,8 @@ import javax.inject.Inject
  */
 class OpenAiRepository @Inject constructor(private val openAIApi: OpenAIApi) {
 
-    private val _openAIResponse = MutableStateFlow<Message?>(value = null)
-    val openAiResponse: StateFlow<Message?>
+    private val _openAIResponse = MutableStateFlow<OpenAiResponse?>(value = null)
+    val openAiResponse: StateFlow<OpenAiResponse?>
         get() = _openAIResponse
 
     suspend fun getResponse(prompt: String) {
@@ -39,8 +41,11 @@ class OpenAiRepository @Inject constructor(private val openAIApi: OpenAIApi) {
 
             if (response.isSuccessful && response.body() != null) {
                 if (response.code() == 200) {
-                    response.body()?.choices?.first()?.message.let {
-                        _openAIResponse.emit(it)
+//                    response.body()?.choices?.first()?.message.let {
+//                        _openAIResponse.emit(it)
+//                    }
+                    response.body()?.let { openaiResponse ->
+                        _openAIResponse.emit(openaiResponse)
                     }
                 } else {
                     Log.d(TAG, "getResponse: ${response.errorBody().toString()}")
@@ -48,9 +53,16 @@ class OpenAiRepository @Inject constructor(private val openAIApi: OpenAIApi) {
             }
         } catch (e: SocketTimeoutException) {
             _openAIResponse.emit(
-                Message(
-                    content = "Timeout! Please try again!,\nyour credits are refunded!",
-                    role = "user"
+                OpenAiResponse(
+                    choices = listOf(
+                        Choice(
+                            index = 0,
+                            message = Message(content = "Timeout! Please try again!,\nyour credits are refunded!", role = "System")
+                        )
+                    ),
+                    created = 0,
+                    id = "0",
+                    usage = Usage(completion_tokens = 0, prompt_tokens = 0, total_tokens = 0)
                 )
             )
             // Refund user credits.
