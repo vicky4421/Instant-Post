@@ -62,7 +62,7 @@ class OpenAiRepository @Inject constructor(private val openAIApi: OpenAIApi) {
                     ),
                     created = 0,
                     id = "0",
-                    usage = Usage(completion_tokens = 0, prompt_tokens = 0, total_tokens = 0)
+                    usage = Usage(completionTokens = 0, promptTokens = 0, totalTokens = 0)
                 )
             )
             // Refund user credits.
