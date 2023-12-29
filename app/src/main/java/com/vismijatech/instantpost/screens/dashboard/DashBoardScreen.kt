@@ -66,7 +66,7 @@ fun DashboardScreen(
                     modifier = Modifier
                         .padding(it)
                 ) {
-                    ItemList(
+                    DashboardItemList(
                         itemList = getDashboardItems(context = context),
                         navController = navController,
                         context = context
