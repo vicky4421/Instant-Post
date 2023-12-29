@@ -211,4 +211,7 @@
 <!--    Saved content screen-->
     <string name="savedContent_title">Saved Contents</string>
 
+<!--    Image Screen-->
+    <string name="imageScreen_title">Images</string>
+
 </resources>
