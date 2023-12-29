@@ -6,12 +6,10 @@ import androidx.room.PrimaryKey
 /**
  * Created by Vivek Sawant on 29-12-2023.
  */
-@Entity(tableName = "EmailContents")
+@Entity(tableName = "EmailContent")
 data class EmailContent(
-
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0L,
     val date: Int,
     val content: String
-
 )

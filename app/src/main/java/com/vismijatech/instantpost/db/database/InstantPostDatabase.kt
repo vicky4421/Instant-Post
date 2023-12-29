@@ -39,11 +39,11 @@ import com.vismijatech.instantpost.db.typeconverters.Converters
 @TypeConverters(Converters::class)
 abstract class InstantPostDatabase : RoomDatabase() {
     abstract fun blogDao(): BlogDao
-    abstract fun emailDao(): EmailDao
     abstract fun socialMediaDao(): SocialMediaDao
     abstract fun whatsappDao(): WhatsappDao
     abstract fun businessDao(): BusinessDao
     abstract fun newsletterDao(): NewsletterDao
     abstract fun personalDao(): PersonalDao
     abstract fun promotionalDao(): PromotionalDao
+    abstract fun emailDao(): EmailDao
 }

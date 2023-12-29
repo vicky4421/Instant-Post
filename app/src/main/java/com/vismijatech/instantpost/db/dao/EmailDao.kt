@@ -18,6 +18,6 @@ interface EmailDao {
     @Delete
     suspend fun deleteEmailContent(emailContent: EmailContent)
 
-    @Query("SELECT * FROM EmailContents")
+    @Query("SELECT * FROM EmailContent")
     fun getEmailContents(): Flow<List<EmailContent>>
 }
