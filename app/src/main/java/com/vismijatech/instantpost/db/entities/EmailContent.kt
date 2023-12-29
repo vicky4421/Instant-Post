@@ -10,9 +10,8 @@ import androidx.room.PrimaryKey
 data class EmailContent(
 
     @PrimaryKey(autoGenerate = true)
-    val id: Long,
+    val id: Long = 0L,
     val date: Int,
-    val content: String,
-    val title: String
+    val content: String
 
 )
