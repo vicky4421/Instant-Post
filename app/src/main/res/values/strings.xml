@@ -207,4 +207,8 @@
 <!--    Result screen-->
     <string name="resultScreen_title">Result</string>
     <string name="resultScreen_textCopiedToast">Text copied to clipboard!</string>
+
+<!--    Saved content screen-->
+    <string name="savedContent_title">Saved Contents</string>
+
 </resources>
