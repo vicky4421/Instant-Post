@@ -9,3 +9,4 @@ const val OPENAI_API_KEY = "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"
 const val OPENAI_URL = "https://api.openai.com/v1/"
 const val TAG = "Instant Post"
 const val GPT_MODEL = "gpt-3.5-turbo"
+const val DATABASE_VERSION_1 = 1
