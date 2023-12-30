@@ -22,7 +22,10 @@ import com.vismijatech.instantpost.screens.mail.promotional.PromotionalMailScree
 import com.vismijatech.instantpost.screens.result.ResultScreen
 import com.vismijatech.instantpost.screens.saved.SavedContentScreen
 import com.vismijatech.instantpost.screens.saved.blogsaves.SavedBlogScreen
-import com.vismijatech.instantpost.screens.saved.emailsaves.SavedEmailScreen
+import com.vismijatech.instantpost.screens.saved.businesssaves.SavedBusinessScreen
+import com.vismijatech.instantpost.screens.saved.newslettersaves.SavedNewsletterScreen
+import com.vismijatech.instantpost.screens.saved.promotionalsaves.SavedPromotionalScreen
+import com.vismijatech.instantpost.screens.saved.personalsaves.SavedPersonalScreen
 import com.vismijatech.instantpost.screens.saved.socialmediasaves.SavedSocialMediaScreen
 import com.vismijatech.instantpost.screens.saved.whatsappsaves.SavedWhatsappScreen
 import com.vismijatech.instantpost.screens.signup.SignupScreen
@@ -166,8 +169,8 @@ fun InstantPostNavigation() {
             SavedBlogScreen(navController = navController)
         }
 
-        composable(route = InstantPostScreen.SavedEmailScreen.name){
-            SavedEmailScreen(navController = navController)
+        composable(route = InstantPostScreen.SavedPromotionalScreen.name){
+            SavedPromotionalScreen(navController = navController)
         }
 
         composable(route = InstantPostScreen.SavedSocialMediaScreen.name){
@@ -176,6 +179,18 @@ fun InstantPostNavigation() {
 
         composable(route = InstantPostScreen.SavedWhatsappScreen.name){
             SavedWhatsappScreen(navController = navController)
+        }
+
+        composable(route = InstantPostScreen.SavedPersonalScreen.name){
+            SavedPersonalScreen(navController = navController)
+        }
+
+        composable(route = InstantPostScreen.SavedBusinessScreen.name){
+            SavedBusinessScreen(navController = navController)
+        }
+
+        composable(route = InstantPostScreen.SavedNewsletterScreen.name){
+            SavedNewsletterScreen(navController = navController)
         }
     }
 

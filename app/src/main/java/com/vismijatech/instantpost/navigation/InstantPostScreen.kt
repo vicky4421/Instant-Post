@@ -29,7 +29,10 @@ enum class InstantPostScreen {
     ResultScreen,
     SavedContentScreen,
     SavedBlogScreen,
-    SavedEmailScreen,
+    SavedPromotionalScreen,
     SavedSocialMediaScreen,
-    SavedWhatsappScreen
+    SavedWhatsappScreen,
+    SavedPersonalScreen,
+    SavedBusinessScreen,
+    SavedNewsletterScreen
 }
