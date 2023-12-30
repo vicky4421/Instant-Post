@@ -1,4 +1,4 @@
-package com.vismijatech.instantpost.screens.saved.emailsaves
+package com.vismijatech.instantpost.screens.saved.promotionalsaves
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -9,6 +9,6 @@ import androidx.navigation.NavHostController
  */
 
 @Composable
-fun SavedEmailScreen(navController: NavHostController) {
-    Text(text = "Saved email screen")
+fun SavedPromotionalScreen(navController: NavHostController) {
+    Text(text = "Saved promotional screen")
 }
