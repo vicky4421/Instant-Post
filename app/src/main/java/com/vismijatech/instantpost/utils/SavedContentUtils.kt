@@ -3,6 +3,9 @@ package com.vismijatech.instantpost.utils
 import android.content.Context
 import com.vismijatech.instantpost.R
 import com.vismijatech.instantpost.model.ListItems
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 /**
  * Created by Vivek Sawant on 30-12-2023.
@@ -52,3 +55,16 @@ fun getSavedContentItems(context: Context) = listOf(
         textColor = null
     )
 )
+
+fun convertIntToDate(dateInt: Int): String {
+    // Convert seconds to milliseconds
+    val millis = dateInt.toLong() * 1000
+
+    // Create a Date object from milliseconds
+    val date = Date(millis)
+
+    // Format the Date object to a desired format
+    val sdf = SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.getDefault())
+
+    return sdf.format(date)
+}
