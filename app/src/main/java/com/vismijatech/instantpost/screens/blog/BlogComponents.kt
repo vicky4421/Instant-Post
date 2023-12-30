@@ -6,9 +6,9 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavController
 import com.vismijatech.instantpost.R
+import com.vismijatech.instantpost.components.ItemCard
 import com.vismijatech.instantpost.model.ListItems
 import com.vismijatech.instantpost.navigation.InstantPostScreen
-import com.vismijatech.instantpost.screens.dashboard.ItemCard
 
 /**
  * Created by Vivek Sawant on 13-12-2023.
