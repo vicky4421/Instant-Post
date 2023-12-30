@@ -1,28 +1,22 @@
 package com.vismijatech.instantpost.screens.dashboard
 
 import android.content.Context
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.DrawerState
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.NavigationDrawerItem
@@ -44,12 +38,12 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.vismijatech.instantpost.R
 import com.vismijatech.instantpost.components.AnimatedBorderComposable
+import com.vismijatech.instantpost.components.ItemCard
 import com.vismijatech.instantpost.components.dashboardImageGradient
 import com.vismijatech.instantpost.model.ListItems
 import com.vismijatech.instantpost.navigation.InstantPostScreen
@@ -207,48 +201,6 @@ fun ProfileImage(context: Context, image: String) {
             .clip(shape = CircleShape)
             .size(size = 100.dp)
     )
-}
-
-@Composable
-fun ItemCard(
-    item: ListItems,
-    bgColor: Color = MaterialTheme.colorScheme.background,
-    textColor: Color = MaterialTheme.colorScheme.onBackground,
-    onClick: () -> Unit
-) {
-    Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(bottom = 4.dp, start = 16.dp, end = 16.dp, top = 4.dp)
-            .clickable { onClick() }
-            .fillMaxWidth(),
-        shape = RoundedCornerShape(size = 25.dp),
-        elevation = CardDefaults.cardElevation(
-            defaultElevation = 4.dp,
-        ),
-        colors = CardDefaults.cardColors(
-            containerColor = item.itemBackgroundColor ?: bgColor
-        )
-    ) {
-        Text(
-            text = item.itemName,
-            style = TextStyle(
-                fontFamily = PoppinsFontFamily,
-                fontSize = 24.sp,
-                color = item.textColor ?: textColor
-            ),
-            modifier = Modifier.padding(8.dp)
-        )
-        Icon(
-            painter = painterResource(id = item.itemIcon),
-            contentDescription = "Item icon",
-            modifier = Modifier
-                .padding(8.dp)
-                .size(36.dp)
-                .align(Alignment.End),
-            tint = item.textColor ?: textColor,
-        )
-    }
 }
 
 @Composable
