@@ -8,10 +8,8 @@ import androidx.room.PrimaryKey
  */
 @Entity(tableName = "SocialMediaContent")
 data class SocialMediaContent(
-
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0L,
     val date: Int,
     val content: String
-
 )
