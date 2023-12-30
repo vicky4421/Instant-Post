@@ -41,9 +41,6 @@ class OpenAiRepository @Inject constructor(private val openAIApi: OpenAIApi) {
 
             if (response.isSuccessful && response.body() != null) {
                 if (response.code() == 200) {
-//                    response.body()?.choices?.first()?.message.let {
-//                        _openAIResponse.emit(it)
-//                    }
                     response.body()?.let { openaiResponse ->
                         _openAIResponse.emit(openaiResponse)
                     }
