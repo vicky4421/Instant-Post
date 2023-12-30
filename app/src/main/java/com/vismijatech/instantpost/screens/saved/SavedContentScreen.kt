@@ -14,8 +14,7 @@ import androidx.navigation.compose.rememberNavController
 import com.vismijatech.instantpost.R
 import com.vismijatech.instantpost.components.AppBar
 import com.vismijatech.instantpost.components.BottomBar
-import com.vismijatech.instantpost.screens.dashboard.DashboardItemList
-import com.vismijatech.instantpost.utils.getDashboardItems
+import com.vismijatech.instantpost.utils.getSavedContentItems
 
 /**
  * Created by Vivek Sawant on 28-12-2023.
@@ -42,7 +41,7 @@ fun SavedContentScreen(navController: NavHostController) {
             modifier = Modifier.padding(it)
         ) {
             SavedContentList(
-                itemList = getDashboardItems(context = context),
+                itemList = getSavedContentItems(context = context),
                 navController = navController,
                 context = context
             )
