@@ -52,7 +52,9 @@ fun SavedSocialMediaScreen(navController: NavHostController) {
                         date = convertIntToDate(socialMediaContent.date),
                         content = socialMediaContent.content,
                         context = context
-                    )
+                    ){
+                        viewModel.deleteContent(socialMediaContent = socialMediaContent)
+                    }
                 }
             }
         }
