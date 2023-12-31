@@ -52,12 +52,13 @@ fun SavedCardPreview() {
         content = "The integer (dateInt) is assumed to represent a date in seconds since the epoch (January 1, 1970, 00:00:00 UTC).\n" +
                 "We convert this integer to a Date object in Java or an Instant object in Kotlin.\n" +
                 "We then format this date or instant into a string with the desired format (\"yyyy-MM-dd\" in these examples).",
-        context = LocalContext.current
+        context = LocalContext.current,
+        {}
     )
 }
 
 @Composable
-fun SavedContentCard(date: String, content: String, context: Context, delete: () -> Unit = {}) {
+fun SavedContentCard(date: String, content: String, context: Context, delete: () -> Unit) {
     var expanded by remember {
         mutableStateOf(value = false)
     }
