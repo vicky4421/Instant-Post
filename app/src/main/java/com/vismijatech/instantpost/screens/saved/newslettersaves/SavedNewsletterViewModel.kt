@@ -23,7 +23,11 @@ class SavedNewsletterViewModel @Inject constructor(private val repository: Saved
     init {
         fetchNewsletterContent()
     }
-
+    fun deleteContent(newsletterContent: NewsletterContent){
+        viewModelScope.launch {
+            repository.deleteNewsletterContent(newsletterContent)
+        }
+    }
     private fun fetchNewsletterContent() {
         viewModelScope.launch {
             repository.getNewsletterContents().collect{newsletterContents ->

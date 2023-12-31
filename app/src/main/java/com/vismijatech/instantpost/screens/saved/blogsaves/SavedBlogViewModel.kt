@@ -23,6 +23,11 @@ class SavedBlogViewModel @Inject constructor(private val repository: SavedBlogRe
         fetchBlogContents()
     }
 
+    fun deleteContent(blogContent: BlogContent){
+        viewModelScope.launch {
+            repository.deleteBlogContent(blogContent = blogContent)
+        }
+    }
     private fun fetchBlogContents() {
         viewModelScope.launch {
             repository.getBlogContents().collect{blogContents ->

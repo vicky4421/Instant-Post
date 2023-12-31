@@ -24,7 +24,11 @@ class SavedWhatsappViewModel @Inject constructor(private val repository: SavedWh
     init {
         fetchWhatsappContents()
     }
-
+    fun deleteContent(whatsappContent: WhatsappContent){
+        viewModelScope.launch {
+            repository.deleterWhatsappContent(whatsappContent)
+        }
+    }
     private fun fetchWhatsappContents(){
         viewModelScope.launch {
             repository.getWhatsappContents().collect{whatsappContents ->

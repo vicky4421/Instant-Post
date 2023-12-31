@@ -24,7 +24,11 @@ class SavedPersonalViewModel @Inject constructor(private val repository: SavedPe
     init {
         fetchPersonalContents()
     }
-
+    fun deleteContent(personalContent: PersonalContent){
+        viewModelScope.launch {
+            repository.deletePersonalContent(personalContent)
+        }
+    }
     private fun fetchPersonalContents() {
        viewModelScope.launch {
            repository.getPersonalContents().collect{personalContents ->

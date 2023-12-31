@@ -23,7 +23,11 @@ class SavedPromotionalViewModel @Inject constructor(private val repository: Save
     init {
         fetchPromotionalContent()
     }
-
+    fun deleteContent(promotionalContent: PromotionalContent){
+        viewModelScope.launch {
+            repository.deletePromotionalContent(promotionalContent)
+        }
+    }
     private fun fetchPromotionalContent() {
         viewModelScope.launch {
             repository.getPromotionalContents().collect{promotionalContents ->

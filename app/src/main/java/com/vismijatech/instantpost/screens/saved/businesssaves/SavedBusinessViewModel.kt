@@ -24,7 +24,11 @@ class SavedBusinessViewModel @Inject constructor(private val repository: SavedBu
     init {
         fetchBusinessContent()
     }
-
+    fun deleteContent(businessContent: BusinessContent){
+        viewModelScope.launch {
+            repository.deleteBusinessContent(businessContent)
+        }
+    }
     private fun fetchBusinessContent(){
         viewModelScope.launch {
             repository.getBusinessContents().collect{businessContents ->
