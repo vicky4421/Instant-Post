@@ -1,6 +1,9 @@
 package com.vismijatech.instantpost.components
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -36,7 +39,6 @@ fun ItemCard(
         modifier = Modifier
             .fillMaxWidth()
             .padding(bottom = 4.dp, start = 16.dp, end = 16.dp, top = 4.dp)
-            .clickable { onClick() }
             .fillMaxWidth(),
         shape = RoundedCornerShape(size = 25.dp),
         elevation = CardDefaults.cardElevation(
@@ -46,23 +48,28 @@ fun ItemCard(
             containerColor = item.itemBackgroundColor ?: bgColor
         )
     ) {
-        Text(
-            text = item.itemName,
-            style = TextStyle(
-                fontFamily = PoppinsFontFamily,
-                fontSize = 24.sp,
-                color = item.textColor ?: textColor
-            ),
-            modifier = Modifier.padding(8.dp)
-        )
-        Icon(
-            painter = painterResource(id = item.itemIcon),
-            contentDescription = "Item icon",
-            modifier = Modifier
-                .padding(8.dp)
-                .size(36.dp)
-                .align(Alignment.End),
-            tint = item.textColor ?: textColor,
-        )
+        Column (
+            modifier = Modifier.fillMaxSize()
+                .clickable { onClick() }
+        ){
+            Text(
+                text = item.itemName,
+                style = TextStyle(
+                    fontFamily = PoppinsFontFamily,
+                    fontSize = 24.sp,
+                    color = item.textColor ?: textColor
+                ),
+                modifier = Modifier.padding(8.dp)
+            )
+            Icon(
+                painter = painterResource(id = item.itemIcon),
+                contentDescription = "Item icon",
+                modifier = Modifier
+                    .padding(8.dp)
+                    .size(36.dp)
+                    .align(Alignment.End),
+                tint = item.textColor ?: textColor,
+            )
+        }
     }
 }
