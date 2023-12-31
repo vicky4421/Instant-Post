@@ -25,6 +25,11 @@ class SavedSocialViewModel @Inject constructor(private val repository: SavedSoci
         fetchSocialMediaContents()
     }
 
+    fun deleteContent(socialMediaContent: SocialMediaContent) {
+        viewModelScope.launch {
+            repository.deleteSocialContent(socialMediaContent = socialMediaContent)
+        }
+    }
     private fun fetchSocialMediaContents(){
         viewModelScope.launch {
             repository.getSocialMediaContents().collect{socialMediaContentList ->
