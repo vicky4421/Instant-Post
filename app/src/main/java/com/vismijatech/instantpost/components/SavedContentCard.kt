@@ -14,6 +14,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.selection.SelectionContainer
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Share
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -35,6 +37,7 @@ import androidx.compose.ui.unit.dp
 import com.vismijatech.instantpost.R
 import com.vismijatech.instantpost.ui.theme.PoppinsFontFamily
 import com.vismijatech.instantpost.utils.copyToClipboard
+import com.vismijatech.instantpost.utils.shareContent
 
 /**
  * Created by Vivek Sawant on 30-12-2023.
@@ -80,11 +83,16 @@ fun SavedContentCard(date: String, content: String, context: Context) {
                     style = TextStyle(fontWeight = FontWeight.Bold, fontFamily = PoppinsFontFamily),
                     modifier = Modifier.padding(start = 8.dp, end = 8.dp, top = 8.dp)
                 )
-                IconButton(onClick = { copyToClipboard(context = context, text = content) }) {
-                    Icon(
-                        painter = painterResource(id = R.drawable.ic_copy),
-                        contentDescription = "Copy Button"
-                    )
+                Row {
+                    IconButton(onClick = { shareContent(content = content, context = context) }) {
+                        Icon(imageVector = Icons.Default.Share, contentDescription = "Share")
+                    }
+                    IconButton(onClick = { copyToClipboard(context = context, text = content) }) {
+                        Icon(
+                            painter = painterResource(id = R.drawable.ic_copy),
+                            contentDescription = "Copy Button"
+                        )
+                    }
                 }
             }
             SelectionContainer {

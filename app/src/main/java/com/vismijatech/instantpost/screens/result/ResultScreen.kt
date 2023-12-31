@@ -30,6 +30,7 @@ import com.vismijatech.instantpost.utils.getPromotionalPrompt
 import com.vismijatech.instantpost.utils.getSocialMediaPrompt
 import com.vismijatech.instantpost.utils.getTravelBlogPrompt
 import com.vismijatech.instantpost.utils.getWhatsappReplyPrompt
+import com.vismijatech.instantpost.utils.shareContent
 
 /**
  * Created by Vivek Sawant on 21-12-2023.
@@ -76,7 +77,9 @@ fun ResultScreen(
                     Toast.makeText(context, "Saved!", Toast.LENGTH_LONG).show()
                 },
                 onCopyClick = { copyToClipboard(context = context, text = result) },
-                onShareClick = { Toast.makeText(context, "Shared!", Toast.LENGTH_LONG).show() },
+                onShareClick = {
+                    shareContent(result, context)
+                },
                 iconEnabled = !loading
             )
         }
