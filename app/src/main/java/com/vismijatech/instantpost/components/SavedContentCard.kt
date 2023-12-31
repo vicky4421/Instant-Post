@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -56,7 +57,7 @@ fun SavedCardPreview() {
 }
 
 @Composable
-fun SavedContentCard(date: String, content: String, context: Context) {
+fun SavedContentCard(date: String, content: String, context: Context, delete: () -> Unit = {}) {
     var expanded by remember {
         mutableStateOf(value = false)
     }
@@ -92,6 +93,9 @@ fun SavedContentCard(date: String, content: String, context: Context) {
                             painter = painterResource(id = R.drawable.ic_copy),
                             contentDescription = "Copy Button"
                         )
+                    }
+                    IconButton(onClick = { delete() }) {
+                        Icon(imageVector = Icons.Default.Delete, contentDescription = "Delete")
                     }
                 }
             }
