@@ -49,7 +49,9 @@ fun SavedNewsletterScreen(navController: NavHostController) {
                         date = convertIntToDate(newsletterContent.date),
                         content = newsletterContent.content,
                         context = context
-                    )
+                    ){
+                        viewModel.deleteContent(newsletterContent)
+                    }
                 }
             }
         }

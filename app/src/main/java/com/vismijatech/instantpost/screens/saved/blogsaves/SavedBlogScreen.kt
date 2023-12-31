@@ -43,7 +43,9 @@ fun SavedBlogScreen(navController: NavHostController) {
                         date = convertIntToDate(blogContent.date),
                         content = blogContent.content,
                         context = context
-                    )
+                    ){
+                        viewModel.deleteContent(blogContent = blogContent)
+                    }
                 }
             }
         }

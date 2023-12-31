@@ -48,7 +48,9 @@ fun SavedWhatsappScreen(navController: NavHostController) {
                         date = convertIntToDate(whatsappContent.date),
                         content = whatsappContent.content,
                         context = context
-                    )
+                    ){
+                        viewModel.deleteContent(whatsappContent)
+                    }
                 }
             }
         }

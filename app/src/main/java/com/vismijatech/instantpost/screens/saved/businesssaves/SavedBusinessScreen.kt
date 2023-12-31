@@ -49,7 +49,9 @@ fun SavedBusinessScreen(navController: NavHostController) {
                         date = convertIntToDate(businessContent.date),
                         content = businessContent.content,
                         context = context
-                    )
+                    ){
+                        viewModel.deleteContent(businessContent)
+                    }
                 }
             }
         }

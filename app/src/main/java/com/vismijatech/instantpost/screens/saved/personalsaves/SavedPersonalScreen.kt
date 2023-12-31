@@ -47,7 +47,9 @@ fun SavedPersonalScreen(navController: NavHostController) {
                         date = convertIntToDate(personalContent.date),
                         content = personalContent.content,
                         context = context
-                    )
+                    ){
+                        viewModel.deleteContent(personalContent)
+                    }
                 }
             }
         }

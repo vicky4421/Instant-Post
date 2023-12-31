@@ -50,7 +50,9 @@ fun SavedPromotionalScreen(navController: NavHostController) {
                         date = convertIntToDate(promotionalContent.date),
                         content = promotionalContent.content,
                         context = context
-                    )
+                    ){
+                        viewModel.deleteContent(promotionalContent)
+                    }
                 }
             }
         }
