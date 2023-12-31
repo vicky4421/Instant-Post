@@ -1,8 +1,10 @@
 package com.vismijatech.instantpost.utils
 
+import android.annotation.SuppressLint
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
+import android.content.Intent
 import android.widget.Toast
 import com.vismijatech.instantpost.R
 import com.vismijatech.instantpost.model.NewsletterQuery
@@ -153,4 +155,20 @@ fun copyToClipboard(context: Context, text: String){
     val clipData = ClipData.newPlainText("Copied text", text)
     clipboardManager.setPrimaryClip(clipData)
     Toast.makeText(context, context.getText(R.string.resultScreen_textCopiedToast), Toast.LENGTH_LONG).show()
+}
+
+// fun to share text result
+@SuppressLint("QueryPermissionsNeeded")
+fun shareContent(content: String, context: Context){
+    // Create an intent with ACTION_SEND action
+    val sendIntent = Intent().apply {
+        action = Intent.ACTION_SEND
+        putExtra(Intent.EXTRA_TEXT, content)
+        type = "text/plain"
+        flags = Intent.FLAG_ACTIVITY_NEW_TASK
+    }
+    // Verify if there is an activity to handle the intent
+    if (sendIntent.resolveActivity(context.packageManager) != null){
+        context.startActivity(Intent.createChooser(sendIntent, "Share via"))
+    }
 }
