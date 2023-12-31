@@ -19,6 +19,6 @@ class SavedSocialRepository @Inject constructor(private val db: InstantPostDatab
         socialDao.deleteSocialMediaContent(socialMediaContent = socialMediaContent)
     }
 
-    suspend fun getSocialMediaContents(): Flow<List<SocialMediaContent>> = socialDao.getSocialMediaContents()
+    fun getSocialMediaContents(): Flow<List<SocialMediaContent>> = socialDao.getSocialMediaContents()
 
 }
