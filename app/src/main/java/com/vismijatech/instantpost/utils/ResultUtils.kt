@@ -131,6 +131,7 @@ fun getTravelBlogPrompt(query: TravelBlogQuery?) =
     "You are a passionate travel blogger, and you're sharing your recent travel adventure with your audience. \n" +
             "Craft a captivating travel blog post using the following points as guidelines:\n" +
             "Title: ${query?.title} \n" +
+            "Title: blog \n" +
             "Introduction: ${query?.introduction} \n" +
             "Destinations and Itinerary: ${query?.destinations} \n" +
             "Travel experience: ${query?.travelExperience} \n" +
