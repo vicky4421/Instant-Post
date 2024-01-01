@@ -21,18 +21,31 @@ class SavedWhatsappViewModel @Inject constructor(private val repository: SavedWh
     val whatsappContent : StateFlow<List<WhatsappContent>>
         get() = _whatsappContents
 
+    private val _loading = MutableStateFlow(false)
+    val loading: StateFlow<Boolean>
+        get() = _loading
+
+    private val _isEmpty = MutableStateFlow(value = false)
+    val isEmpty: StateFlow<Boolean>
+        get() = _isEmpty
+
     init {
         fetchWhatsappContents()
     }
     fun deleteContent(whatsappContent: WhatsappContent){
         viewModelScope.launch {
+            _loading.value = true
             repository.deleterWhatsappContent(whatsappContent)
+            _loading.value = false
         }
     }
     private fun fetchWhatsappContents(){
         viewModelScope.launch {
+            _loading.value = true
             repository.getWhatsappContents().collect{whatsappContents ->
                 _whatsappContents.value = whatsappContents
+                _isEmpty.value = whatsappContents.isEmpty()
+                _loading.value = false
             }
         }
     }

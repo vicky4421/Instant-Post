@@ -21,18 +21,32 @@ class SavedPersonalViewModel @Inject constructor(private val repository: SavedPe
     val personalContent: StateFlow<List<PersonalContent>>
         get() = _personalContents
 
+    private val _loading = MutableStateFlow(false)
+    val loading: StateFlow<Boolean>
+        get() = _loading
+
+    private val _isEmpty = MutableStateFlow(value = false)
+    val isEmpty: StateFlow<Boolean>
+        get() = _isEmpty
+
+
     init {
         fetchPersonalContents()
     }
     fun deleteContent(personalContent: PersonalContent){
         viewModelScope.launch {
+            _loading.value = true
             repository.deletePersonalContent(personalContent)
+            _loading.value = false
         }
     }
     private fun fetchPersonalContents() {
        viewModelScope.launch {
+           _loading.value = true
            repository.getPersonalContents().collect{personalContents ->
                _personalContents.value = personalContents
+               _isEmpty.value = personalContents.isEmpty()
+               _loading.value = false
            }
        }
     }

@@ -21,18 +21,31 @@ class SavedBusinessViewModel @Inject constructor(private val repository: SavedBu
     val businessContent: StateFlow<List<BusinessContent>>
         get() = _businessContent
 
+    private val _loading = MutableStateFlow(false)
+    val loading: StateFlow<Boolean>
+        get() = _loading
+
+    private val _isEmpty = MutableStateFlow(value = false)
+    val isEmpty: StateFlow<Boolean>
+        get() = _isEmpty
+
     init {
         fetchBusinessContent()
     }
     fun deleteContent(businessContent: BusinessContent){
         viewModelScope.launch {
+            _loading.value = true
             repository.deleteBusinessContent(businessContent)
+            _loading.value = false
         }
     }
     private fun fetchBusinessContent(){
         viewModelScope.launch {
+            _loading.value = true
             repository.getBusinessContents().collect{businessContents ->
                 _businessContent.value = businessContents
+                _isEmpty.value = businessContents.isEmpty()
+                _loading.value = false
             }
         }
     }

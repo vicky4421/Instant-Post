@@ -20,18 +20,32 @@ class SavedPromotionalViewModel @Inject constructor(private val repository: Save
     )
     val promotionalContent : StateFlow<List<PromotionalContent>>
         get() = _promotionalContent
+
+    private val _loading = MutableStateFlow(false)
+    val loading: StateFlow<Boolean>
+        get() = _loading
+
+    private val _isEmpty = MutableStateFlow(value = false)
+    val isEmpty: StateFlow<Boolean>
+        get() = _isEmpty
+
     init {
         fetchPromotionalContent()
     }
     fun deleteContent(promotionalContent: PromotionalContent){
         viewModelScope.launch {
+            _loading.value = true
             repository.deletePromotionalContent(promotionalContent)
+            _loading.value = false
         }
     }
     private fun fetchPromotionalContent() {
         viewModelScope.launch {
+            _loading.value = true
             repository.getPromotionalContents().collect{promotionalContents ->
                 _promotionalContent.value = promotionalContents
+                _isEmpty.value = promotionalContents.isEmpty()
+                _loading.value = false
             }
         }
     }

@@ -20,18 +20,32 @@ class SavedNewsletterViewModel @Inject constructor(private val repository: Saved
     )
     val newsletterContent: StateFlow<List<NewsletterContent>>
         get() = _newsletterContent
+
+    private val _loading = MutableStateFlow(false)
+    val loading: StateFlow<Boolean>
+        get() = _loading
+
+    private val _isEmpty = MutableStateFlow(value = false)
+    val isEmpty: StateFlow<Boolean>
+        get() = _isEmpty
+
     init {
         fetchNewsletterContent()
     }
     fun deleteContent(newsletterContent: NewsletterContent){
         viewModelScope.launch {
+            _loading.value = true
             repository.deleteNewsletterContent(newsletterContent)
+            _loading.value = false
         }
     }
     private fun fetchNewsletterContent() {
         viewModelScope.launch {
+            _loading.value = true
             repository.getNewsletterContents().collect{newsletterContents ->
                 _newsletterContent.value = newsletterContents
+                _isEmpty.value = newsletterContents.isEmpty()
+                _loading.value = false
             }
         }
     }

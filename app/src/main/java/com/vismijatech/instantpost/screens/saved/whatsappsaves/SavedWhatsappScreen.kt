@@ -9,6 +9,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
@@ -16,8 +17,10 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.vismijatech.instantpost.R
 import com.vismijatech.instantpost.components.ContentScreenTopAppBar
+import com.vismijatech.instantpost.components.LoadingScreen
 import com.vismijatech.instantpost.components.SavedContentCard
 import com.vismijatech.instantpost.db.entities.WhatsappContent
+import com.vismijatech.instantpost.screens.saved.NoDataScreen
 import com.vismijatech.instantpost.utils.convertIntToDate
 
 /**
@@ -30,6 +33,8 @@ fun SavedWhatsappScreen(navController: NavHostController) {
     val viewModel: SavedWhatsappViewModel = hiltViewModel()
     val contentState: State<List<WhatsappContent>> = viewModel.whatsappContent.collectAsState()
     val context = LocalContext.current
+    val loading by viewModel.loading.collectAsState()
+    val isWhatsappContentEmpty by viewModel.isEmpty.collectAsState()
 
     Scaffold(
         topBar = {
@@ -39,17 +44,21 @@ fun SavedWhatsappScreen(navController: NavHostController) {
             )
         }
     ) {
-        Surface(
-            modifier = Modifier.padding(it)
-        ) {
-            LazyColumn{
-                items(contentState.value){whatsappContent ->
-                    SavedContentCard(
-                        date = convertIntToDate(whatsappContent.date),
-                        content = whatsappContent.content,
-                        context = context
-                    ){
-                        viewModel.deleteContent(whatsappContent)
+        if (loading) LoadingScreen()
+        else if (isWhatsappContentEmpty) NoDataScreen(context = context)
+        else {
+            Surface(
+                modifier = Modifier.padding(it)
+            ) {
+                LazyColumn{
+                    items(contentState.value){whatsappContent ->
+                        SavedContentCard(
+                            date = convertIntToDate(whatsappContent.date),
+                            content = whatsappContent.content,
+                            context = context
+                        ){
+                            viewModel.deleteContent(whatsappContent)
+                        }
                     }
                 }
             }

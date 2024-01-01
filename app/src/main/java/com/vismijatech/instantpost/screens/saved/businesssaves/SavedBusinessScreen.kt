@@ -10,6 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
@@ -17,8 +18,10 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.vismijatech.instantpost.R
 import com.vismijatech.instantpost.components.ContentScreenTopAppBar
+import com.vismijatech.instantpost.components.LoadingScreen
 import com.vismijatech.instantpost.components.SavedContentCard
 import com.vismijatech.instantpost.db.entities.BusinessContent
+import com.vismijatech.instantpost.screens.saved.NoDataScreen
 import com.vismijatech.instantpost.utils.convertIntToDate
 
 /**
@@ -31,6 +34,8 @@ fun SavedBusinessScreen(navController: NavHostController) {
     val viewModel: SavedBusinessViewModel = hiltViewModel()
     val businessContent: State<List<BusinessContent>> = viewModel.businessContent.collectAsState()
     val context = LocalContext.current
+    val loading by viewModel.loading.collectAsState()
+    val isBusinessContentEmpty by viewModel.isEmpty.collectAsState()
 
     Scaffold(
         topBar = {
@@ -40,17 +45,21 @@ fun SavedBusinessScreen(navController: NavHostController) {
             )
         }
     ) {
-        Surface(
-            modifier = Modifier.padding(it)
-        ) {
-            LazyColumn{
-                items(businessContent.value){businessContent ->
-                    SavedContentCard(
-                        date = convertIntToDate(businessContent.date),
-                        content = businessContent.content,
-                        context = context
-                    ){
-                        viewModel.deleteContent(businessContent)
+        if (loading) LoadingScreen()
+        else if (isBusinessContentEmpty) NoDataScreen(context = context)
+        else {
+            Surface(
+                modifier = Modifier.padding(it)
+            ) {
+                LazyColumn {
+                    items(businessContent.value) { businessContent ->
+                        SavedContentCard(
+                            date = convertIntToDate(businessContent.date),
+                            content = businessContent.content,
+                            context = context
+                        ) {
+                            viewModel.deleteContent(businessContent)
+                        }
                     }
                 }
             }
