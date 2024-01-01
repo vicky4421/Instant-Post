@@ -214,4 +214,8 @@
 <!--    Image Screen-->
     <string name="imageScreen_title">Images</string>
 
+<!--    No Data Screen-->
+    <string name="noData_tapMessage">Nothing here! Tap to generate!</string>
+    <string name="noData_imageAttribute">Image by pikisuperstar on Freepik</string>
+
 </resources>
