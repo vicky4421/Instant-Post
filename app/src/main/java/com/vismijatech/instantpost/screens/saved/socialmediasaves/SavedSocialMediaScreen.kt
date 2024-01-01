@@ -22,6 +22,7 @@ import com.vismijatech.instantpost.components.ContentScreenTopAppBar
 import com.vismijatech.instantpost.screens.LoadingScreen
 import com.vismijatech.instantpost.components.SavedContentCard
 import com.vismijatech.instantpost.db.entities.SocialMediaContent
+import com.vismijatech.instantpost.navigation.InstantPostScreen
 import com.vismijatech.instantpost.screens.saved.NoDataScreen
 import com.vismijatech.instantpost.utils.convertIntToDate
 
@@ -49,7 +50,7 @@ fun SavedSocialMediaScreen(navController: NavHostController) {
         }
     ) {
         if (loading) LoadingScreen()
-        else if (isSocialContentEmpty) NoDataScreen(context = context)
+        else if (isSocialContentEmpty) NoDataScreen(context = context) { navController.navigate(InstantPostScreen.SocialMediaCaptionScreen.name) }
         else {
             Surface(
                 modifier = Modifier.padding(it)

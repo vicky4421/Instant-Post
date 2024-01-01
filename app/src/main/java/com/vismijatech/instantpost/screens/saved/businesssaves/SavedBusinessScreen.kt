@@ -20,6 +20,7 @@ import com.vismijatech.instantpost.components.ContentScreenTopAppBar
 import com.vismijatech.instantpost.screens.LoadingScreen
 import com.vismijatech.instantpost.components.SavedContentCard
 import com.vismijatech.instantpost.db.entities.BusinessContent
+import com.vismijatech.instantpost.navigation.InstantPostScreen
 import com.vismijatech.instantpost.screens.saved.NoDataScreen
 import com.vismijatech.instantpost.utils.convertIntToDate
 
@@ -45,7 +46,7 @@ fun SavedBusinessScreen(navController: NavHostController) {
         }
     ) {
         if (loading) LoadingScreen()
-        else if (isBusinessContentEmpty) NoDataScreen(context = context)
+        else if (isBusinessContentEmpty) NoDataScreen(context = context){ navController.navigate(InstantPostScreen.BusinessMailScreen.name) }
         else {
             Surface(
                 modifier = Modifier.padding(it)

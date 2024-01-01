@@ -25,7 +25,7 @@ import com.vismijatech.instantpost.ui.theme.PoppinsFontFamily
  */
 
 @Composable
-fun NoDataScreen(context: Context, onClick: () -> Unit = {}) {
+fun NoDataScreen(context: Context, onClick: () -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxSize()

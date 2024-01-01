@@ -18,6 +18,7 @@ import com.vismijatech.instantpost.R
 import com.vismijatech.instantpost.components.ContentScreenTopAppBar
 import com.vismijatech.instantpost.screens.LoadingScreen
 import com.vismijatech.instantpost.components.SavedContentCard
+import com.vismijatech.instantpost.navigation.InstantPostScreen
 import com.vismijatech.instantpost.screens.saved.NoDataScreen
 import com.vismijatech.instantpost.utils.convertIntToDate
 
@@ -43,7 +44,7 @@ fun SavedPersonalScreen(navController: NavHostController) {
         }
     ) {
         if (loading) LoadingScreen()
-        else if (isPersonalContentEmpty) NoDataScreen(context = context)
+        else if (isPersonalContentEmpty) NoDataScreen(context = context) { navController.navigate(InstantPostScreen.PersonalMailScreen.name) }
         else {
             Surface(
                 modifier = Modifier.padding(it)

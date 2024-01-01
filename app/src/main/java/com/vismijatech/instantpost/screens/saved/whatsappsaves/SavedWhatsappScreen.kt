@@ -20,6 +20,7 @@ import com.vismijatech.instantpost.components.ContentScreenTopAppBar
 import com.vismijatech.instantpost.screens.LoadingScreen
 import com.vismijatech.instantpost.components.SavedContentCard
 import com.vismijatech.instantpost.db.entities.WhatsappContent
+import com.vismijatech.instantpost.navigation.InstantPostScreen
 import com.vismijatech.instantpost.screens.saved.NoDataScreen
 import com.vismijatech.instantpost.utils.convertIntToDate
 
@@ -45,18 +46,22 @@ fun SavedWhatsappScreen(navController: NavHostController) {
         }
     ) {
         if (loading) LoadingScreen()
-        else if (isWhatsappContentEmpty) NoDataScreen(context = context)
+        else if (isWhatsappContentEmpty) NoDataScreen(context = context) {
+            navController.navigate(
+                InstantPostScreen.WhatsappReplyScreen.name
+            )
+        }
         else {
             Surface(
                 modifier = Modifier.padding(it)
             ) {
-                LazyColumn{
-                    items(contentState.value){whatsappContent ->
+                LazyColumn {
+                    items(contentState.value) { whatsappContent ->
                         SavedContentCard(
                             date = convertIntToDate(whatsappContent.date),
                             content = whatsappContent.content,
                             context = context
-                        ){
+                        ) {
                             viewModel.deleteContent(whatsappContent)
                         }
                     }

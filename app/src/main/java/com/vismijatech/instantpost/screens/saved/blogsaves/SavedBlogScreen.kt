@@ -18,6 +18,7 @@ import com.vismijatech.instantpost.R
 import com.vismijatech.instantpost.components.ContentScreenTopAppBar
 import com.vismijatech.instantpost.screens.LoadingScreen
 import com.vismijatech.instantpost.components.SavedContentCard
+import com.vismijatech.instantpost.navigation.InstantPostScreen
 import com.vismijatech.instantpost.screens.saved.NoDataScreen
 import com.vismijatech.instantpost.utils.convertIntToDate
 
@@ -40,7 +41,7 @@ fun SavedBlogScreen(navController: NavHostController) {
         }
     ) {
         if (loading) LoadingScreen()
-        else if (isBlogContentEmpty) NoDataScreen(context = context)
+        else if (isBlogContentEmpty) NoDataScreen(context = context) { navController.navigate(InstantPostScreen.BlogScreen.name) }
         else {
             Surface(
                 modifier = Modifier.padding(it)
