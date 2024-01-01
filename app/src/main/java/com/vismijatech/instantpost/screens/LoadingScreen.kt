@@ -1,4 +1,4 @@
-package com.vismijatech.instantpost.components
+package com.vismijatech.instantpost.screens
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column

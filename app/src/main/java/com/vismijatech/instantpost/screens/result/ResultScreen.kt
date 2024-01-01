@@ -17,7 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
-import com.vismijatech.instantpost.components.LoadingScreen
+import com.vismijatech.instantpost.screens.LoadingScreen
 import com.vismijatech.instantpost.model.openai.OpenAiResponse
 import com.vismijatech.instantpost.screens.SharedViewModel
 import com.vismijatech.instantpost.utils.InputQuery
