@@ -2,6 +2,7 @@ package com.vismijatech.instantpost.screens.saved
 
 import android.content.Context
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -24,17 +25,25 @@ import com.vismijatech.instantpost.ui.theme.PoppinsFontFamily
  */
 
 @Composable
-fun NoDataScreen(context: Context) {
+fun NoDataScreen(context: Context, onClick: () -> Unit = {}) {
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .clickable { onClick() }
             .padding(16.dp),
         verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Image(painter = painterResource(id = R.drawable.nothing_here), contentDescription = "No data")
+
         Text(
-            text = "Nothing here! Tap to generate!",
+            text = context.getString(R.string.noData_imageAttribute),
+            style = TextStyle(fontWeight = FontWeight.Light),
+            fontFamily = PoppinsFontFamily
+        )
+
+        Text(
+            text = context.getString(R.string.noData_tapMessage),
             style = TextStyle(fontWeight = FontWeight.Bold),
             fontFamily = PoppinsFontFamily
         )
@@ -44,5 +53,5 @@ fun NoDataScreen(context: Context) {
 @Preview(showBackground = true)
 @Composable
 fun NoDataPreview() {
-    NoDataScreen(LocalContext.current)
+    NoDataScreen(LocalContext.current){}
 }
