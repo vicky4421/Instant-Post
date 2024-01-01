@@ -34,8 +34,8 @@ class SavedSocialViewModel @Inject constructor(private val repository: SavedSoci
     }
 
     fun deleteContent(socialMediaContent: SocialMediaContent) {
-        _loading.value = true
         viewModelScope.launch {
+            _loading.value = true
             repository.deleteSocialContent(socialMediaContent = socialMediaContent)
             _loading.value = false
         }

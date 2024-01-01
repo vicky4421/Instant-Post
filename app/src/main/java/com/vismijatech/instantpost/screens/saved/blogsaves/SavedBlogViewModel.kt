@@ -19,19 +19,32 @@ class SavedBlogViewModel @Inject constructor(private val repository: SavedBlogRe
     val blogContents: StateFlow<List<BlogContent>>
         get() = _blogContents
 
+    private val _loading = MutableStateFlow(false)
+    val loading: StateFlow<Boolean>
+        get() = _loading
+
+    private val _isEmpty = MutableStateFlow(value = false)
+    val isEmpty: StateFlow<Boolean>
+        get() = _isEmpty
+
     init {
         fetchBlogContents()
     }
 
     fun deleteContent(blogContent: BlogContent){
         viewModelScope.launch {
+            _loading.value = true
             repository.deleteBlogContent(blogContent = blogContent)
+            _loading.value = false
         }
     }
     private fun fetchBlogContents() {
         viewModelScope.launch {
+            _loading.value = true
             repository.getBlogContents().collect{blogContents ->
                 _blogContents.value = blogContents
+                _isEmpty.value = blogContents.isEmpty()
+                _loading.value = false
             }
         }
     }

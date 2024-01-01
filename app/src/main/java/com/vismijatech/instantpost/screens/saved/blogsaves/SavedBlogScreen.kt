@@ -8,6 +8,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
@@ -15,7 +16,9 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.vismijatech.instantpost.R
 import com.vismijatech.instantpost.components.ContentScreenTopAppBar
+import com.vismijatech.instantpost.components.LoadingScreen
 import com.vismijatech.instantpost.components.SavedContentCard
+import com.vismijatech.instantpost.screens.saved.NoDataScreen
 import com.vismijatech.instantpost.utils.convertIntToDate
 
 /**
@@ -28,23 +31,29 @@ fun SavedBlogScreen(navController: NavHostController) {
     val viewModel : SavedBlogViewModel = hiltViewModel()
     val contentState = viewModel.blogContents.collectAsState()
     val context = LocalContext.current
+    val loading by viewModel.loading.collectAsState()
+    val isBlogContentEmpty by viewModel.isEmpty.collectAsState()
 
     Scaffold(
         topBar = {
             ContentScreenTopAppBar(title = stringResource(id = R.string.dashboardScreen_blog_dashboardItem), navController = navController)
         }
     ) {
-        Surface(
-            modifier = Modifier.padding(it)
-        ) {
-            LazyColumn{
-                items(contentState.value){blogContent ->
-                    SavedContentCard(
-                        date = convertIntToDate(blogContent.date),
-                        content = blogContent.content,
-                        context = context
-                    ){
-                        viewModel.deleteContent(blogContent = blogContent)
+        if (loading) LoadingScreen()
+        else if (isBlogContentEmpty) NoDataScreen(context = context)
+        else {
+            Surface(
+                modifier = Modifier.padding(it)
+            ) {
+                LazyColumn{
+                    items(contentState.value){blogContent ->
+                        SavedContentCard(
+                            date = convertIntToDate(blogContent.date),
+                            content = blogContent.content,
+                            context = context
+                        ){
+                            viewModel.deleteContent(blogContent = blogContent)
+                        }
                     }
                 }
             }
