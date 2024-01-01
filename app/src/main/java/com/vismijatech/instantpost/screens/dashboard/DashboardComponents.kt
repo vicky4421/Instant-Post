@@ -180,8 +180,8 @@ fun AnimatedBorderImage(context: Context, image: String) {
     AnimatedBorderComposable(
         brush = dashboardImageGradient,
         shape = CircleShape,
-        animationDuration = 1000,
-        borderWidth = 3.dp
+        borderWidth = 3.dp,
+        animationDuration = 1000
     ) {
         ProfileImage(context = context, image = image)
     }
