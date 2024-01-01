@@ -21,19 +21,32 @@ class SavedSocialViewModel @Inject constructor(private val repository: SavedSoci
     val socialMediaContents: StateFlow<List<SocialMediaContent>>
         get() = _socialMediaContents
 
+    private val _loading = MutableStateFlow(false)
+    val loading: StateFlow<Boolean>
+        get() = _loading
+
+    private val _isEmpty = MutableStateFlow(value = false)
+    val isEmpty: StateFlow<Boolean>
+        get() = _isEmpty
+
     init {
         fetchSocialMediaContents()
     }
 
     fun deleteContent(socialMediaContent: SocialMediaContent) {
+        _loading.value = true
         viewModelScope.launch {
             repository.deleteSocialContent(socialMediaContent = socialMediaContent)
+            _loading.value = false
         }
     }
     private fun fetchSocialMediaContents(){
         viewModelScope.launch {
+            _loading.value = true
             repository.getSocialMediaContents().collect{socialMediaContentList ->
                 _socialMediaContents.value = socialMediaContentList
+                _isEmpty.value = socialMediaContentList.isEmpty()
+                _loading.value = false
             }
         }
     }
