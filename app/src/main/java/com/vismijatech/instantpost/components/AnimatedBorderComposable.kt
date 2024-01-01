@@ -47,7 +47,6 @@ fun AnimatedBorderComposable(
     shape: Shape,
     borderWidth: Dp = 2.dp,
     animationDuration: Int,
-    modifier: Modifier = Modifier,
     onContentClick: () -> Unit = {},
     content: @Composable () -> Unit
 ) {
