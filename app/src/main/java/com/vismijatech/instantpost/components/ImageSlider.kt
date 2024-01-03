@@ -67,8 +67,8 @@ fun ImageSlider(context: Context, cardList: List<SliderImageCardModel>) {
         HorizontalPager(state = pageState, modifier = Modifier.fillMaxWidth()) { currentPage ->
             Card(
                 modifier = Modifier
-                    .size(width = Int.MAX_VALUE.dp, height = (LocalConfiguration.current.screenHeightDp.dp)/3)
-                    .padding(start = 26.dp, end = 26.dp, bottom = 4.dp),
+                    .size(width = Int.MAX_VALUE.dp, height = (LocalConfiguration.current.screenHeightDp.dp)/2)
+                    .padding(start = 26.dp, end = 26.dp, bottom = 8.dp),
                 elevation = CardDefaults.cardElevation(8.dp),
                 colors = CardDefaults.cardColors(
                     containerColor = MaterialTheme.colorScheme.background
@@ -84,7 +84,7 @@ fun ImageSlider(context: Context, cardList: List<SliderImageCardModel>) {
                             .data(data = cardList[currentPage].imageUrl)
                             .crossfade(enable = true)
                             .build(),
-                        modifier = Modifier.size(height = 200.dp, width = Int.MAX_VALUE.dp),
+                        modifier = Modifier.size(height = LocalConfiguration.current.screenHeightDp.dp/3, width = Int.MAX_VALUE.dp),
                         contentScale = ContentScale.FillBounds,
                         contentDescription = "Image slider"
                     )
@@ -153,7 +153,7 @@ fun ImageSlider(context: Context, cardList: List<SliderImageCardModel>) {
         PageIndicator(
             pageCount = cardList.size,
             currentPage = pageState.currentPage,
-            modifier = Modifier.align(alignment = Alignment.BottomCenter)
+            modifier = Modifier.align(alignment = Alignment.BottomCenter).padding(bottom = 15.dp)
         )
     }
 }
