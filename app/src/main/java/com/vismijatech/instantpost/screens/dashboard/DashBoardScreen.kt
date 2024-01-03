@@ -1,5 +1,6 @@
 package com.vismijatech.instantpost.screens.dashboard
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
@@ -17,9 +18,11 @@ import androidx.navigation.NavHostController
 import com.google.firebase.auth.FirebaseAuth
 import com.vismijatech.instantpost.components.AppBar
 import com.vismijatech.instantpost.components.BottomBar
+import com.vismijatech.instantpost.components.ImageSlider
 import com.vismijatech.instantpost.screens.LoadingScreen
 import com.vismijatech.instantpost.navigation.InstantPostScreen
 import com.vismijatech.instantpost.utils.getDashboardItems
+import com.vismijatech.instantpost.utils.sliderImageList
 import kotlinx.coroutines.launch
 
 /**
@@ -66,11 +69,14 @@ fun DashboardScreen(
                     modifier = Modifier
                         .padding(it)
                 ) {
-                    DashboardItemList(
-                        itemList = getDashboardItems(context = context),
-                        navController = navController,
-                        context = context
-                    )
+                    Column {
+                        ImageSlider(context = context, cardList = sliderImageList())
+                        DashboardItemList(
+                            itemList = getDashboardItems(context = context),
+                            navController = navController,
+                            context = context
+                        )
+                    }
                 }
             }
         }
