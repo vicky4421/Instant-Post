@@ -52,8 +52,10 @@ fun InstantPostNavigation() {
     val sharedViewModel: SharedViewModel = viewModel()
 
     // define NavHost
-    NavHost(navController = navController, startDestination = InstantPostScreen.SplashScreen.name) {
-
+    NavHost(
+        navController = navController,
+        startDestination = InstantPostScreen.SplashScreen.name,
+    ) {
         // define composable here
         composable(route = InstantPostScreen.SplashScreen.name) {
             SplashScreen(navController = navController)
