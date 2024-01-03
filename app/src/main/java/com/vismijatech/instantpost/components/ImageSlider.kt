@@ -30,6 +30,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -55,7 +56,7 @@ fun ImageSlider(context: Context, cardList: List<SliderImageCardModel>) {
     val scope = rememberCoroutineScope()
     LaunchedEffect(key1 = Unit) {
         while (true) {
-            delay(timeMillis = 2000)
+            delay(timeMillis = 3000)
             val nextPage = (pageState.currentPage + 1) % pageState.pageCount
             pageState.scrollToPage(page = nextPage)
         }
@@ -66,8 +67,8 @@ fun ImageSlider(context: Context, cardList: List<SliderImageCardModel>) {
         HorizontalPager(state = pageState, modifier = Modifier.fillMaxWidth()) { currentPage ->
             Card(
                 modifier = Modifier
-                    .size(width = Int.MAX_VALUE.dp, height = 325.dp)
-                    .padding(26.dp),
+                    .size(width = Int.MAX_VALUE.dp, height = (LocalConfiguration.current.screenHeightDp.dp)/3)
+                    .padding(start = 26.dp, end = 26.dp, bottom = 4.dp),
                 elevation = CardDefaults.cardElevation(8.dp),
                 colors = CardDefaults.cardColors(
                     containerColor = MaterialTheme.colorScheme.background
