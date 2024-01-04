@@ -212,29 +212,32 @@ fun DashboardItemList(
     navController: NavController,
     context: Context
 ) {
-    LazyVerticalGrid(modifier = Modifier.height(LocalConfiguration.current.screenHeightDp.dp/2), columns = GridCells.Fixed(count = 2), content = {
-        items(itemList) { item ->
-            ItemCard(item = item) {
-                when (item.itemName) {
-                    context.getString(R.string.dashboardScreen_socialMedia_dashboardItem) -> navController.navigate(
-                        InstantPostScreen.SocialMediaCaptionScreen.name
-                    )
+    LazyVerticalGrid(
+        modifier = Modifier.height(LocalConfiguration.current.screenHeightDp.dp / 2),
+        columns = GridCells.Fixed(count = 2),
+        content = {
+            items(itemList) { item ->
+                ItemCard(item = item) {
+                    when (item.itemName) {
+                        context.getString(R.string.dashboardScreen_socialMedia_dashboardItem) -> navController.navigate(
+                            InstantPostScreen.SocialMediaCaptionScreen.name
+                        )
 
-                    context.getString(R.string.dashboardScreen_whatsapp_dashboardItem) -> navController.navigate(
-                        InstantPostScreen.WhatsappScreen.name
-                    )
+                        context.getString(R.string.dashboardScreen_whatsapp_dashboardItem) -> navController.navigate(
+                            InstantPostScreen.WhatsappScreen.name
+                        )
 
-                    context.getString(R.string.loginScreen_email_label) -> navController.navigate(
-                        InstantPostScreen.EmailScreen.name
-                    )
+                        context.getString(R.string.loginScreen_email_label) -> navController.navigate(
+                            InstantPostScreen.EmailScreen.name
+                        )
 
-                    context.getString(R.string.dashboardScreen_blog_dashboardItem) -> navController.navigate(
-                        InstantPostScreen.BlogScreen.name
-                    )
+                        context.getString(R.string.dashboardScreen_blog_dashboardItem) -> navController.navigate(
+                            InstantPostScreen.BlogScreen.name
+                        )
+                    }
                 }
             }
         }
-    }
     )
 }
 
