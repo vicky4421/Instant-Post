@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -11,6 +12,7 @@ import androidx.navigation.NavHostController
 import com.vismijatech.instantpost.R
 import com.vismijatech.instantpost.components.AppBar
 import com.vismijatech.instantpost.components.BottomBar
+import com.vismijatech.instantpost.screens.images.pexel.PexelScreen
 
 /**
  * Created by Vivek Sawant on 13-12-2023.
@@ -34,7 +36,8 @@ fun ImageScreen(navController: NavHostController) {
         Surface(
             modifier = Modifier.padding(it)
         ) {
-
+            Text(text = "Pexel Screen")
+            PexelScreen()
         }
     }
 
