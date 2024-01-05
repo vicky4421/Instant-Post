@@ -24,7 +24,7 @@ import javax.inject.Inject
 @HiltViewModel
 class ResultViewModel @Inject constructor(
     private val repository: OpenAiRepository,
-    private val database: InstantPostDatabase
+    private val database: InstantPostDatabase,
 ) : ViewModel() {
     val response: StateFlow<OpenAiResponse?>
         get() = repository.openAiResponse
