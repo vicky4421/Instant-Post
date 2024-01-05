@@ -3,6 +3,7 @@ package com.vismijatech.instantpost.repository
 import android.util.Log
 import com.vismijatech.instantpost.data.GPT_MODEL
 import com.vismijatech.instantpost.data.TAG
+import com.vismijatech.instantpost.di.annotations.OpenaiRetrofitQualifier
 import com.vismijatech.instantpost.model.openai.Choice
 import com.vismijatech.instantpost.model.openai.Message
 import com.vismijatech.instantpost.model.openai.OpenAiRequest
@@ -17,7 +18,7 @@ import javax.inject.Inject
 /**
  * Created by Vivek Sawant on 24-12-2023.
  */
-class OpenAiRepository @Inject constructor(private val openAIApi: OpenAIApi) {
+class OpenAiRepository @Inject constructor(@OpenaiRetrofitQualifier private val openAIApi: OpenAIApi) {
 
     private val _openAIResponse = MutableStateFlow<OpenAiResponse?>(value = null)
     val openAiResponse: StateFlow<OpenAiResponse?>
@@ -64,6 +65,7 @@ class OpenAiRepository @Inject constructor(private val openAIApi: OpenAIApi) {
             )
             // Refund user credits.
         } catch (e: Exception) {
+            Log.d("Openai Repository", "getResponse: ${e.message}")
             e.printStackTrace()
         }
     }
