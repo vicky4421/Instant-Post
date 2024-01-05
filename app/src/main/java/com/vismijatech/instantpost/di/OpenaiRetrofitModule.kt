@@ -1,6 +1,8 @@
 package com.vismijatech.instantpost.di
 
 import com.vismijatech.instantpost.data.OPENAI_URL
+import com.vismijatech.instantpost.di.annotations.OpenaiOkHttpClientQualifier
+import com.vismijatech.instantpost.di.annotations.OpenaiRetrofitQualifier
 import com.vismijatech.instantpost.network.openaiapi.OpenAIApi
 import com.vismijatech.instantpost.network.openaiapi.OpenAIInterceptor
 import dagger.Module
@@ -27,6 +29,7 @@ class OpenaiRetrofitModule {
     }
 
     @Singleton
+    @OpenaiOkHttpClientQualifier
     @Provides
     fun providesOkHttpClient(openAIInterceptor: OpenAIInterceptor): OkHttpClient{
         return OkHttpClient.Builder()
@@ -38,8 +41,9 @@ class OpenaiRetrofitModule {
     }
 
     @Singleton
+    @OpenaiRetrofitQualifier
     @Provides
-    fun providesRetrofit(okHttpClient: OkHttpClient): Retrofit{
+    fun providesRetrofit(@OpenaiOkHttpClientQualifier okHttpClient: OkHttpClient): Retrofit{
         return Retrofit.Builder()
             .baseUrl(OPENAI_URL)
             .client(okHttpClient)
@@ -48,8 +52,9 @@ class OpenaiRetrofitModule {
     }
 
     @Singleton
+    @OpenaiRetrofitQualifier
     @Provides
-    fun providesOpenAIApi(retrofit: Retrofit): OpenAIApi{
+    fun providesOpenAIApi(@OpenaiRetrofitQualifier retrofit: Retrofit): OpenAIApi{
         return retrofit.create(OpenAIApi::class.java)
     }
 }
