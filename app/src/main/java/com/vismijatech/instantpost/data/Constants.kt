@@ -10,3 +10,5 @@ const val OPENAI_URL = "https://api.openai.com/v1/"
 const val TAG = "Instant Post"
 const val GPT_MODEL = "gpt-3.5-turbo"
 const val DATABASE_VERSION_1 = 1
+const val PEXEL_API_KEY = "o4JqUp4qm1M2kzJniMZyvh1RChCemq95yodAmvUDzW4UiD7l9XaaPP4U"
+const val PEXEL_URL = "https://api.pexels.com/v1/"
