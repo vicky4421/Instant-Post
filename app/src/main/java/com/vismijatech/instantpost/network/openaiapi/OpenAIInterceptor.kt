@@ -19,7 +19,7 @@ class OpenAIInterceptor: Interceptor {
         val headers = request.headers
         for (name in headers.names()){
             val value = headers[name]
-            Log.d("Interceptor", "header: $name: $value")
+            Log.d("Openai Interceptor", "header: $name: $value")
         }
 
         // Proceed with the request
