@@ -1,7 +1,5 @@
 package com.vismijatech.instantpost.screens.saved.socialmediasaves
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -19,10 +17,10 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.vismijatech.instantpost.R
 import com.vismijatech.instantpost.components.ContentScreenTopAppBar
-import com.vismijatech.instantpost.screens.LoadingScreen
 import com.vismijatech.instantpost.components.SavedContentCard
 import com.vismijatech.instantpost.db.entities.SocialMediaContent
 import com.vismijatech.instantpost.navigation.InstantPostScreen
+import com.vismijatech.instantpost.screens.LoadingScreen
 import com.vismijatech.instantpost.screens.saved.NoDataScreen
 import com.vismijatech.instantpost.utils.convertIntToDate
 
@@ -31,7 +29,6 @@ import com.vismijatech.instantpost.utils.convertIntToDate
  */
 
 @OptIn(ExperimentalMaterial3Api::class)
-@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun SavedSocialMediaScreen(navController: NavHostController) {
     val viewModel: SavedSocialViewModel = hiltViewModel()
