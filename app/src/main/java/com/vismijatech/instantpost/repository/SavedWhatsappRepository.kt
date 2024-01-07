@@ -11,6 +11,6 @@ class SavedWhatsappRepository @Inject constructor(private val db: InstantPostDat
     private val whatsappDao = db.whatsappDao()
 
     suspend fun insertWhatsappContent(whatsappContent: WhatsappContent) = whatsappDao.insertWhatsappContent(whatsappContent = whatsappContent)
-    suspend fun deleterWhatsappContent(whatsappContent: WhatsappContent) = whatsappDao.deleteWhatsappContent(whatsappContent = whatsappContent)
+    suspend fun deleteWhatsappContent(whatsappContent: WhatsappContent) = whatsappDao.deleteWhatsappContent(whatsappContent = whatsappContent)
     fun getWhatsappContents() = whatsappDao.getWhatsappContents()
 }
