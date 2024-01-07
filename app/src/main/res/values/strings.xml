@@ -213,6 +213,7 @@
 
 <!--    Image Screen-->
     <string name="imageScreen_title">Images</string>
+    <string name="imageScreen_search">Search</string>
 
 <!--    No Data Screen-->
     <string name="noData_tapMessage">Nothing here! Tap to generate!</string>
