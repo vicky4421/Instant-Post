@@ -34,4 +34,21 @@ class PexelRepository @Inject constructor(@PexelRetrofitQualifier private val pe
             e.printStackTrace()
         }
     }
+
+    suspend fun searchImageResponse(imageQuery: String){
+        try {
+            val response = pexelApi.searchImage(query = imageQuery)
+            if (response.isSuccessful && response.body() != null){
+                if (response.code() == 200){
+                    response.body().let { pexelResponse ->
+                        _pexelResponse.emit(value = pexelResponse)
+                    }
+                } else {
+                    Log.d("Pexel Repository Error", "searchImageResponse: ${response.errorBody().toString()}")
+                }
+            }
+        } catch (e: Exception){
+            Log.d("Pexel Repository", "searchImageResponse: ${e.message}")
+        }
+    }
 }

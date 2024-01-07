@@ -28,10 +28,18 @@ class PexelViewModel @Inject constructor(
         getPexelResponse()
     }
 
-    private fun getPexelResponse(){
+    fun getPexelResponse(){
         viewModelScope.launch {
             _loading.value = true
             pexelRepository.getPexelResponse()
+            _loading.value = false
+        }
+    }
+
+    fun getSearchImageResponse(query: String){
+        viewModelScope.launch {
+            _loading.value = true
+            pexelRepository.searchImageResponse(imageQuery = query)
             _loading.value = false
         }
     }
