@@ -35,7 +35,7 @@ class SavedWhatsappViewModel @Inject constructor(private val repository: SavedWh
     fun deleteContent(whatsappContent: WhatsappContent){
         viewModelScope.launch {
             _loading.value = true
-            repository.deleterWhatsappContent(whatsappContent)
+            repository.deleteWhatsappContent(whatsappContent)
             _loading.value = false
         }
     }
