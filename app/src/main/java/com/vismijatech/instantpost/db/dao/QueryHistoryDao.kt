@@ -3,7 +3,9 @@ package com.vismijatech.instantpost.db.dao
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
+import androidx.room.Query
 import com.vismijatech.instantpost.db.entities.QueryHistory
+import kotlinx.coroutines.flow.Flow
 
 /**
  * Created by Vivek Sawant on 07-01-2024.
@@ -15,4 +17,7 @@ interface QueryHistoryDao {
 
     @Delete
     suspend fun deleteQueryHistory(queryHistory: QueryHistory)
+
+    @Query("SELECT * FROM QueryHistory")
+    suspend fun getAllQueryHistory(): Flow<List<QueryHistory>>
 }
