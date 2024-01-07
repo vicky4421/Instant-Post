@@ -20,7 +20,7 @@ sealed class BottomBarItems(
     )
 
     object Images: BottomBarItems(
-        route = InstantPostScreen.ImageScreen.name,
+        route = InstantPostScreen.PexelScreen.name,
         title = "Images",
         selectedIcon = R.drawable.ic_image_filled,
         unSelectedIcon =R.drawable.ic_image_outlined
