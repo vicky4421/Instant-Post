@@ -1,5 +1,7 @@
 package com.vismijatech.instantpost.navigation
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
@@ -12,7 +14,7 @@ import com.vismijatech.instantpost.screens.blog.blog.OtherBlogScreen
 import com.vismijatech.instantpost.screens.blog.travel.TravelBlogScreen
 import com.vismijatech.instantpost.screens.credits.CreditScreen
 import com.vismijatech.instantpost.screens.dashboard.DashboardScreen
-import com.vismijatech.instantpost.screens.images.ImageScreen
+import com.vismijatech.instantpost.screens.images.pexel.PexelScreen
 import com.vismijatech.instantpost.screens.login.LoginScreen
 import com.vismijatech.instantpost.screens.mail.EmailScreen
 import com.vismijatech.instantpost.screens.mail.business.BusinessMailScreen
@@ -24,8 +26,8 @@ import com.vismijatech.instantpost.screens.saved.SavedContentScreen
 import com.vismijatech.instantpost.screens.saved.blogsaves.SavedBlogScreen
 import com.vismijatech.instantpost.screens.saved.businesssaves.SavedBusinessScreen
 import com.vismijatech.instantpost.screens.saved.newslettersaves.SavedNewsletterScreen
-import com.vismijatech.instantpost.screens.saved.promotionalsaves.SavedPromotionalScreen
 import com.vismijatech.instantpost.screens.saved.personalsaves.SavedPersonalScreen
+import com.vismijatech.instantpost.screens.saved.promotionalsaves.SavedPromotionalScreen
 import com.vismijatech.instantpost.screens.saved.socialmediasaves.SavedSocialMediaScreen
 import com.vismijatech.instantpost.screens.saved.whatsappsaves.SavedWhatsappScreen
 import com.vismijatech.instantpost.screens.signup.SignupScreen
@@ -43,6 +45,7 @@ import com.vismijatech.instantpost.screens.whatsapp.reply.WhatsappReplyScreen
  * Created by Vivek Sawant on 26-11-2023.
  */
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun InstantPostNavigation() {
 
@@ -120,10 +123,6 @@ fun InstantPostNavigation() {
             BlogScreen(navController = navController)
         }
 
-        composable(route = InstantPostScreen.ImageScreen.name) {
-            ImageScreen(navController = navController)
-        }
-
         composable(route = InstantPostScreen.WhatsappBusinessScreen.name) {
             WhatsappBusinessScreen(navController = navController, sharedViewModel = sharedViewModel)
         }
@@ -194,6 +193,9 @@ fun InstantPostNavigation() {
         composable(route = InstantPostScreen.SavedNewsletterScreen.name){
             SavedNewsletterScreen(navController = navController)
         }
-    }
 
+        composable(route = InstantPostScreen.PexelScreen.name){
+            PexelScreen(navController = navController)
+        }
+    }
 }

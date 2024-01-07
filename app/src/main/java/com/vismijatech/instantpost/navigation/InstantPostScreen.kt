@@ -34,5 +34,6 @@ enum class InstantPostScreen {
     SavedWhatsappScreen,
     SavedPersonalScreen,
     SavedBusinessScreen,
-    SavedNewsletterScreen
+    SavedNewsletterScreen,
+    PexelScreen
 }
