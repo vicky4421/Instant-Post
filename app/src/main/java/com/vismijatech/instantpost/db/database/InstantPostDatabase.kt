@@ -10,6 +10,7 @@ import com.vismijatech.instantpost.db.dao.EmailDao
 import com.vismijatech.instantpost.db.dao.NewsletterDao
 import com.vismijatech.instantpost.db.dao.PersonalDao
 import com.vismijatech.instantpost.db.dao.PromotionalDao
+import com.vismijatech.instantpost.db.dao.QueryHistoryDao
 import com.vismijatech.instantpost.db.dao.SocialMediaDao
 import com.vismijatech.instantpost.db.dao.WhatsappDao
 import com.vismijatech.instantpost.db.entities.BlogContent
@@ -18,6 +19,7 @@ import com.vismijatech.instantpost.db.entities.EmailContent
 import com.vismijatech.instantpost.db.entities.NewsletterContent
 import com.vismijatech.instantpost.db.entities.PersonalContent
 import com.vismijatech.instantpost.db.entities.PromotionalContent
+import com.vismijatech.instantpost.db.entities.QueryHistory
 import com.vismijatech.instantpost.db.entities.SocialMediaContent
 import com.vismijatech.instantpost.db.entities.WhatsappContent
 import com.vismijatech.instantpost.db.typeconverters.Converters
@@ -33,7 +35,8 @@ import com.vismijatech.instantpost.db.typeconverters.Converters
         BusinessContent::class,
         NewsletterContent::class,
         PersonalContent::class,
-        PromotionalContent::class],
+        PromotionalContent::class,
+        QueryHistory::class],
     version = DATABASE_VERSION_1
 )
 @TypeConverters(Converters::class)
@@ -46,4 +49,5 @@ abstract class InstantPostDatabase : RoomDatabase() {
     abstract fun personalDao(): PersonalDao
     abstract fun promotionalDao(): PromotionalDao
     abstract fun emailDao(): EmailDao
+    abstract fun queryHistoryDao(): QueryHistoryDao
 }
