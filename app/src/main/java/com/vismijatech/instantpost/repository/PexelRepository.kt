@@ -1,6 +1,8 @@
 package com.vismijatech.instantpost.repository
 
 import android.util.Log
+import com.vismijatech.instantpost.db.database.InstantPostDatabase
+import com.vismijatech.instantpost.db.entities.QueryHistory
 import com.vismijatech.instantpost.di.annotations.PexelRetrofitQualifier
 import com.vismijatech.instantpost.model.imageapi.pexel.PexelResponse
 import com.vismijatech.instantpost.network.pexelapi.PexelApi
@@ -11,7 +13,11 @@ import javax.inject.Inject
 /**
  * Created by Vivek Sawant on 04-01-2024.
  */
-class PexelRepository @Inject constructor(@PexelRetrofitQualifier private val pexelApi: PexelApi) {
+class PexelRepository @Inject constructor(
+    @PexelRetrofitQualifier private val pexelApi: PexelApi,
+    private val db: InstantPostDatabase
+) {
+    private val queryHistoryDao = db.queryHistoryDao()
 
     private val _pexelResponse = MutableStateFlow<PexelResponse?>(value = null)
     val pexelResponse: StateFlow<PexelResponse?>
@@ -51,4 +57,14 @@ class PexelRepository @Inject constructor(@PexelRetrofitQualifier private val pe
             Log.d("Pexel Repository", "searchImageResponse: ${e.message}")
         }
     }
+
+    suspend fun insertQueryHistory(queryHistory: QueryHistory){
+        queryHistoryDao.insertQueryHistory(queryHistory = queryHistory)
+    }
+
+    suspend fun deleteQueryHistory(queryHistory: QueryHistory){
+        queryHistoryDao.deleteQueryHistory(queryHistory = queryHistory)
+    }
+
+    suspend fun getAllQueryHistory() = queryHistoryDao.getAllQueryHistory()
 }
