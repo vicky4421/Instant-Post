@@ -1,7 +1,10 @@
 package com.vismijatech.instantpost.screens.images.pexel
 
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.vismijatech.instantpost.db.database.InstantPostDatabase
+import com.vismijatech.instantpost.db.entities.QueryHistory
 import com.vismijatech.instantpost.model.imageapi.pexel.PexelResponse
 import com.vismijatech.instantpost.repository.PexelRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -17,6 +20,10 @@ import javax.inject.Inject
 class PexelViewModel @Inject constructor(
     private val pexelRepository: PexelRepository,
 ): ViewModel() {
+    private val _queryHistory: MutableStateFlow<List<QueryHistory>> = MutableStateFlow(emptyList())
+    val queryHistory: StateFlow<List<QueryHistory>>
+        get() = _queryHistory
+
     val pexelResponse: StateFlow<PexelResponse?>
         get() = pexelRepository.pexelResponse
 
@@ -26,6 +33,7 @@ class PexelViewModel @Inject constructor(
 
     init {
         getPexelResponse()
+        fetchAllQueryHistory()
     }
 
     fun getPexelResponse(){
@@ -41,6 +49,26 @@ class PexelViewModel @Inject constructor(
             _loading.value = true
             pexelRepository.searchImageResponse(imageQuery = query)
             _loading.value = false
+        }
+    }
+
+    fun insertQueryHistory(queryHistory: QueryHistory){
+        viewModelScope.launch {
+            pexelRepository.insertQueryHistory(queryHistory = queryHistory)
+        }
+    }
+
+    fun deleteQueryHistory(queryHistory: QueryHistory){
+        viewModelScope.launch {
+            pexelRepository.deleteQueryHistory(queryHistory = queryHistory)
+        }
+    }
+
+    fun fetchAllQueryHistory(){
+        viewModelScope.launch {
+            pexelRepository.getAllQueryHistory().collect{queryHistory ->
+                _queryHistory.value = queryHistory
+            }
         }
     }
 }
