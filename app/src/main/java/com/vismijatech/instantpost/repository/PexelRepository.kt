@@ -66,5 +66,5 @@ class PexelRepository @Inject constructor(
         queryHistoryDao.deleteQueryHistory(queryHistory = queryHistory)
     }
 
-    suspend fun getAllQueryHistory() = queryHistoryDao.getAllQueryHistory()
+    fun getAllQueryHistory() = queryHistoryDao.getAllQueryHistory()
 }
