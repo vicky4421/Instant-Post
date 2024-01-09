@@ -9,6 +9,6 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "QueryHistory")
 data class QueryHistory(
     @PrimaryKey(autoGenerate = true)
-    val id: Long = 0,
+    val id: Long = 0L,
     val query: String
 )
