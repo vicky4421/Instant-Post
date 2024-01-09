@@ -19,5 +19,5 @@ interface QueryHistoryDao {
     suspend fun deleteQueryHistory(queryHistory: QueryHistory)
 
     @Query("SELECT * FROM QueryHistory")
-    suspend fun getAllQueryHistory(): Flow<List<QueryHistory>>
+    fun getAllQueryHistory(): Flow<List<QueryHistory>>
 }
