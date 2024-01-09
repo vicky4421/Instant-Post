@@ -3,7 +3,10 @@ package com.vismijatech.instantpost.db.database
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
 import com.vismijatech.instantpost.data.DATABASE_VERSION_1
+import com.vismijatech.instantpost.data.DATABASE_VERSION_2
 import com.vismijatech.instantpost.db.dao.BlogDao
 import com.vismijatech.instantpost.db.dao.BusinessDao
 import com.vismijatech.instantpost.db.dao.EmailDao
@@ -37,7 +40,8 @@ import com.vismijatech.instantpost.db.typeconverters.Converters
         PersonalContent::class,
         PromotionalContent::class,
         QueryHistory::class],
-    version = DATABASE_VERSION_1
+//    version = DATABASE_VERSION_1
+    version = DATABASE_VERSION_2
 )
 @TypeConverters(Converters::class)
 abstract class InstantPostDatabase : RoomDatabase() {
@@ -50,4 +54,12 @@ abstract class InstantPostDatabase : RoomDatabase() {
     abstract fun promotionalDao(): PromotionalDao
     abstract fun emailDao(): EmailDao
     abstract fun queryHistoryDao(): QueryHistoryDao
+
+    companion object{
+        val migration_1_2 = object : Migration(startVersion = DATABASE_VERSION_1, endVersion = DATABASE_VERSION_2){
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL(sql = "CREATE TABLE IF NOT EXISTS QueryHistory(id INTEGER PRIMARY KEY NOT NULL, query TEXT NOT NULL)")
+            }
+        }
+    }
 }
