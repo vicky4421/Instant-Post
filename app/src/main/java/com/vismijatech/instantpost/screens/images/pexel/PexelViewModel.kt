@@ -1,9 +1,8 @@
 package com.vismijatech.instantpost.screens.images.pexel
 
-import androidx.compose.runtime.mutableStateOf
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.vismijatech.instantpost.db.database.InstantPostDatabase
 import com.vismijatech.instantpost.db.entities.QueryHistory
 import com.vismijatech.instantpost.model.imageapi.pexel.PexelResponse
 import com.vismijatech.instantpost.repository.PexelRepository
@@ -36,7 +35,7 @@ class PexelViewModel @Inject constructor(
         fetchAllQueryHistory()
     }
 
-    fun getPexelResponse(){
+    private fun getPexelResponse(){
         viewModelScope.launch {
             _loading.value = true
             pexelRepository.getPexelResponse()
