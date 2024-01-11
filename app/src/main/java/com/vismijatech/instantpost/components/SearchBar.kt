@@ -4,6 +4,7 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -110,7 +111,7 @@ fun SearchBar(
     )
     AnimatedVisibility(visible = isActive, modifier = Modifier.background(Color.Transparent)) {
         LazyColumn(
-            modifier = Modifier.background(Color.Transparent).clip(shape = RoundedCornerShape(size = 10.dp)).zIndex(5f)
+            modifier = Modifier.background(Color.Transparent).clip(shape = RoundedCornerShape(size = 10.dp)).zIndex(5f).fillMaxSize()
         ) {
             items(queryList) { queryHistory ->
                 HistoryCard(
