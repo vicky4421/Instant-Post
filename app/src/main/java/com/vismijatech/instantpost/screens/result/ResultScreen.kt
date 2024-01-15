@@ -17,8 +17,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
-import com.vismijatech.instantpost.screens.LoadingScreen
+import com.vismijatech.instantpost.data.LOW_CREDIT_MESSAGE
 import com.vismijatech.instantpost.model.openai.OpenAiResponse
+import com.vismijatech.instantpost.navigation.InstantPostScreen
+import com.vismijatech.instantpost.screens.LoadingScreen
 import com.vismijatech.instantpost.screens.SharedViewModel
 import com.vismijatech.instantpost.utils.InputQuery
 import com.vismijatech.instantpost.utils.copyToClipboard
@@ -49,6 +51,7 @@ fun ResultScreen(
     var result: String by remember { mutableStateOf("") }
     val loading by resultViewModel.loading
     val context = LocalContext.current
+    val message by resultViewModel.creditMessage
 
     val prompt = remember {
         when (query) {
@@ -87,9 +90,14 @@ fun ResultScreen(
         Surface(
             modifier = Modifier.padding(it)
         ) {
-            if (loading) LoadingScreen() else {
+            if (loading) LoadingScreen()
+            else if (message == LOW_CREDIT_MESSAGE ) {
+                Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+                navController.navigate(InstantPostScreen.DashboardScreen.name)
+            } else {
                 result = resultState.value?.choices?.first()?.message?.content ?: ""
                 ResultDisplay(result = result)
+                if (message.isNotEmpty()) Toast.makeText(context, message, Toast.LENGTH_LONG).show()
             }
         }
     }
