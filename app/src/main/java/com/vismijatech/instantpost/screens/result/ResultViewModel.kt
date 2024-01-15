@@ -100,12 +100,12 @@ class ResultViewModel @Inject constructor(
 
                 prompt.contains("Title: Personal", ignoreCase = true) -> {
                     if (currentCredits.intValue < CONTENT_COST_3) {
-                        creditMessage.value = COST_3_MESSAGE
+                        creditMessage.value = LOW_CREDIT_MESSAGE
                         loading.value = false
                         return@launch
                     } else {
                         userUtils.costUserCredit(credit = CONTENT_COST_3)
-                        creditMessage.value = "Your account is now 5 credits lighter"
+                        creditMessage.value = COST_3_MESSAGE
                         repository.getResponse(prompt, CONTENT_COST_3)
                     }
                 }
