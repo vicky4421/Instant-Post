@@ -82,6 +82,7 @@ class ResultViewModel @Inject constructor(
                     } else {
                         userUtils.costUserCredit(credit = CONTENT_COST_3)
                         creditMessage.value = COST_3_MESSAGE
+                        repository.getResponse(prompt, CONTENT_COST_3)
                     }
                 }
 
@@ -93,6 +94,7 @@ class ResultViewModel @Inject constructor(
                     } else {
                         userUtils.costUserCredit(credit = CONTENT_COST_3)
                         creditMessage.value = COST_3_MESSAGE
+                        repository.getResponse(prompt, CONTENT_COST_3)
                     }
                 }
 
@@ -104,6 +106,7 @@ class ResultViewModel @Inject constructor(
                     } else {
                         userUtils.costUserCredit(credit = CONTENT_COST_3)
                         creditMessage.value = "Your account is now 5 credits lighter"
+                        repository.getResponse(prompt, CONTENT_COST_3)
                     }
                 }
 
@@ -115,6 +118,7 @@ class ResultViewModel @Inject constructor(
                     } else {
                         userUtils.costUserCredit(credit = CONTENT_COST_3)
                         creditMessage.value = COST_3_MESSAGE
+                        repository.getResponse(prompt, CONTENT_COST_3)
                     }
                 }
 
@@ -126,6 +130,7 @@ class ResultViewModel @Inject constructor(
                     } else {
                         userUtils.costUserCredit(credit = CONTENT_COST_3)
                         creditMessage.value = COST_3_MESSAGE
+                        repository.getResponse(prompt, CONTENT_COST_3)
                     }
                 }
 
@@ -137,6 +142,7 @@ class ResultViewModel @Inject constructor(
                     } else {
                         userUtils.costUserCredit(credit = CONTENT_COST_3)
                         creditMessage.value = COST_3_MESSAGE
+                        repository.getResponse(prompt, CONTENT_COST_3)
                     }
                 }
 
@@ -149,10 +155,10 @@ class ResultViewModel @Inject constructor(
                     } else {
                         userUtils.costUserCredit(credit = CONTENT_COST_10)
                         creditMessage.value = COST_10_MESSAGE
+                        repository.getResponse(prompt, CONTENT_COST_10)
                     }
                 }
             }
-            repository.getResponse(prompt)
             loading.value = false
         }
     }

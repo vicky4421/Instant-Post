@@ -10,6 +10,7 @@ import com.vismijatech.instantpost.model.openai.OpenAiRequest
 import com.vismijatech.instantpost.model.openai.OpenAiResponse
 import com.vismijatech.instantpost.model.openai.Usage
 import com.vismijatech.instantpost.network.openaiapi.OpenAIApi
+import com.vismijatech.instantpost.user.UserUtils
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import java.net.SocketTimeoutException
@@ -18,13 +19,13 @@ import javax.inject.Inject
 /**
  * Created by Vivek Sawant on 24-12-2023.
  */
-class OpenAiRepository @Inject constructor(@OpenaiRetrofitQualifier private val openAIApi: OpenAIApi) {
+class OpenAiRepository @Inject constructor(@OpenaiRetrofitQualifier private val openAIApi: OpenAIApi, private val userUtils: UserUtils) {
 
     private val _openAIResponse = MutableStateFlow<OpenAiResponse?>(value = null)
     val openAiResponse: StateFlow<OpenAiResponse?>
         get() = _openAIResponse
 
-    suspend fun getResponse(prompt: String) {
+    suspend fun getResponse(prompt: String, credits: Int) {
         try {
             val openAiRequest = OpenAiRequest(
                 arrayListOf(
@@ -64,6 +65,8 @@ class OpenAiRepository @Inject constructor(@OpenaiRetrofitQualifier private val 
                 )
             )
             // Refund user credits.
+            Log.d(TAG, "OpenAiRepository: refunding credits $credits")
+            userUtils.addUserCredit(credits)
         } catch (e: Exception) {
             Log.d("Openai Repository", "getResponse: ${e.message}")
             e.printStackTrace()
