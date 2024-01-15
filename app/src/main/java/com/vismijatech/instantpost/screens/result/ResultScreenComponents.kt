@@ -28,7 +28,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.vismijatech.instantpost.R
 import com.vismijatech.instantpost.components.AnimatedBorderComposable
 import com.vismijatech.instantpost.components.dashboardImageGradient
@@ -41,7 +40,6 @@ import com.vismijatech.instantpost.navigation.InstantPostScreen
 @Preview(showBackground = true)
 @Composable
 fun ResultDisplayPreview() {
-    ResultScreenTopAppBar(navController = rememberNavController())
 }
 
 @Composable
