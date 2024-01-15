@@ -219,4 +219,8 @@
     <string name="noData_tapMessage">Nothing here! Tap to generate!</string>
     <string name="noData_imageAttribute">Image by pikisuperstar on Freepik</string>
 
+<!--    User utils-->
+    <string name="userUtils_noCredits">Sorry, you need more credits to continue.</string>
+    <string name="userUtils_creditRecuced">Your account is now 5 credits lighter</string>
+
 </resources>
