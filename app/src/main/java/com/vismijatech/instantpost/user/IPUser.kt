@@ -7,6 +7,6 @@ data class IPUser(
      var userId: String = "",
      var username: String? = "",
      var credits: Int = 0,
-     var imageUrl: String? = "",
+     var imageUrl: String? = null,
      var email: String? = ""
 )
