@@ -7,7 +7,6 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
 import com.vismijatech.instantpost.screens.SharedViewModel
 import com.vismijatech.instantpost.screens.blog.BlogScreen
 import com.vismijatech.instantpost.screens.blog.blog.OtherBlogScreen
@@ -46,10 +45,8 @@ import com.vismijatech.instantpost.screens.whatsapp.reply.WhatsappReplyScreen
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun InstantPostNavigation() {
+fun InstantPostNavigation(navController: NavHostController) {
 
-    // define NavHostController
-    val navController: NavHostController = rememberNavController()
     // define shared view model for all screens, so that we can have only one instance for all screens.
     val sharedViewModel: SharedViewModel = viewModel()
 
