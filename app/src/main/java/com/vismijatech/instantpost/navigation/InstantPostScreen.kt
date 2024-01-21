@@ -16,7 +16,6 @@ enum class InstantPostScreen {
     NewsletterScreen,
     PersonalMailScreen,
     PromotionalMailScreen,
-    CreditScreen,
     EmailScreen,
     BlogScreen,
     ImageScreen,
@@ -35,5 +34,5 @@ enum class InstantPostScreen {
     SavedPersonalScreen,
     SavedBusinessScreen,
     SavedNewsletterScreen,
-    PexelScreen
+    PexelScreen,
 }

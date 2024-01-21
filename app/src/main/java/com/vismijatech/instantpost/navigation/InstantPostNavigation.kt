@@ -12,7 +12,6 @@ import com.vismijatech.instantpost.screens.SharedViewModel
 import com.vismijatech.instantpost.screens.blog.BlogScreen
 import com.vismijatech.instantpost.screens.blog.blog.OtherBlogScreen
 import com.vismijatech.instantpost.screens.blog.travel.TravelBlogScreen
-import com.vismijatech.instantpost.screens.credits.CreditScreen
 import com.vismijatech.instantpost.screens.dashboard.DashboardScreen
 import com.vismijatech.instantpost.screens.images.pexel.PexelScreen
 import com.vismijatech.instantpost.screens.login.LoginScreen
@@ -109,10 +108,6 @@ fun InstantPostNavigation() {
 
         composable(route = InstantPostScreen.PromotionalMailScreen.name) {
             PromotionalMailScreen(navController = navController, sharedViewModel = sharedViewModel)
-        }
-
-        composable(route = InstantPostScreen.CreditScreen.name) {
-            CreditScreen(navController = navController)
         }
 
         composable(route = InstantPostScreen.EmailScreen.name) {
