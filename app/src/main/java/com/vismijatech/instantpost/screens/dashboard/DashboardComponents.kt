@@ -1,6 +1,9 @@
 package com.vismijatech.instantpost.screens.dashboard
 
 import android.content.Context
+import android.content.Intent
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -42,8 +45,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
+import com.vismijatech.instantpost.CreditScreenActivity
 import com.vismijatech.instantpost.R
 import com.vismijatech.instantpost.components.AnimatedBorderComposable
 import com.vismijatech.instantpost.components.ItemCard
@@ -70,12 +75,16 @@ fun NavigationDrawer(
     image: String,
     name: String,
     credits: String,
+    navController: NavHostController,
     drawerState: DrawerState = rememberDrawerState(initialValue = DrawerValue.Closed),
     content: @Composable (drawerState: DrawerState) -> Unit = {}
 ) {
     val scope = rememberCoroutineScope()
     val selectedItemIndex = rememberSaveable {
         mutableIntStateOf(0)
+    }
+    val launchCreditScreen = rememberLauncherForActivityResult(contract = ActivityResultContracts.StartActivityForResult()){
+
     }
     ModalNavigationDrawer(
         modifier = Modifier.fillMaxHeight(),
@@ -112,6 +121,15 @@ fun NavigationDrawer(
                                 context.getString(R.string.dashboardScreen_termsOfUse_navDrawerItem) -> openTermsOfUseBlogPage(
                                     context = context
                                 )
+
+                                context.getString(R.string.creditScreen_buyCredits) -> {
+                                    launchCreditScreen.launch(
+                                        Intent(
+                                            context,
+                                            CreditScreenActivity::class.java
+                                        )
+                                    )
+                                }
                             }
                             selectedItemIndex.intValue = index
                             scope.launch { drawerState.close() }
