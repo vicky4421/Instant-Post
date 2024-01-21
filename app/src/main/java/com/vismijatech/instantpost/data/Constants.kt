@@ -18,3 +18,4 @@ const val COST_3_MESSAGE = "Your account is now 3 credits lighter!"
 const val COST_10_MESSAGE = "Your account is now 10 credits lighter!"
 const val CONTENT_COST_3 = 3
 const val CONTENT_COST_10 = 10
+const val AD_UNIT_ID = "ca-app-pub-8077527269407193/2720513245"
