@@ -2,7 +2,7 @@
     <string name="app_name" translatable="false">Instant Post</string>
     <string name="web_client_id" translatable="false">397570466533-inepk5a2d2sfl7kko5btofrfdeea7nno.apps.googleusercontent.com</string>
 
-<!--    Login Screen-->
+    <!--    Login Screen-->
     <string name="loginScreen_email_label">Email</string>
     <string name="loginScreen_password_label">Password</string>
     <string name="loginScreen_logIn_label">Log in</string>
@@ -22,12 +22,12 @@
     <string name="loginScreen_checkEmail_forgotPassword">Check you email!</string>
     <string name="loginScreen_somethingWrong_forgotPassword">Something went wrong!</string>
 
-<!--    Signup Screen-->
+    <!--    Signup Screen-->
     <string name="signupScreen_fullName_label">Full name</string>
     <string name="signupScreen_signup_label">Sign Up</string>
     <string name="signupScreen_alreadyHaveAccount_label">Already have an account?</string>
 
-<!--    Dashboard Screen-->
+    <!--    Dashboard Screen-->
     <string name="dashboardScreen_credits">Credits:</string>
     <string name="dashboardScreen_rateUs_navDrawerItem">Rate us</string>
     <string name="dashboardScreen_contactUs_navDrawerItem">Contact us</string>
@@ -38,19 +38,19 @@
     <string name="dashboardScreen_blog_dashboardItem">Blog</string>
     <string name="dashboardScreen_images_dashboardItem">Images</string>
 
-<!--    Loading Screen-->
+    <!--    Loading Screen-->
     <string name="loadingScreen_loading">Loading</string>
 
-<!--    Email Screen-->
+    <!--    Email Screen-->
     <string name="emailScreen_personal_emailItem">Personal Email</string>
     <string name="emailScreen_business_emailItem">Business Email</string>
     <string name="emailScreen_promotional_emailItem">Promotional Email</string>
     <string name="emailScreen_newsletter_emailItem">Newsletter</string>
 
-<!--    Blog Screen-->
+    <!--    Blog Screen-->
     <string name="blogScreen_travel_blogItem">Travel Blog</string>
 
-<!--    Whatsapp Screen-->
+    <!--    Whatsapp Screen-->
     <string name="whatsappScreen_personal_whatsappItem">Personal</string>
     <string name="whatsappScreen_messageReply_whatsappItem">Message Reply</string>
     <string name="whatsappScreen_caption_whatsappItem">Caption</string>
@@ -58,7 +58,7 @@
     <string name="whatsappScreen_promotional_whatsappItem">Promotional</string>
     <string name="whatsappScreen_newsletter_whatsappItem">Newsletter</string>
 
-<!--    Social Media Caption Screen-->
+    <!--    Social Media Caption Screen-->
     <string name="socialMedia_imageDesc_label">Image Description</string>
     <string name="socialMedia_emotions_label">Emotions or mood</string>
     <string name="socialMedia_captionStyle_label">Caption Style</string>
@@ -84,7 +84,7 @@
     <string name="socialMedia_targetAudience_info">Who are you trying to reach with this social post? e.g Global audience, family, friends etc.</string>
     <string name="socialMedia_submit_button">Submit</string>
 
-<!--    Whatsapp reply-->
+    <!--    Whatsapp reply-->
     <string name="whatsapp_message_label">Message Content</string>
     <string name="whatsapp_message_info">What\'s the message about or paste senders message?</string>
     <string name="whatsapp_sendersTone_label">Sender\'s message tone</string>
@@ -99,7 +99,7 @@
     <string name="whatsapp_instruction_info">Do you have any special instructions for your reply?</string>
     <string name="whatsapp_length_info">How long do you want your reply to be?</string>
 
-<!--    Personal Mail / Whatsapp Screen-->
+    <!--    Personal Mail / Whatsapp Screen-->
     <string name="personal_whatsapp_header">Whatsapp</string>
     <string name="personal_mail_header">Personal Mail</string>
     <string name="personal_recipientName_label">Recipient\'s Name</string>
@@ -117,7 +117,7 @@
     <string name="personal_closing_label">Closing sentiment</string>
     <string name="personal_closing_info">Would you like to use a friendly, formal, or humorous closing?</string>
 
-<!--    Business Mail / Whatsapp Screen-->
+    <!--    Business Mail / Whatsapp Screen-->
     <string name="business_header">Business Mail</string>
     <string name="business_recipientNameAndTitle_label">Recipient\'s Name and Title</string>
     <string name="business_purpose_label">Purpose</string>
@@ -128,7 +128,7 @@
     <string name="business_signature_label">Signature</string>
     <string name="business_signature_info">Please include your name, title, and contact information.</string>
 
-<!--    Promotional Mail / Whatsapp screen-->
+    <!--    Promotional Mail / Whatsapp screen-->
     <string name="promotional_targetAudience_info">Who is the target audience for this promotional content?</string>
     <string name="promotional_product_label">Product or service to promote</string>
     <string name="promotional_product_info">Please provide a brief description of the product or service.</string>
@@ -144,7 +144,7 @@
     <string name="promotional_emailTone_label">Content tone</string>
     <string name="promotional_length_info">How long would you like your promotional email to be?</string>
 
-<!--    Newsletter / Whatsapp screen-->
+    <!--    Newsletter / Whatsapp screen-->
     <string name="newsletter_theme_label">Theme or topic</string>
     <string name="newsletter_theme_info">What do you want to write about?</string>
     <string name="newsletter_title_label">Title</string>
@@ -160,7 +160,7 @@
     <string name="newsletter_frequency_info">How often will you send the newsletter? Will you send it weekly, monthly, or something else?</string>
     <string name="newsletter_length_info">How long would you like your newsletter to be?</string>
 
-<!--    Blog Screen-->
+    <!--    Blog Screen-->
     <string name="blog_title_info">What is the title of your blog post? The title should be clear, concise, and attention-grabbing.</string>
     <string name="blog_introduction_label">Introduction</string>
     <string name="blog_introduction_info">The introduction should provide a brief overview of the topic of the blog post.</string>
@@ -180,7 +180,7 @@
     <string name="blog_conclusion_label">Conclusion</string>
     <string name="blog_conclusion_info">Do you want to summarize your key points, ask a question, or leave the reader with something to think about?</string>
 
-<!--    Travel Blog Screen-->
+    <!--    Travel Blog Screen-->
     <string name="travelBlog_title_info">What is the title of your travel blog post?</string>
     <string name="travelBlog_introduction_info">Give us a brief overview of your travel blog post. What is the destination? What is the purpose of your trip? What are your expectations?</string>
     <string name="travelBlog_destinations_label">Destinations and Itinerary</string>
@@ -204,23 +204,27 @@
 
     <string name="userInput_textNotProvided">Not Provided</string>
 
-<!--    Result screen-->
+    <!--    Result screen-->
     <string name="resultScreen_title">Result</string>
     <string name="resultScreen_textCopiedToast">Text copied to clipboard!</string>
 
-<!--    Saved content screen-->
+    <!--    Saved content screen-->
     <string name="savedContent_title">Saved Contents</string>
 
-<!--    Image Screen-->
+    <!--    Image Screen-->
     <string name="imageScreen_title">Images</string>
     <string name="imageScreen_search">Search</string>
 
-<!--    No Data Screen-->
+    <!--    No Data Screen-->
     <string name="noData_tapMessage">Nothing here! Tap to generate!</string>
     <string name="noData_imageAttribute">Image by pikisuperstar on Freepik</string>
 
-<!--    User utils-->
+    <!--    User utils-->
     <string name="userUtils_noCredits">Sorry, you need more credits to continue.</string>
     <string name="userUtils_creditRecuced">Your account is now 5 credits lighter</string>
+
+    <!--    Credit screen-->
+    <string name="creditScreen_buyCredits">Buy Credits</string>
+    <string name="title_activity_credit_screen">CreditScreenActivity</string>
 
 </resources>
