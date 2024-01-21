@@ -7,10 +7,12 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Send
+import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.outlined.Email
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.icons.outlined.Send
+import androidx.compose.material.icons.outlined.ShoppingCart
 import androidx.compose.material.icons.outlined.Star
 import androidx.compose.ui.graphics.Color
 import com.vismijatech.instantpost.R
@@ -49,6 +51,13 @@ fun getNavDrawerItems(context: Context): List<NavigationDrawerItem>{
             selectedIcon = Icons.Filled.Send,
             unSelectedIcon = Icons.Outlined.Send,
             imageDescription = "How to use",
+            onClick = {}
+        ),
+        NavigationDrawerItem(
+            title = context.getString(R.string.creditScreen_buyCredits),
+            selectedIcon = Icons.Filled.ShoppingCart,
+            unSelectedIcon = Icons.Outlined.ShoppingCart,
+            imageDescription = "Buy credits",
             onClick = {}
         )
     )
