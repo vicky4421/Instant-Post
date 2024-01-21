@@ -52,6 +52,7 @@ fun DashboardScreen(
             context = context,
             image = user.imageUrl.orEmpty(),
             name = user.username.orEmpty(),
+            navController = navController,
             credits = user.credits.toString()
         ) { drawerState ->
             Scaffold(
