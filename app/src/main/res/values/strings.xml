@@ -226,5 +226,8 @@
     <!--    Credit screen-->
     <string name="creditScreen_buyCredits">Buy Credits</string>
     <string name="title_activity_credit_screen">CreditScreenActivity</string>
+    <string name="buyCredit_imageAttribute">Image by storyset on Freepik</string>
+    <string name="buyCredit_tapToBuy">Tap to buy credits!</string>
+    <string name="buyCredit_goToDashboard">Go to Dashboard</string>
 
 </resources>
